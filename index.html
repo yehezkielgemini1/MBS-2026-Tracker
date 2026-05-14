@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MBS 2026 Response Tracker · Mandiri Institute</title>
+<meta name="theme-color" content="#001F4D">
+<meta name="description" content="Live monitoring pengumpulan respons Mandiri Business Survey 2026 — struktur SME Banking Center & Unit. Tracking progres per Sektor, Skala Usaha, Status Debitur.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<script src="https://cdn.plot.ly/plotly-2.32.0.min.js" charset="utf-8"></script>
+<script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.5/dist/cdn.min.js"></script>
+
+<link rel="stylesheet" href="assets/styles.css">
+<script src="assets/app.js"></script>
+<script src="assets/charts.js"></script>
+</head>
+
+<body x-data="mbsApp()" x-init="init()" x-cloak>
+
+<!-- ============ TOP NAVIGATION ============ -->
+<header class="topnav">
+  <div class="brand-block">
+    <div class="accent-bar"></div>
+    <div>
+      <div class="brand-title">Mandiri Institute</div>
+      <div class="brand-sub">MBS 2026 Response Tracker</div>
+    </div>
+  </div>
+
+  <nav class="tabs">
+    <button class="tab" :class="{ 'active': activePanel === 'nasional' }" @click="switchPanel('nasional')">Nasional</button>
+    <button class="tab" :class="{ 'active': activePanel === 'center' }" @click="switchPanel('center')">Center</button>
+    <button class="tab" :class="{ 'active': activePanel === 'unit' }" @click="switchPanel('unit')">Unit</button>
+  </nav>
+
+  <div class="refresh">
+    <span class="refresh-dot" :class="refreshFreshness"></span>
+    <span x-text="liveReady ? ('Update: ' + lastRefreshLabel) : 'Belum ada respons'"></span>
+  </div>
+</header>
+
+<!-- ============ MAIN CONTAINER ============ -->
+<main class="container">
+
+  <div x-show="loading" style="padding:80px 0;text-align:center;color:var(--muted);">
+    <div style="font-size:14px;">Memuat data tracker...</div>
+  </div>
+
+  <!-- ============ PAGE TITLE ============ -->
+  <div x-show="!loading" class="page-title-row">
+    <div>
+      <h1 class="page-title" x-text="pageTitle"></h1>
+      <div x-show="pageSubtitle" x-text="pageSubtitle" style="font-size:13px;color:var(--muted);margin-top:4px;letter-spacing:0.02em;"></div>
+    </div>
+    <div x-show="!liveReady" class="preview-pill">Preview · Target Distribution</div>
+  </div>
+
+  <!-- ============ FILTER BAR (Center & Unit panel only) ============ -->
+  <div x-show="!loading && activePanel === 'center'" class="filter-bar">
+    <div class="filter-group">
+      <div class="filter-label">SME Banking Center</div>
+      <select x-model="selectedCenter" @change="onCenterChange()">
+        <template x-for="c in centersList" :key="c.new_center">
+          <option :value="c.new_center" x-text="c.new_center"></option>
+        </template>
+      </select>
+    </div>
+    <div class="filter-meta"><span class="dot"></span><span x-text="filterMetaText"></span></div>
+  </div>
+
+  <div x-show="!loading && activePanel === 'unit'" class="filter-bar">
+    <div class="filter-group">
+      <div class="filter-label">SME Banking Center</div>
+      <select x-model="selectedCenter" @change="onCenterChange()">
+        <template x-for="c in centersList" :key="c.new_center">
+          <option :value="c.new_center" x-text="c.new_center"></option>
+        </template>
+      </select>
+    </div>
+    <div class="filter-group">
+      <div class="filter-label">SME Banking Unit</div>
+      <select x-model="selectedUnit" @change="onUnitChange()">
+        <template x-for="u in unitsInCenter(selectedCenter)" :key="u.new_unit">
+          <option :value="u.new_unit" x-text="u.new_unit"></option>
+        </template>
+      </select>
+    </div>
+    <div class="filter-meta"><span class="dot"></span><span x-text="filterMetaText"></span></div>
+  </div>
+
+  <!-- ============ KPI STRIP (4 cards) ============ -->
+  <div x-show="!loading" class="kpi-strip">
+    <div class="kpi-card dark">
+      <div class="kpi-accent-top"></div>
+      <div class="kpi-icon-bg">T</div>
+      <div class="kpi-label">Target</div>
+      <div class="kpi-value" x-text="fmt(kpiTarget)">—</div>
+      <div class="kpi-sub" x-text="kpiScopeLabel">Nasional · N=1.400</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-accent-top"></div>
+      <div class="kpi-icon-bg">A</div>
+      <div class="kpi-label">Aktual</div>
+      <div class="kpi-value" :class="{ 'muted': !liveReady }" x-text="liveReady ? fmt(kpiAktual) : '—'">—</div>
+      <div class="kpi-sub" x-text="liveReady ? 'Completed responses' : 'Menunggu respons pertama'">Menunggu respons pertama</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-accent-top"></div>
+      <div class="kpi-icon-bg">%</div>
+      <div class="kpi-label">Completion Rate</div>
+      <div class="kpi-value" :class="{ 'muted': !liveReady }" x-text="liveReady ? fmtPct(kpiCompletionPct) : '—'">—</div>
+      <div class="kpi-progress">
+        <div class="kpi-progress-fill" :style="`width: ${Math.min(100, kpiCompletionPct || 0)}%`"></div>
+      </div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-accent-top"></div>
+      <div class="kpi-icon-bg">∆</div>
+      <div class="kpi-label">Defisit</div>
+      <div class="kpi-value" :class="{ 'muted': !liveReady }" x-text="liveReady ? fmt(kpiDefisit) : '—'">—</div>
+      <div class="kpi-sub" x-text="liveReady ? 'Sisa respons ke target' : 'Belum dihitung'">Belum dihitung</div>
+    </div>
+  </div>
+
+  <!-- ====================== BAGIAN A: 3 DONUT ====================== -->
+  <div x-show="!loading" class="section-label">
+    <div class="marker"></div>
+    <div class="title">Bagian A · Profil Target</div>
+    <div class="sub" x-text="liveReady ? 'Target vs Aktual per dimensi · % dan absolut (n)' : 'Distribusi target N=1.400 · 3 dimensi'"></div>
+  </div>
+
+  <div x-show="!loading" class="chart-grid cols-3">
+    <div class="chart-card">
+      <h3>Skala Usaha</h3>
+      <div class="chart-sub">Kecil · Menengah (fokus SME 2026)</div>
+      <div class="chart-body tall" id="chart-donut-skala"></div>
+    </div>
+    <div class="chart-card">
+      <h3>Sektor</h3>
+      <div class="chart-sub">6 sektor: Industri, Perdagangan, Lainnya, Pertanian, Akmamin, Konstruksi</div>
+      <div class="chart-body tall" id="chart-donut-sektor"></div>
+    </div>
+    <div class="chart-card">
+      <h3>Status Debitur</h3>
+      <div class="chart-sub">Debitur · Non-Debitur · Non-Nasabah</div>
+      <div class="chart-body tall" id="chart-donut-debitur"></div>
+    </div>
+  </div>
+
+  <!-- ====================== BAGIAN B: BAR TARGET vs AKTUAL ====================== -->
+  <template x-if="!loading && (activePanel === 'nasional' || activePanel === 'center')">
+    <div>
+      <div class="section-label">
+        <div class="marker"></div>
+        <div class="title">Bagian B · Komparasi Target vs Aktual</div>
+        <div class="sub" x-text="activePanel === 'nasional' ? 'Per SME Banking Center · sorted geografis order 1 → 26' : 'Per SME Banking Unit dalam ' + (selectedCenter || '—') + ' · sorted target'"></div>
+      </div>
+      <div class="chart-card featured">
+        <div class="chart-body tall" id="chart-bar-comparison"></div>
+      </div>
+    </div>
+  </template>
+
+  <!-- ====================== BAGIAN C: TABEL 1 RINGKASAN PERFORMA ====================== -->
+  <template x-if="!loading && (activePanel === 'nasional' || activePanel === 'center')">
+    <div>
+      <div class="section-label">
+        <div class="marker"></div>
+        <div class="title">Bagian C · Ringkasan Performa</div>
+        <div class="sub" x-text="activePanel === 'nasional' ? 'Klik baris untuk drill-down ke SME Banking Center' : 'Klik baris untuk drill-down ke SME Banking Unit'"></div>
+      </div>
+      <div class="table-card">
+        <div class="table-scroll">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th x-text="activePanel === 'nasional' ? 'SME Banking Center' : 'SME Banking Unit'"></th>
+                <th class="num">Target</th>
+                <th class="num">Aktual</th>
+                <th class="num">Defisit</th>
+                <th style="min-width:200px;">Progress</th>
+              </tr>
+            </thead>
+            <tbody>
+              <template x-for="row in (activePanel === 'nasional' ? summaryTableNasional() : summaryTableCenter())" :key="(row.center || '') + '|' + (row.unit || '')">
+                <tr class="clickable" @click="onSummaryRowClick(row)">
+                  <td class="label" x-text="activePanel === 'nasional' ? row.display : row.unit"></td>
+                  <td class="num" x-text="fmt(row.target)"></td>
+                  <td class="num" x-text="liveReady ? fmt(row.aktual) : '—'"></td>
+                  <td class="num" x-text="liveReady ? fmt(row.defisit) : '—'"></td>
+                  <td>
+                    <div class="progress-bar">
+                      <div class="bar">
+                        <div class="bar-fill" :class="row.pct >= 100 ? 'complete' : (row.pct >= 50 ? '' : (row.pct >= 25 ? 'warn' : 'danger'))" :style="`width:${Math.min(100, row.pct)}%`"></div>
+                      </div>
+                      <span class="pct" x-text="liveReady ? fmtPct(row.pct, 0) : '—'"></span>
+                    </div>
+                  </td>
+                </tr>
+              </template>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <!-- ====================== BAGIAN D: TABEL 2 MATRIKS SEKTOR ====================== -->
+  <template x-if="!loading">
+    <div>
+      <div class="section-label">
+        <div class="marker"></div>
+        <div class="title">Bagian D · Matriks Capaian Sektor</div>
+        <div class="sub" x-text="activePanel === 'nasional' ? 'Target vs Aktual per SME Banking Center × 6 sektor · klik baris untuk drill' : (activePanel === 'center' ? 'Target vs Aktual per Unit × 6 sektor · klik baris untuk drill' : 'Target vs Aktual unit terpilih × 6 sektor')"></div>
+      </div>
+      <div class="table-card">
+        <div class="table-scroll">
+          <table class="matrix-table">
+            <thead>
+              <tr>
+                <th rowspan="2" class="label-col" x-text="activePanel === 'nasional' ? 'SME Banking Center' : 'SME Banking Unit'"></th>
+                <th colspan="3" class="group">Industri</th>
+                <th colspan="3" class="group">Perdagangan</th>
+                <th colspan="3" class="group">Lainnya</th>
+                <th colspan="3" class="group">Akmamin</th>
+                <th colspan="3" class="group">Pertanian</th>
+                <th colspan="3" class="group">Konstruksi</th>
+                <th colspan="3" class="group" style="background:var(--blue-9);">TOTAL</th>
+              </tr>
+              <tr>
+                <template x-for="i in 6" :key="'col-grp-' + i">
+                  <template x-for="c in ['Target', 'Aktual', '%']" :key="'col-' + i + '-' + c">
+                    <th class="num" x-text="c"></th>
+                  </template>
+                </template>
+                <th class="num">Target</th>
+                <th class="num">Aktual</th>
+                <th class="num">%</th>
+              </tr>
+            </thead>
+            <tbody>
+              <template x-for="item in matrixSkalaSektorFlat()" :key="item.key">
+                <tr :class="{ clickable: activePanel !== 'unit' }" @click="activePanel !== 'unit' && onMatrixRowClick(item)">
+                  <td class="label-col" x-text="item.label"></td>
+                  <template x-for="(cell, idx) in item.flatCells" :key="item.key + '-c-' + idx">
+                    <td class="num" :class="cell.type === 'target' ? 'target-cell' : (cell.type === 'aktual' ? 'aktual-cell' : 'pct-cell')" x-text="flatCellText(cell)"></td>
+                  </template>
+                  <td class="num target-cell" style="font-weight:600;" x-text="fmt(item.totalTarget)"></td>
+                  <td class="num aktual-cell" style="font-weight:700;" x-text="liveReady ? fmt(item.totalAktual) : '—'"></td>
+                  <td class="num progress-cell">
+                    <div class="progress-cell-fill" :style="`width:${Math.min(100, item.totalPct)}%`"></div>
+                    <span class="progress-cell-val" x-text="liveReady ? fmtPct(item.totalPct, 0) : '—'"></span>
+                  </td>
+                </tr>
+              </template>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </template>
+
+</main>
+
+<footer class="foot">
+  <div class="foot-inner">
+    <div>© 2026 Mandiri Institute · MBS 2026 Response Tracker · Survey ID: <span class="num">422412181</span> · Struktur: SME Banking Center v2</div>
+    <div>Data refresh 3× sehari: 07:00 · 12:00 · 17:00 WIB · <a href="https://github.com/yehezkielgemini1/MBS-2026-Tracker" target="_blank" rel="noopener">GitHub</a></div>
+  </div>
+</footer>
+
+</body>
+</html>

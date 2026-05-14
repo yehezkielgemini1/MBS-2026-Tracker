@@ -1,0 +1,9 @@
+# JANGAN push file PII apapun
+mbs_live_realization.csv
+mbs_live_realization_*.csv
+.DS_Store
+Thumbs.db
+*.log
+__pycache__/
+.vscode/
+.idea/
