@@ -57,16 +57,16 @@
 /* === DARK THEME — toggle via [data-theme="dark"] on <html> === */
 :root[data-theme="dark"] {
   --bg-canvas: #061429;          /* near black-navy */
-  --bg-elevated: #0D1F38;        /* card bg */
-  --bg-subtle: #0A1A30;
-  --bg-strip: #0F2543;
-  --bg-strip-2: #143560;
+  --bg-elevated: #142A4A;        /* card bg — lebih terang biar text contrast */
+  --bg-subtle: #0F2240;
+  --bg-strip: #1A3A60;
+  --bg-strip-2: #245078;
   --bg-topnav: #00153A;          /* blue-1 darkest */
   --bg-foot: #00153A;
 
-  --text-primary: #D5E3F0;       /* blue-10 inverted */
-  --text-strong: #EAF1F8;        /* near white */
-  --text-muted: #8FA5BD;
+  --text-primary: #E8F0FA;       /* near white-ish blue, AAA contrast */
+  --text-strong: #F4F8FC;        /* full white */
+  --text-muted: #B6C8DE;         /* lighter dari sebelumnya untuk readability */
   --text-on-nav: #FFFFFF;
 
   --accent: #67B2E8;             /* blue-8 — pop on dark */
@@ -74,8 +74,8 @@
   --accent-soft: #4A8BC4;
   --accent-faint: #2C6FB5;
 
-  --rule: #1A3554;
-  --rule-strong: #245078;
+  --rule: #2C4868;               /* lebih terang dari sebelumnya */
+  --rule-strong: #6A88AA;        /* MUCH brighter — buat muted value "—" tetap visible */
 
   /* Re-map aliases */
   --navy-deep: var(--bg-topnav);

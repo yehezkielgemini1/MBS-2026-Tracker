@@ -5,12 +5,12 @@ function plotlyTheme() {
   const isDark = document.documentElement.dataset.theme === 'dark';
   return {
     isDark,
-    paper:    isDark ? '#0D1F38' : '#FFFFFF',
-    plot:     isDark ? '#0D1F38' : '#FFFFFF',
-    text:     isDark ? '#EAF1F8' : '#051C2C',
-    textMute: isDark ? '#8FA5BD' : '#667085',
-    grid:     isDark ? '#1A3554' : '#EAF1F8',
-    axis:     isDark ? '#245078' : '#D5E3F0',
+    paper:    isDark ? '#142A4A' : '#FFFFFF',
+    plot:     isDark ? '#142A4A' : '#FFFFFF',
+    text:     isDark ? '#F4F8FC' : '#051C2C',
+    textMute: isDark ? '#B6C8DE' : '#667085',
+    grid:     'rgba(0,0,0,0)',                   // NO gridlines
+    axis:     isDark ? '#2C4868' : '#D5E3F0',
     hoverBg:  isDark ? '#00153A' : '#001F4D',
     hoverFg:  '#FFFFFF',
   };
@@ -143,16 +143,21 @@ function renderBarTargetVsAktual(domId, items, labelKey) {
     barmode: 'group', bargap: 0.25, bargroupgap: 0.08,
     xaxis: {
       tickangle: -45,
-      gridcolor: plotlyTheme().grid,
+      showgrid: false,
+      showline: false,
       tickfont: { size: 10, color: plotlyTheme().text },
       automargin: false,
     },
     yaxis: {
       title: { text: 'Respons', font: { size: 12, color: plotlyTheme().textMute } },
-      gridcolor: plotlyTheme().grid, zerolinecolor: plotlyTheme().axis,
+      showgrid: false,
+      showline: false,
+      zeroline: true,
+      zerolinecolor: plotlyTheme().axis,
+      zerolinewidth: 1,
       tickformat: ',d', rangemode: 'tozero',
       range: [0, yMax],
-      tickfont: { color: plotlyTheme().text },
+      tickfont: { size: 10, color: plotlyTheme().text },
     },
     // Legend di paling bawah (di bawah x-axis labels)
     legend: {
