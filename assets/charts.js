@@ -121,20 +121,30 @@ function renderBarTargetVsAktual(domId, items, labelKey) {
   const maxY = Math.max(...targets, ...aktuals, 1);
   const yMax = maxY * 1.18;
 
+  const theme = plotlyTheme();
+  // Bar colors theme-aware: light bg → use light blue for Target / dark navy for Aktual.
+  // Dark bg → use lighter blue for Target / brighter for Aktual.
+  const targetBar = theme.isDark ? '#4A8BC4' : '#A9C4DF';
+  const targetBorder = theme.isDark ? '#67B2E8' : '#4A8BC4';
+  const aktualBar = theme.isDark ? '#67B2E8' : '#002852';
+  // Data labels: use main text color so contrast guaranteed
+  const dataLabelColor = theme.text;
+  const dataLabelAktualColor = theme.isDark ? '#FFFFFF' : '#001F4D';
+
   Plotly.newPlot(domId, [
     {
       x: labels, y: targets, type: 'bar', name: 'Target',
-      marker: { color: MI_BLUE.b9, line: { color: MI_BLUE.b7, width: 1 } },
+      marker: { color: targetBar, line: { color: targetBorder, width: 1 } },
       text: targetTextLabels, textposition: 'outside',
-      textfont: { size: 10, family: 'Inter, sans-serif', color: MI_BLUE.b5 },
+      textfont: { size: 10, family: 'Inter, sans-serif', color: dataLabelColor },
       cliponaxis: false,
       hovertemplate: '<b>%{x}</b><br>Target: %{y}<extra></extra>',
     },
     {
       x: labels, y: aktuals, type: 'bar', name: 'Aktual',
-      marker: { color: MI_BLUE.b3 },
+      marker: { color: aktualBar },
       text: aktualTextLabels, textposition: 'outside',
-      textfont: { size: 10, family: 'Inter, sans-serif', color: MI_BLUE.b2, weight: 600 },
+      textfont: { size: 10, family: 'Inter, sans-serif', color: dataLabelAktualColor, weight: 600 },
       cliponaxis: false,
       hovertemplate: '<b>%{x}</b><br>Aktual: %{y}<extra></extra>',
     },
