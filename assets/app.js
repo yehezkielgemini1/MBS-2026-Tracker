@@ -93,6 +93,7 @@ function mbsApp() {
     selectedCenter: null,
     selectedUnit: null,
     loading: true,
+    theme: 'light',  // 'light' | 'dark'
 
     centersList: [],        // sme_banking_centers.csv (26 entries, sorted by order_idx)
     unitsList: [],          // sme_banking_units.csv (103 entries)
@@ -108,6 +109,7 @@ function mbsApp() {
 
     // ----- init -----
     async init() {
+      this.initTheme();
       this.handleHashRoute();
       // Re-render charts on hashchange (browser back/forward, share link)
       window.addEventListener('hashchange', () => {
@@ -203,6 +205,24 @@ function mbsApp() {
       const firstUnit = this.unitsList.find(u => u.new_center === this.selectedCenter);
       if (firstUnit) this.selectedUnit = firstUnit.new_unit;
       this.updateHash();
+      this.$nextTick(() => this.renderActivePanel());
+    },
+
+    // ----- THEME (light / dark) -----
+    initTheme() {
+      const stored = localStorage.getItem('mbs-theme');
+      const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      this.theme = stored || (prefersDark ? 'dark' : 'light');
+      this.applyTheme();
+    },
+    applyTheme() {
+      document.documentElement.dataset.theme = this.theme;
+    },
+    toggleTheme() {
+      this.theme = this.theme === 'light' ? 'dark' : 'light';
+      localStorage.setItem('mbs-theme', this.theme);
+      this.applyTheme();
+      // Re-render charts with new theme colors
       this.$nextTick(() => this.renderActivePanel());
     },
 

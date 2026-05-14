@@ -7,6 +7,17 @@
 <meta name="theme-color" content="#001F4D">
 <meta name="description" content="Live monitoring pengumpulan respons Mandiri Business Survey 2026 — struktur SME Banking Center & Unit. Tracking progres per Sektor, Skala Usaha, Status Debitur.">
 
+<!-- Set theme BEFORE styles load to avoid FOUC -->
+<script>
+  (function() {
+    try {
+      var t = localStorage.getItem('mbs-theme');
+      if (!t && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) t = 'dark';
+      if (t === 'dark') document.documentElement.dataset.theme = 'dark';
+    } catch(e) {}
+  })();
+</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -22,32 +33,40 @@
 
 <body x-data="mbsApp()" x-init="init()" x-cloak>
 
+<!-- Skip to content link (accessibility — keyboard users) -->
+<a href="#main-content" class="skip-link">Skip ke konten utama</a>
+
 <!-- ============ TOP NAVIGATION ============ -->
-<header class="topnav">
+<header class="topnav" role="banner">
   <div class="brand-block">
-    <div class="accent-bar"></div>
+    <div class="accent-bar" aria-hidden="true"></div>
     <div>
       <div class="brand-title">Mandiri Institute</div>
       <div class="brand-sub">MBS 2026 Response Tracker</div>
     </div>
   </div>
 
-  <nav class="tabs">
-    <button class="tab" :class="{ 'active': activePanel === 'nasional' }" @click="switchPanel('nasional')">Nasional</button>
-    <button class="tab" :class="{ 'active': activePanel === 'center' }" @click="switchPanel('center')">Center</button>
-    <button class="tab" :class="{ 'active': activePanel === 'unit' }" @click="switchPanel('unit')">Unit</button>
+  <nav class="tabs" role="tablist" aria-label="Tracker level navigation">
+    <button class="tab" role="tab" :aria-selected="activePanel === 'nasional'" :class="{ 'active': activePanel === 'nasional' }" @click="switchPanel('nasional')">Nasional</button>
+    <button class="tab" role="tab" :aria-selected="activePanel === 'center'" :class="{ 'active': activePanel === 'center' }" @click="switchPanel('center')">Center</button>
+    <button class="tab" role="tab" :aria-selected="activePanel === 'unit'" :class="{ 'active': activePanel === 'unit' }" @click="switchPanel('unit')">Unit</button>
   </nav>
 
-  <div class="refresh">
-    <span class="refresh-dot" :class="refreshFreshness"></span>
+  <div class="refresh" aria-live="polite">
+    <span class="refresh-dot" :class="refreshFreshness" aria-hidden="true"></span>
     <span x-text="liveReady ? ('Update: ' + lastRefreshLabel) : 'Belum ada respons'"></span>
+    <button class="theme-toggle" @click="toggleTheme()" :aria-label="theme === 'light' ? 'Aktifkan dark mode' : 'Aktifkan light mode'" :title="theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'">
+      <span x-show="theme === 'light'" aria-hidden="true">🌙</span>
+      <span x-show="theme === 'dark'" aria-hidden="true">☀️</span>
+      <span class="label" x-text="theme === 'light' ? 'Dark' : 'Light'"></span>
+    </button>
   </div>
 </header>
 
 <!-- ============ MAIN CONTAINER ============ -->
-<main class="container">
+<main class="container" id="main-content" role="main">
 
-  <div x-show="loading" style="padding:80px 0;text-align:center;color:var(--muted);">
+  <div x-show="loading" style="padding:80px 0;text-align:center;color:var(--muted);" role="status" aria-live="polite">
     <div style="font-size:14px;">Memuat data tracker...</div>
   </div>
 
@@ -94,7 +113,7 @@
   </div>
 
   <!-- ============ KPI STRIP (4 cards) ============ -->
-  <div x-show="!loading" class="kpi-strip">
+  <div x-show="!loading" class="kpi-strip" role="region" aria-label="KPI Summary">
     <div class="kpi-card dark">
       <div class="kpi-accent-top"></div>
       <div class="kpi-icon-bg">T</div>

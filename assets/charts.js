@@ -1,12 +1,33 @@
-/* MBS 2026 Response Tracker — Plotly chart factories v3 (SME Banking Center) */
+/* MBS 2026 Response Tracker — Plotly chart factories v4 (theme-aware) */
 
-const PLOTLY_BASE_LAYOUT = {
-  paper_bgcolor: '#FFFFFF',
-  plot_bgcolor: '#FFFFFF',
-  font: { family: 'Inter, system-ui, sans-serif', size: 12, color: '#051C2C' },
-  margin: { l: 60, r: 30, t: 30, b: 60 },
-  hoverlabel: { bgcolor: '#001F4D', font: { color: '#FFFFFF', family: 'Inter, sans-serif', size: 12 }, bordercolor: '#003D79' },
-};
+// Get theme-aware colors at render time
+function plotlyTheme() {
+  const isDark = document.documentElement.dataset.theme === 'dark';
+  return {
+    isDark,
+    paper:    isDark ? '#0D1F38' : '#FFFFFF',
+    plot:     isDark ? '#0D1F38' : '#FFFFFF',
+    text:     isDark ? '#EAF1F8' : '#051C2C',
+    textMute: isDark ? '#8FA5BD' : '#667085',
+    grid:     isDark ? '#1A3554' : '#EAF1F8',
+    axis:     isDark ? '#245078' : '#D5E3F0',
+    hoverBg:  isDark ? '#00153A' : '#001F4D',
+    hoverFg:  '#FFFFFF',
+  };
+}
+
+function plotlyBaseLayout() {
+  const t = plotlyTheme();
+  return {
+    paper_bgcolor: t.paper,
+    plot_bgcolor: t.plot,
+    font: { family: 'Inter, system-ui, sans-serif', size: 12, color: t.text },
+    margin: { l: 60, r: 30, t: 30, b: 60 },
+    hoverlabel: { bgcolor: t.hoverBg, font: { color: t.hoverFg, family: 'Inter, sans-serif', size: 12 }, bordercolor: '#003D79' },
+  };
+}
+
+const PLOTLY_BASE_LAYOUT = plotlyBaseLayout(); // legacy reference
 const PLOTLY_CONFIG = { displayModeBar: false, responsive: true };
 
 function emptyNote(domId, msg) {
@@ -35,22 +56,23 @@ function renderDonut(domId, items, colorMap, app, useShortLabel = false) {
     return `${displayLabels[i]}<br><b>${pct}%</b> · n=${v}`;
   });
 
+  const theme = plotlyTheme();
   Plotly.newPlot(domId, [{
     values, labels: displayLabels,
     type: 'pie', hole: 0.55,
-    marker: { colors, line: { color: '#FFFFFF', width: 1 } },
+    marker: { colors, line: { color: theme.paper, width: 1 } },
     text: textLabels, textinfo: 'text', textposition: 'outside',
-    textfont: { size: 11, family: 'Inter, sans-serif', color: '#003D79' },
+    textfont: { size: 11, family: 'Inter, sans-serif', color: theme.text },
     automargin: true,
     hovertemplate: '<b>%{label}</b><br>n = %{value}<br>%{percent}<extra></extra>',
     sort: false, direction: 'clockwise',
   }], {
-    ...PLOTLY_BASE_LAYOUT,
+    ...plotlyBaseLayout(),
     margin: { l: 20, r: 20, t: 30, b: 30 },
     showlegend: false,
     annotations: [{
-      text: `<b>${total}</b><br><span style="font-size:10px;color:#667085;">${useAktual ? 'Aktual' : 'Target'}</span>`,
-      x: 0.5, y: 0.5, font: { size: 18, family: 'Source Serif 4', color: '#002852' },
+      text: `<b>${total}</b><br><span style="font-size:10px;color:${theme.textMute};">${useAktual ? 'Aktual' : 'Target'}</span>`,
+      x: 0.5, y: 0.5, font: { size: 18, family: 'Source Serif 4', color: theme.text },
       showarrow: false,
     }],
   }, PLOTLY_CONFIG);
@@ -117,19 +139,20 @@ function renderBarTargetVsAktual(domId, items, labelKey) {
       hovertemplate: '<b>%{x}</b><br>Aktual: %{y}<extra></extra>',
     },
   ], {
-    ...PLOTLY_BASE_LAYOUT,
+    ...plotlyBaseLayout(),
     barmode: 'group', bargap: 0.25, bargroupgap: 0.08,
     xaxis: {
       tickangle: -45,
-      gridcolor: MI_BLUE.b11,
-      tickfont: { size: 10, color: MI_BLUE.b3 },
+      gridcolor: plotlyTheme().grid,
+      tickfont: { size: 10, color: plotlyTheme().text },
       automargin: false,
     },
     yaxis: {
-      title: { text: 'Respons', font: { size: 12, color: MI_BLUE.b5 } },
-      gridcolor: MI_BLUE.b11, zerolinecolor: MI_BLUE.b10,
+      title: { text: 'Respons', font: { size: 12, color: plotlyTheme().textMute } },
+      gridcolor: plotlyTheme().grid, zerolinecolor: plotlyTheme().axis,
       tickformat: ',d', rangemode: 'tozero',
       range: [0, yMax],
+      tickfont: { color: plotlyTheme().text },
     },
     // Legend di paling bawah (di bawah x-axis labels)
     legend: {
@@ -137,8 +160,8 @@ function renderBarTargetVsAktual(domId, items, labelKey) {
       x: 0.5, xanchor: 'center',
       y: legendY,
       yanchor: 'top',
-      font: { size: 12, color: MI_BLUE.b3 },
-      bgcolor: 'rgba(255,255,255,0)',
+      font: { size: 12, color: plotlyTheme().text },
+      bgcolor: 'rgba(0,0,0,0)',
       itemsizing: 'constant',
     },
     height: chartHeight,
