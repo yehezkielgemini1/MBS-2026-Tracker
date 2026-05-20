@@ -158,7 +158,18 @@ function mbsApp() {
       }
 
       this.loading = false;
-      this.$nextTick(() => this.renderActivePanel());
+      // Double-rAF: wait for Safari to finish layout AFTER x-show removes display:none.
+      // $nextTick alone (microtask) fires before Safari completes its layout pass,
+      // causing Plotly to measure container widths incorrectly on refresh.
+      await this.$nextTick();
+      requestAnimationFrame(() => requestAnimationFrame(() => this.renderActivePanel()));
+
+      // BFCache: re-render if Safari restores page from back/forward cache
+      window.addEventListener('pageshow', (e) => {
+        if (e.persisted) {
+          requestAnimationFrame(() => requestAnimationFrame(() => this.renderActivePanel()));
+        }
+      });
     },
 
     // ----- routing -----
