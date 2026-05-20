@@ -220,7 +220,7 @@ function mbsApp() {
     },
     toggleTheme() {
       this.theme = this.theme === 'light' ? 'dark' : 'light';
-      localStorage.setItem('mbs-theme', this.theme);
+      try { localStorage.setItem('mbs-theme', this.theme); } catch(e) {}
       this.applyTheme();
       // Re-render charts with new theme colors
       this.$nextTick(() => this.renderActivePanel());

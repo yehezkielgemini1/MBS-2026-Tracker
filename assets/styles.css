@@ -98,19 +98,22 @@ html, body { transition: background-color 0.25s ease, color 0.25s ease; }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html, body { background: var(--bg-canvas); color: var(--text-strong); }
+html { height: -webkit-fill-available; } /* iOS Safari viewport fix */
 body {
   font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
   font-weight: 400;
   letter-spacing: -0.003em;
   line-height: 1.5;
   min-height: 100vh;
+  min-height: -webkit-fill-available; /* iOS Safari: prevents layout jump when URL bar hides */
+  overflow-x: hidden; /* prevent ghost horizontal scroll on mobile */
 }
 
 .serif { font-family: 'Source Serif 4', Georgia, serif; font-weight: 600; letter-spacing: -0.018em; line-height: 1.1; }
 .num { font-variant-numeric: tabular-nums; }
 
 /* ============ TOP NAV ============ */
-.topnav { background: var(--bg-topnav); color: var(--text-on-nav); padding: 14px 28px; display: flex; align-items: center; gap: 24px; border-bottom: 1px solid rgba(255,255,255,0.08); position: sticky; top: 0; z-index: 50; min-height: 64px; }
+.topnav { background: var(--bg-topnav); color: var(--text-on-nav); padding: 14px 28px; display: flex; align-items: center; gap: 24px; border-bottom: 1px solid rgba(255,255,255,0.08); position: -webkit-sticky; position: sticky; top: 0; z-index: 50; min-height: 64px; }
 .topnav .brand-block { display: flex; align-items: center; gap: 12px; }
 .topnav .accent-bar { width: 6px; height: 36px; background: var(--blue-8); }
 .topnav .brand-title { font-family: 'Source Serif 4', Georgia, serif; font-size: 17px; font-weight: 600; line-height: 1.1; }
@@ -205,6 +208,7 @@ a:focus-visible,
   border: 1px solid var(--rule-strong); background: var(--bg-elevated);
   padding: 10px 36px 10px 14px;
   font-size: 14px; font-weight: 500; color: var(--text-primary);
+  -webkit-appearance: none; /* Safari */
   appearance: none; cursor: pointer; min-width: 240px;
   border-radius: 3px;
   transition: all 0.15s ease;
@@ -244,7 +248,7 @@ a:focus-visible,
   position: absolute; top: 12px; right: 14px;
   font-size: 38px; font-family: 'Source Serif 4', Georgia, serif;
   font-weight: 700; color: var(--bg-strip); line-height: 1;
-  pointer-events: none; user-select: none;
+  pointer-events: none; -webkit-user-select: none; user-select: none;
 }
 .kpi-card.dark .kpi-icon-bg { color: rgba(255,255,255,0.08); }
 .kpi-card .kpi-label {
@@ -347,6 +351,18 @@ a:focus-visible,
 
 /* ============ UTILITY ============ */
 [x-cloak] { display: none !important; }
+
+/* ============ DARK MODE OVERRIDES ============ */
+/* Select dropdown arrow: dark navy invisible on dark bg → swap to light */
+:root[data-theme="dark"] .filter-bar select {
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%23A9C4DF'%3e%3cpath fill-rule='evenodd' d='M5.23 7.21a.75.75 0 011.06.02L10 11.06l3.71-3.83a.75.75 0 111.08 1.04l-4.25 4.39a.75.75 0 01-1.08 0L5.21 8.27a.75.75 0 01.02-1.06z' clip-rule='evenodd'/%3e%3c/svg%3e");
+}
+
+/* Safe-area insets for iPhone X+ notch / home indicator */
+.foot { padding-bottom: calc(24px + env(safe-area-inset-bottom)); }
+@supports not (padding: env(safe-area-inset-bottom)) {
+  .foot { padding-bottom: 24px; }
+}
 
 /* ============ RESPONSIVE ============ */
 @media (max-width: 1024px) {
