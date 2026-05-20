@@ -106,7 +106,7 @@ body {
   line-height: 1.5;
   min-height: 100vh;
   min-height: -webkit-fill-available; /* iOS Safari: prevents layout jump when URL bar hides */
-  overflow-x: hidden; /* prevent ghost horizontal scroll on mobile */
+  overflow-x: clip; /* clip vs hidden: avoids Safari viewport propagation that clips grid columns */
 }
 
 .serif { font-family: 'Source Serif 4', Georgia, serif; font-weight: 600; letter-spacing: -0.018em; line-height: 1.1; }
@@ -293,7 +293,7 @@ a:focus-visible,
 .chart-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
 .chart-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
 
-.chart-card { background: var(--bg-elevated); border: 1px solid var(--rule); padding: 22px; box-shadow: var(--elev-1); }
+.chart-card { background: var(--bg-elevated); border: 1px solid var(--rule); padding: 22px; box-shadow: var(--elev-1); min-width: 0; /* Safari grid: prevent auto min-width from overflowing 1fr columns */ }
 .chart-card.featured { grid-column: 1 / -1; }
 .chart-card h3 { font-size: 13px; font-weight: 700; color: var(--text-primary); letter-spacing: 0.04em; text-transform: uppercase; }
 .chart-card .chart-sub { font-size: 11px; color: var(--text-muted); margin-top: 4px; letter-spacing: 0.02em; }
