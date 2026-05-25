@@ -1,104 +1,104 @@
-﻿region,area,target_count
-Jakarta Kebon Sirih,SME Banking Center Jakarta Kebon Sirih,48
-Pekanbaru,SME Banking Center Pekanbaru,33
-Banjarmasin,SME Banking Center Banjarmasin,32
-Bandung Asia Afrika,SME Banking Center Bandung Asia Afrika,31
-Surabaya Pemuda,SME Banking Center Surabaya Pemuda,29
-Bandung Asia Afrika,SME Banking Floor Bandung Braga,29
-Jakarta Melawai,SME Banking Center Jakarta Melawai,29
-Surabaya Niaga,SME Banking Center Surabaya Niaga,27
-Jakarta Kebon Sirih,SME Banking Floor Jakarta Sudirman,25
-Jakarta Kebon Sirih,SME Banking Floor Jakarta Cikini,25
-Medan,SME Banking Center Medan,24
-Medan,SME Banking Floor Medan Imam Bonjol,24
-Jakarta Pulogadung,SME Banking Center Jakarta Pulogadung,24
-Jakarta Kebon Sirih,SME Banking Floor Jakarta Imam Bonjol,24
-Jakarta Kebon Sirih,SME Banking Floor Jakarta Plaza Mandiri,23
-Surabaya Pemuda,SME Banking Floor Surabaya Gentengkali,22
-Jakarta Fatmawati,SME Banking Floor Bogor,22
-Denpasar,SME Banking Center Denpasar,21
-Semarang,SME Banking Floor Semarang Pemuda,21
-Jakarta Pulogadung,SME Banking Floor Jakarta Pulogadung,21
-Surabaya Niaga,SME Banking Floor Kediri,21
-Bekasi,SME Banking Floor Jakarta Pondok Kelapa,21
-Medan,SME Banking Floor Pematangsiantar,20
-Jakarta Melawai,SME Banking Floor Jakarta Tebet Supomo,20
-Pekanbaru,SME Banking Floor Batam,20
-Malang,SME Banking Center Malang,20
-Jakarta Fatmawati,SME Banking Floor Jakarta Pondok Indah,20
-Bandung Asia Afrika,SME Banking Floor Cirebon,20
-Surabaya Niaga,SME Banking Floor Gresik,20
-Bekasi,SME Banking Center Bekasi,20
-Jakarta Kebon Sirih,SME Banking Floor Jakarta Thamrin,19
-Makassar,SME Banking Center Makassar,18
-Palembang,SME Banking Floor Pangkalpinang,18
-Jambi,SME Banking Center Jambi,18
-Surabaya Pemuda,SME Banking Floor Jember,18
-Samarinda,SME Banking Center Samarinda,17
-Jakarta Wijaya Kusuma,SME Banking Center Jakarta Wijaya Kusuma,17
-Pontianak,SME Banking Center Pontianak,17
-Jambi,SME Banking Floor Padang,16
-Denpasar,SME Banking Floor Kuta Raya,16
-Yogyakarta,SME Banking Center Yogyakarta,16
-Jakarta Pulogadung,SME Banking Floor Jakarta Tanjung Priok,16
-Palembang,SME Banking Floor Bandar Lampung,15
-Banjarmasin,SME Banking Floor Palangkaraya,15
-Palembang,SME Banking Center Palembang,14
-Bandung Asia Afrika,SME Banking Floor Karawang,14
-Bandung Surapati,SME Banking Floor Tasikmalaya,14
-Makassar,SME Banking Floor Makassar Sam Ratulangi,14
-Palembang,SME Banking Floor Palembang Sudirman,14
-Bandung Surapati,SME Banking Center Bandung Surapati,14
-Samarinda,SME Banking Floor Balikpapan,14
-Makassar,SME Banking Floor Pare Pare,12
-Makassar,SME Banking Floor Palu,12
-Makassar,SME Banking Floor Kendari,12
-Denpasar,SME Banking Floor Mataram,12
-Yogyakarta,SME Banking Floor Purwokerto,12
-Tangerang,SME Banking Center Tangerang,12
-Pekanbaru,SME Banking Floor Dumai,12
-Jakarta Wijaya Kusuma,SME Banking Floor Jakarta Green Ville,12
-Semarang,SME Banking Center Semarang,11
-Manado,SME Banking Floor Maluku,11
-Yogyakarta,SME Banking Floor Solo,11
-Jayapura,SME Banking Center Jayapura,11
-Manado,SME Banking Center Manado,11
-Jakarta Fatmawati,SME Banking Center Jakarta Fatmawati,11
-Semarang,SME Banking Floor Tegal,10
-Jakarta Jatinegara Timur,SME Banking Center Jakarta Jatinegara Timur,10
-Jakarta Jatinegara Timur,SME Banking Floor Jakarta Pasar Rebo,9
-Tangerang,SME Banking Floor Tangerang Ki Samaun,9
-Jakarta Fatmawati,SME Banking Floor Depok,9
-Jakarta Wijaya Kusuma,SME Banking Floor Jakarta Kota,9
-Bandung Surapati,SME Banking Floor Sukabumi,8
-Tangerang,SME Banking Floor Cilegon,8
-Semarang,SME Banking Floor Kudus,8
-Denpasar,SME Banking Floor Kupang,7
-Jakarta Wijaya Kusuma,SME Banking Floor Jakarta Kyai Tapa,7
-Tangerang,SME Banking Floor Gading Serpong,6
-Jayapura,SME Banking Floor Sorong,6
-Palembang,SME Banking Floor Bengkulu,6
-Yogyakarta,SME Banking Floor Magelang,5
-Denpasar,SME Banking Desk Singaraja,5
+region,area,target_count
+Pekanbaru,SME Banking Floor Batam,21
+Pekanbaru,SME Banking Floor Dumai,13
+Pekanbaru,SME Banking Center Pekanbaru,35
+Medan,SME Banking Center Medan,27
+Medan,SME Banking Floor Medan Imam Bonjol,25
+Medan,SME Banking Floor Pematangsiantar,21
 Medan,SME Banking Floor Rantau Prapat,4
+Medan,SME Banking Desk Sibolga,1
+Palembang,SME Banking Floor Bandar Lampung,16
+Palembang,SME Banking Floor Bengkulu,6
+Palembang,SME Banking Center Palembang,15
+Palembang,SME Banking Floor Palembang Sudirman,15
+Palembang,SME Banking Floor Pangkalpinang,21
+Palembang,SME Banking Desk Lubuk Linggau,2
+Palembang,SME Banking Desk Tanjung Pandan,1
+Jambi,SME Banking Center Jambi,19
+Jambi,SME Banking Floor Padang,17
+Jambi,SME Banking Desk Muara Bungo,2
+Tangerang,SME Banking Floor Cilegon,8
+Tangerang,SME Banking Center Tangerang,13
+Tangerang,SME Banking Floor Gading Serpong,6
+Tangerang,SME Banking Floor Tangerang Ki Samaun,10
+Jakarta Wijaya Kusuma,SME Banking Center Jakarta Wijaya Kusuma,18
+Jakarta Wijaya Kusuma,SME Banking Floor Jakarta Green Ville,13
+Jakarta Wijaya Kusuma,SME Banking Floor Jakarta Kota,9
+Jakarta Wijaya Kusuma,SME Banking Floor Jakarta Kyai Tapa,7
+Jakarta Pulogadung,SME Banking Center Jakarta Pulogadung,25
+Jakarta Pulogadung,SME Banking Floor Jakarta Pulogadung,22
+Jakarta Pulogadung,SME Banking Floor Jakarta Tanjung Priok,17
+Bekasi,SME Banking Center Bekasi,21
+Bekasi,SME Banking Floor Jakarta Pondok Kelapa,22
+Jakarta Kebon Sirih,SME Banking Floor Jakarta Cikini,14
+Jakarta Kebon Sirih,SME Banking Center Jakarta Kebon Sirih,28
+Jakarta Kebon Sirih,SME Banking Floor Jakarta Imam Bonjol,14
+Jakarta Kebon Sirih,SME Banking Floor Jakarta Thamrin,11
+Jakarta Kebon Sirih,SME Banking Floor Jakarta Plaza Mandiri,13
+Jakarta Kebon Sirih,SME Banking Floor Jakarta Sudirman,14
+Jakarta Jatinegara Timur,SME Banking Center Jakarta Jatinegara Timur,11
+Jakarta Jatinegara Timur,SME Banking Floor Jakarta Pasar Rebo,9
+Jakarta Fatmawati,SME Banking Floor Bogor,24
+Jakarta Fatmawati,SME Banking Floor Depok,9
+Jakarta Fatmawati,SME Banking Center Jakarta Fatmawati,12
+Jakarta Fatmawati,SME Banking Floor Jakarta Pondok Indah,21
+Jakarta Melawai,SME Banking Center Jakarta Melawai,31
+Jakarta Melawai,SME Banking Floor Jakarta Tebet Supomo,21
+Bandung Asia Afrika,SME Banking Center Bandung Asia Afrika,30
+Bandung Asia Afrika,SME Banking Floor Bandung Braga,28
+Bandung Asia Afrika,SME Banking Floor Cirebon,19
+Bandung Asia Afrika,SME Banking Floor Karawang,14
+Bandung Surapati,SME Banking Center Bandung Surapati,15
+Bandung Surapati,SME Banking Floor Sukabumi,8
+Bandung Surapati,SME Banking Floor Tasikmalaya,15
+Semarang,SME Banking Floor Kudus,8
+Semarang,SME Banking Center Semarang,12
+Semarang,SME Banking Floor Semarang Pemuda,22
+Semarang,SME Banking Floor Tegal,11
+Yogyakarta,SME Banking Floor Magelang,5
+Yogyakarta,SME Banking Floor Purwokerto,13
+Yogyakarta,SME Banking Floor Solo,11
+Yogyakarta,SME Banking Center Yogyakarta,17
+Surabaya Niaga,SME Banking Floor Gresik,21
+Surabaya Niaga,SME Banking Floor Kediri,22
+Surabaya Niaga,SME Banking Center Surabaya Niaga,31
+Surabaya Pemuda,SME Banking Floor Jember,19
+Surabaya Pemuda,SME Banking Center Surabaya Pemuda,33
+Surabaya Pemuda,SME Banking Floor Surabaya Gentengkali,23
+Malang,SME Banking Center Malang,21
+Samarinda,SME Banking Floor Balikpapan,15
+Samarinda,SME Banking Center Samarinda,18
+Samarinda,SME Banking Desk Tarakan,3
+Banjarmasin,SME Banking Center Banjarmasin,34
+Banjarmasin,SME Banking Floor Palangkaraya,16
+Banjarmasin,SME Banking Desk Sampit,3
+Banjarmasin,SME Banking Desk Batulicin,2
+Banjarmasin,SME Banking Desk Pangkalan Bun,2
+Pontianak,SME Banking Center Pontianak,18
+Pontianak,SME Banking Desk Ketapang,2
+Makassar,SME Banking Floor Kendari,13
+Makassar,SME Banking Center Makassar,21
+Makassar,SME Banking Floor Makassar Sam Ratulangi,15
+Makassar,SME Banking Floor Palu,13
+Makassar,SME Banking Floor Pare Pare,12
+Makassar,SME Banking Desk Luwuk,3
+Makassar,SME Banking Desk Soroako,2
+Makassar,SME Banking Desk Morowali,1
+Manado,SME Banking Floor Maluku,12
+Manado,SME Banking Center Manado,11
+Manado,SME Banking Desk Gorontalo,3
+Manado,SME Banking Desk Ternate,2
+Denpasar,SME Banking Center Denpasar,23
+Denpasar,SME Banking Floor Kupang,8
+Denpasar,SME Banking Floor Kuta Raya,17
+Denpasar,SME Banking Floor Mataram,13
+Denpasar,SME Banking Desk Singaraja,5
 Denpasar,SME Banking Desk Bima,4
 Denpasar,SME Banking Desk Sumbawa Besar,3
-Makassar,SME Banking Desk Luwuk,3
-Banjarmasin,SME Banking Desk Sampit,3
-Manado,SME Banking Desk Gorontalo,3
-Samarinda,SME Banking Desk Tarakan,3
-Palembang,SME Banking Desk Lubuk Linggau,2
-Jayapura,SME Banking Desk Manokwari,2
-Manado,SME Banking Desk Ternate,2
-Banjarmasin,SME Banking Desk Pangkalan Bun,2
-Pontianak,SME Banking Desk Ketapang,2
-Banjarmasin,SME Banking Desk Batulicin,2
-Makassar,SME Banking Desk Soroako,2
-Jambi,SME Banking Desk Muara Bungo,2
-Jayapura,SME Banking Desk Timika,1
-Palembang,SME Banking Desk Tanjung Pandan,1
-Jayapura,SME Banking Desk Nabire,1
 Denpasar,SME Banking Desk Ruteng,1
-Makassar,SME Banking Desk Morowali,1
-Medan,SME Banking Desk Sibolga,1
+Jayapura,SME Banking Center Jayapura,12
+Jayapura,SME Banking Floor Sorong,6
+Jayapura,SME Banking Desk Manokwari,2
 Jayapura,SME Banking Desk Merauke,1
+Jayapura,SME Banking Desk Nabire,1
+Jayapura,SME Banking Desk Timika,1

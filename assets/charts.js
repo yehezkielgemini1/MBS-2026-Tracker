@@ -190,7 +190,6 @@ function renderNasional(app) {
   const scope = { mode: 'nasional' };
   renderDonutSkala(app, scope);
   renderDonutSektor(app, scope);
-  renderDonutDebitur(app, scope);
   const barData = app.summaryTableNasional().map(r => ({
     label: r.display, target: r.target, aktual: r.aktual,
   }));
@@ -201,7 +200,6 @@ function renderCenter(app) {
   const scope = { mode: 'center', value: app.selectedCenter };
   renderDonutSkala(app, scope);
   renderDonutSektor(app, scope);
-  renderDonutDebitur(app, scope);
   const barData = app.summaryTableCenter().map(r => ({
     label: r.unit, target: r.target, aktual: r.aktual,
   }));
@@ -212,5 +210,4 @@ function renderUnit(app) {
   const scope = { mode: 'unit', value: app.selectedUnit };
   renderDonutSkala(app, scope);
   renderDonutSektor(app, scope);
-  renderDonutDebitur(app, scope);
 }

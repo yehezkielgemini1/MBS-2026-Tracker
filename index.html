@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MBS 2026 Response Tracker · Mandiri Institute</title>
 <meta name="theme-color" content="#001F4D">
-<meta name="description" content="Live monitoring pengumpulan respons Mandiri Business Survey 2026 — struktur SME Banking Center & Unit. Tracking progres per Sektor, Skala Usaha, Status Debitur.">
+<meta name="description" content="Live monitoring pengumpulan respons Mandiri Business Survey 2026 — struktur SME Banking Center & Unit. Tracking progres per Sektor, Skala Usaha.">
 
 <!-- Set theme BEFORE styles load to avoid FOUC -->
 <script>
@@ -153,7 +153,7 @@
     <div class="sub" x-text="liveReady ? 'Target vs Aktual per dimensi · % dan absolut (n)' : 'Distribusi target N=1.400 · 3 dimensi'"></div>
   </div>
 
-  <div x-show="!loading" class="chart-grid cols-3">
+  <div x-show="!loading" class="chart-grid cols-2">
     <div class="chart-card">
       <h3>Skala Usaha</h3>
       <div class="chart-sub">Kecil · Menengah (fokus SME 2026)</div>
@@ -163,11 +163,6 @@
       <h3>Sektor</h3>
       <div class="chart-sub">6 sektor: Industri, Perdagangan, Lainnya, Pertanian, Akmamin, Konstruksi</div>
       <div class="chart-body tall" id="chart-donut-sektor"></div>
-    </div>
-    <div class="chart-card">
-      <h3>Status Debitur</h3>
-      <div class="chart-sub">Debitur · Non-Debitur · Non-Nasabah</div>
-      <div class="chart-body tall" id="chart-donut-debitur"></div>
     </div>
   </div>
 
