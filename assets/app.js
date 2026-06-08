@@ -144,7 +144,7 @@ function mbsApp() {
       this.targetsBySektor = bySektor || [];
       this.targetsByDebitur = filterN1400(byDebitur || []);
       this.targetsBySektorArea = filterN1400(bySektorArea || []);
-      this.liveResponses = (live || []).filter(r => r && r.respondent_id);
+      this.liveResponses = (live || []).filter(r => r && r.response_status);
       this.liveMetadata = meta;
       this.liveReady = this.liveResponses.length > 0;
 
