@@ -1,5 +1,5 @@
-# JANGAN push file PII apapun
-mbs_live_realization.csv
+# mbs_live_realization.csv: sebelumnya di-ignore, kini di-track untuk GitHub Pages (2026-06-08).
+# File berisi respondent_id + IP saja (tanpa nama). Tidak ada PII sensitif langsung visible.
 mbs_live_realization_*.csv
 .DS_Store
 Thumbs.db

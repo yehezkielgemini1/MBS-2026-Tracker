@@ -1,0 +1,106 @@
+﻿old_region,old_area,new_center,new_unit,unit_type,primary_kabkota
+Sumatra 1,Batam,Pekanbaru,SME Banking Floor Batam,existing,
+Sumatra 1,Dumai,Pekanbaru,SME Banking Floor Dumai,existing,
+Sumatra 1,Pekanbaru,Pekanbaru,SME Banking Center Pekanbaru,existing,
+Sumatra 1,Medan Balaikota,Medan,SME Banking Center Medan,existing,
+Sumatra 1,Medan Imam Bonjol,Medan,SME Banking Floor Medan Imam Bonjol,existing,
+Sumatra 1,Pematangsiantar,Medan,SME Banking Floor Pematangsiantar,existing,
+Sumatra 1,Rantau Prapat,Medan,SME Banking Floor Rantau Prapat,existing,
+Sumatra 2,Bandar Lampung,Palembang,SME Banking Floor Bandar Lampung,existing,
+Sumatra 2,Bengkulu,Palembang,SME Banking Floor Bengkulu,existing,
+Sumatra 2,Jambi,Jambi,SME Banking Center Jambi,existing,
+Sumatra 2,Padang,Jambi,SME Banking Floor Padang,existing,
+Sumatra 2,Palembang Arief,Palembang,SME Banking Center Palembang,existing,
+Sumatra 2,Palembang Sudirman,Palembang,SME Banking Floor Palembang Sudirman,existing,
+Sumatra 2,Pangkalpinang,Palembang,SME Banking Floor Pangkalpinang,existing,
+Jakarta 1,Cilegon Anyer,Tangerang,SME Banking Floor Cilegon,existing,
+Jakarta 1,Jakarta Daan Mogot,Jakarta Wijaya Kusuma,SME Banking Center Jakarta Wijaya Kusuma,existing,
+Jakarta 1,Jakarta Greenville,Jakarta Wijaya Kusuma,SME Banking Floor Jakarta Green Ville,existing,
+Jakarta 1,Jakarta Kota,Jakarta Wijaya Kusuma,SME Banking Floor Jakarta Kota,existing,
+Jakarta 1,Jakarta Kyai Tapa,Jakarta Wijaya Kusuma,SME Banking Floor Jakarta Kyai Tapa,existing,
+Jakarta 1,Jakarta Pluit Selatan,Jakarta Pulogadung,SME Banking Center Jakarta Pulogadung,existing,
+Jakarta 1,Jakarta Pulogadung,Jakarta Pulogadung,SME Banking Floor Jakarta Pulogadung,existing,
+Jakarta 1,Jakarta Tanjungpriok,Jakarta Pulogadung,SME Banking Floor Jakarta Tanjung Priok,existing,
+Jakarta 1,Tangerang Bintaro,Tangerang,SME Banking Center Tangerang,existing,
+Jakarta 1,Tangerang Gading Serpong,Tangerang,SME Banking Floor Gading Serpong,existing,
+Jakarta 1,Tangerang Ki Samaun,Tangerang,SME Banking Floor Tangerang Ki Samaun,existing,
+Jakarta 2,Bekasi Jatiwaringin,Bekasi,SME Banking Center Bekasi,existing,
+Jakarta 2,Bekasi Juanda,Bekasi,SME Banking Floor Jakarta Pondok Kelapa,existing,
+Jakarta 2,Jakarta Cikini,Jakarta Kebon Sirih,SME Banking Floor Jakarta Cikini,existing,
+Jakarta 2,Jakarta Gambir,Jakarta Kebon Sirih,SME Banking Center Jakarta Kebon Sirih,existing,
+Jakarta 2,Jakarta Imam Bonjol,Jakarta Kebon Sirih,SME Banking Floor Jakarta Imam Bonjol,existing,
+Jakarta 2,Jakarta Jatinegara,Jakarta Jatinegara Timur,SME Banking Center Jakarta Jatinegara Timur,existing,
+Jakarta 2,Jakarta Kebon Sirih,Jakarta Kebon Sirih,SME Banking Center Jakarta Kebon Sirih,existing,
+Jakarta 2,Jakarta Pasar Rebo,Jakarta Jatinegara Timur,SME Banking Floor Jakarta Pasar Rebo,existing,
+Jakarta 2,Jakarta Pondok Kelapa,Bekasi,SME Banking Floor Jakarta Pondok Kelapa,existing,
+Jakarta 2,Jakarta Thamrin,Jakarta Kebon Sirih,SME Banking Floor Jakarta Thamrin,existing,
+Jakarta 3,Bogor,Jakarta Fatmawati,SME Banking Floor Bogor,existing,
+Jakarta 3,Depok,Jakarta Fatmawati,SME Banking Floor Depok,existing,
+Jakarta 3,Jakarta Falatehan,Jakarta Melawai,SME Banking Center Jakarta Melawai,existing,
+Jakarta 3,Jakarta Fatmawati,Jakarta Fatmawati,SME Banking Center Jakarta Fatmawati,existing,
+Jakarta 3,Jakarta Plaza Mandiri,Jakarta Kebon Sirih,SME Banking Floor Jakarta Plaza Mandiri,existing,
+Jakarta 3,Jakarta Pondok Indah,Jakarta Fatmawati,SME Banking Floor Jakarta Pondok Indah,existing,
+Jakarta 3,Jakarta Sudirman,Jakarta Kebon Sirih,SME Banking Floor Jakarta Sudirman,existing,
+Jakarta 3,Jakarta Tebet Supomo,Jakarta Melawai,SME Banking Floor Jakarta Tebet Supomo,existing,
+Jawa 1,Bandung Asia Afrika,Bandung Asia Afrika,SME Banking Center Bandung Asia Afrika,existing,
+Jawa 1,Bandung Braga,Bandung Asia Afrika,SME Banking Floor Bandung Braga,existing,
+Jawa 1,Bandung Surapati,Bandung Surapati,SME Banking Center Bandung Surapati,existing,
+Jawa 1,Cirebon,Bandung Asia Afrika,SME Banking Floor Cirebon,existing,
+Jawa 1,Karawang,Bandung Asia Afrika,SME Banking Floor Karawang,existing,
+Jawa 1,Sukabumi,Bandung Surapati,SME Banking Floor Sukabumi,existing,
+Jawa 1,Tasikmalaya,Bandung Surapati,SME Banking Floor Tasikmalaya,existing,
+Jawa 2,Kudus,Semarang,SME Banking Floor Kudus,existing,
+Jawa 2,Magelang,Yogyakarta,SME Banking Floor Magelang,existing,
+Jawa 2,Purwokerto,Yogyakarta,SME Banking Floor Purwokerto,existing,
+Jawa 2,Semarang Pahlawan,Semarang,SME Banking Center Semarang,existing,
+Jawa 2,Semarang Pemuda,Semarang,SME Banking Floor Semarang Pemuda,existing,
+Jawa 2,Solo,Yogyakarta,SME Banking Floor Solo,existing,
+Jawa 2,Tegal,Semarang,SME Banking Floor Tegal,existing,
+Jawa 2,Yogyakarta,Yogyakarta,SME Banking Center Yogyakarta,existing,
+Jawa 3,Gresik,Surabaya Niaga,SME Banking Floor Gresik,existing,
+Jawa 3,Jember,Surabaya Pemuda,SME Banking Floor Jember,existing,
+Jawa 3,Kediri,Surabaya Niaga,SME Banking Floor Kediri,existing,
+Jawa 3,Malang,Malang,SME Banking Center Malang,existing,
+Jawa 3,Surabaya Basuki Rahmat,Surabaya Pemuda,SME Banking Center Surabaya Pemuda,existing,
+Jawa 3,Surabaya Gentengkali,Surabaya Pemuda,SME Banking Floor Surabaya Gentengkali,existing,
+Jawa 3,Surabaya Niaga,Surabaya Niaga,SME Banking Center Surabaya Niaga,existing,
+Kalimantan,Balikpapan,Samarinda,SME Banking Floor Balikpapan,existing,
+Kalimantan,Banjarmasin,Banjarmasin,SME Banking Center Banjarmasin,existing,
+Kalimantan,Palangkaraya,Banjarmasin,SME Banking Floor Palangkaraya,existing,
+Kalimantan,Pontianak,Pontianak,SME Banking Center Pontianak,existing,
+Kalimantan,Samarinda,Samarinda,SME Banking Center Samarinda,existing,
+Sulawesi-Maluku,Kendari Mesjid Agung,Makassar,SME Banking Floor Kendari,existing,
+Sulawesi-Maluku,Makassar,Makassar,SME Banking Center Makassar,existing,
+Sulawesi-Maluku,Makassar Sam Ratulangi,Makassar,SME Banking Floor Makassar Sam Ratulangi,existing,
+Sulawesi-Maluku,Maluku,Manado,SME Banking Floor Maluku,existing,
+Sulawesi-Maluku,Manado,Manado,SME Banking Center Manado,existing,
+Sulawesi-Maluku,Palu,Makassar,SME Banking Floor Palu,existing,
+Sulawesi-Maluku,Pare-Pare,Makassar,SME Banking Floor Pare Pare,existing,
+Bali-NT,Denpasar,Denpasar,SME Banking Center Denpasar,existing,
+Bali-NT,Kupang,Denpasar,SME Banking Floor Kupang,existing,
+Bali-NT,Kuta Raya,Denpasar,SME Banking Floor Kuta Raya,existing,
+Bali-NT,Mataram Cakranegara,Denpasar,SME Banking Floor Mataram,existing,
+Papua,Jayapura,Jayapura,SME Banking Center Jayapura,existing,
+Papua,Sorong Ahmad Yani,Jayapura,SME Banking Floor Sorong,existing,
+Sumatra 1,(new desk),Medan,SME Banking Desk Sibolga,new_desk,Kota Sibolga
+Sumatra 2,(new desk),Palembang,SME Banking Desk Lubuk Linggau,new_desk,Kota Lubuklinggau
+Sumatra 2,(new desk),Palembang,SME Banking Desk Tanjung Pandan,new_desk,Belitung
+Sumatra 2,(new desk),Jambi,SME Banking Desk Muara Bungo,new_desk,Bungo
+Kalimantan,(new desk),Banjarmasin,SME Banking Desk Sampit,new_desk,Kotawaringin Timur
+Kalimantan,(new desk),Banjarmasin,SME Banking Desk Batulicin,new_desk,Tanah Bumbu
+Kalimantan,(new desk),Banjarmasin,SME Banking Desk Pangkalan Bun,new_desk,Kotawaringin Barat
+Kalimantan,(new desk),Pontianak,SME Banking Desk Ketapang,new_desk,Ketapang
+Kalimantan,(new desk),Samarinda,SME Banking Desk Tarakan,new_desk,Kota Tarakan
+Sulawesi-Maluku,(new desk),Makassar,SME Banking Desk Luwuk,new_desk,Banggai
+Sulawesi-Maluku,(new desk),Makassar,SME Banking Desk Soroako,new_desk,Luwu Timur
+Sulawesi-Maluku,(new desk),Makassar,SME Banking Desk Morowali,new_desk,Morowali
+Sulawesi-Maluku,(new desk),Manado,SME Banking Desk Gorontalo,new_desk,Kota Gorontalo
+Sulawesi-Maluku,(new desk),Manado,SME Banking Desk Ternate,new_desk,Kota Ternate
+Bali-NT,(new desk),Denpasar,SME Banking Desk Singaraja,new_desk,Buleleng
+Bali-NT,(new desk),Denpasar,SME Banking Desk Bima,new_desk,Bima
+Bali-NT,(new desk),Denpasar,SME Banking Desk Sumbawa Besar,new_desk,Sumbawa
+Bali-NT,(new desk),Denpasar,SME Banking Desk Ruteng,new_desk,Manggarai
+Papua,(new desk),Jayapura,SME Banking Desk Manokwari,new_desk,Manokwari
+Papua,(new desk),Jayapura,SME Banking Desk Merauke,new_desk,Merauke
+Papua,(new desk),Jayapura,SME Banking Desk Nabire,new_desk,Nabire
+Papua,(new desk),Jayapura,SME Banking Desk Timika,new_desk,Mimika
