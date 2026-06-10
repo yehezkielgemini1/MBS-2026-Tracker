@@ -331,31 +331,46 @@ a:focus-visible,
 /* Row style for "Belum terpetakan" bucket */
 tr.row-unmapped td { color: var(--text-muted); font-style: italic; border-top: 1px dashed var(--rule); }
 
-/* ============ SUB-TABS (dalam segment page) ============ */
-.subtabs {
+/* ============ SEGMENTED CONTROL (sub-view switch dalam segment page) ============
+   Active button follows CTA style: light theme navy bg + white text,
+   dark theme light-blue bg + dark navy text. */
+.seg-group {
   display: flex;
-  gap: 4px;
-  margin: 40px 0 4px;
-  border-bottom: 1px solid var(--rule);
+  width: fit-content;
+  gap: 6px;
+  margin: 0 0 4px;
+  padding: 5px;
+  background: var(--bg-subtle);
+  border: 1px solid var(--rule);
+  border-radius: 999px;
 }
-.subtab {
-  background: none;
-  border: none;
-  border-bottom: 2px solid transparent;
-  margin-bottom: -1px;
-  padding: 10px 20px;
+.seg-btn {
+  background: transparent;
+  border: 1px solid var(--rule-strong);
+  border-radius: 999px;
+  padding: 10px 24px;
   font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.04em;
+  font-weight: 500;
+  letter-spacing: 0.02em;
   color: var(--text-muted);
   cursor: pointer;
   font-family: inherit;
-  transition: color 0.15s ease, border-color 0.15s ease;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
 }
-.subtab:hover { color: var(--text-primary); }
-.subtab.active { color: var(--text-primary); border-bottom-color: var(--accent-hover); }
-:root[data-theme="dark"] .subtab.active { border-bottom-color: var(--accent); }
-.subtab:focus-visible { outline: 2px solid var(--accent-soft); outline-offset: -2px; }
+.seg-btn:hover { color: var(--text-primary); border-color: var(--accent); background: var(--bg-strip); }
+.seg-btn:focus-visible { outline: none; box-shadow: var(--focus-ring); }
+.seg-btn.active {
+  background: var(--blue-4);
+  border-color: var(--blue-4);
+  color: #FFFFFF;
+}
+.seg-btn.active:hover { background: var(--blue-5); border-color: var(--blue-5); color: #FFFFFF; }
+:root[data-theme="dark"] .seg-btn.active {
+  background: var(--blue-8);
+  border-color: var(--blue-8);
+  color: #042C53;
+}
+:root[data-theme="dark"] .seg-btn.active:hover { background: #85C3F0; border-color: #85C3F0; color: #042C53; }
 
 /* Back link (center drill detail) */
 .back-link {
