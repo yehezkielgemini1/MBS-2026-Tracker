@@ -50,6 +50,8 @@
     <button class="tab" role="tab" :aria-selected="activePanel === 'nasional'" :class="{ 'active': activePanel === 'nasional' }" @click="switchPanel('nasional')">Nasional</button>
     <button class="tab" role="tab" :aria-selected="activePanel === 'center'" :class="{ 'active': activePanel === 'center' }" @click="switchPanel('center')">Center</button>
     <button class="tab" role="tab" :aria-selected="activePanel === 'unit'" :class="{ 'active': activePanel === 'unit' }" @click="switchPanel('unit')">Unit</button>
+    <button class="tab tab-segment" role="tab" :aria-selected="activePanel === 'debitur'" :class="{ 'active': activePanel === 'debitur' }" @click="switchPanel('debitur')">Debitur</button>
+    <button class="tab tab-segment" role="tab" :aria-selected="activePanel === 'nondebitur'" :class="{ 'active': activePanel === 'nondebitur' }" @click="switchPanel('nondebitur')">Non-debitur</button>
   </nav>
 
   <div class="refresh" aria-live="polite">
@@ -147,13 +149,13 @@
   </div>
 
   <!-- ====================== BAGIAN A: 3 DONUT ====================== -->
-  <div x-show="!loading" class="section-label">
+  <div x-show="!loading && activePanel !== 'debitur' && activePanel !== 'nondebitur'" class="section-label">
     <div class="marker"></div>
     <div class="title">Bagian A · Profil Target</div>
     <div class="sub" x-text="liveReady ? 'Target vs Aktual per dimensi · % dan absolut (n)' : 'Distribusi target N=1.400 · 3 dimensi'"></div>
   </div>
 
-  <div x-show="!loading" class="chart-grid cols-2">
+  <div x-show="!loading && activePanel !== 'debitur' && activePanel !== 'nondebitur'" class="chart-grid cols-2">
     <div class="chart-card">
       <h3>Skala Usaha</h3>
       <div class="chart-sub">Kecil · Menengah (fokus SME 2026)</div>
@@ -225,7 +227,7 @@
   </template>
 
   <!-- ====================== BAGIAN D: TABEL 2 MATRIKS SEKTOR ====================== -->
-  <template x-if="!loading">
+  <template x-if="!loading && activePanel !== 'debitur' && activePanel !== 'nondebitur'">
     <div>
       <div class="section-label">
         <div class="marker"></div>
@@ -276,6 +278,132 @@
           </table>
         </div>
       </div>
+    </div>
+  </template>
+
+  <!-- ====================== DEBITUR PANEL ====================== -->
+  <template x-if="!loading && activePanel === 'debitur'">
+    <div>
+
+      <!-- Bar chart: debitur target vs actual per center -->
+      <div class="section-label">
+        <div class="marker"></div>
+        <div class="title">Target vs Aktual Debitur per SME Banking Center</div>
+        <div class="sub">26 SME Banking Center · Debitur RM (SME-side) · sorted geografis order 1 &rarr; 26</div>
+      </div>
+      <div class="chart-card featured">
+        <div class="chart-body tall" id="chart-bar-debitur"></div>
+      </div>
+
+      <!-- Table: debitur per center -->
+      <div class="section-label">
+        <div class="marker"></div>
+        <div class="title">Ringkasan Performa Debitur per Center</div>
+        <div class="sub">Completed responses dengan status_debitur = "Debitur" · grouped by SME Banking Center</div>
+      </div>
+      <div class="table-card">
+        <div class="table-scroll">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>SME Banking Center</th>
+                <th class="num">Target Debitur</th>
+                <th class="num">Aktual Debitur</th>
+                <th class="num">Defisit</th>
+                <th style="min-width:200px;">Progress</th>
+              </tr>
+            </thead>
+            <tbody>
+              <template x-for="row in summaryTableDebitur()" :key="row.center">
+                <tr>
+                  <td class="label" x-text="row.center"></td>
+                  <td class="num" x-text="fmt(row.target)"></td>
+                  <td class="num" x-text="liveReady ? fmt(row.aktual) : '—'"></td>
+                  <td class="num" x-text="liveReady ? fmt(row.defisit) : '—'"></td>
+                  <td>
+                    <div class="progress-bar">
+                      <div class="bar">
+                        <div class="bar-fill" :class="row.pct >= 100 ? 'complete' : (row.pct >= 50 ? '' : (row.pct >= 25 ? 'warn' : 'danger'))" :style="`width:${Math.min(100, row.pct)}%`"></div>
+                      </div>
+                      <span class="pct" x-text="liveReady ? fmtPct(row.pct, 0) : '—'"></span>
+                    </div>
+                  </td>
+                </tr>
+              </template>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </template>
+
+  <!-- ====================== NON-DEBITUR PANEL ====================== -->
+  <template x-if="!loading && activePanel === 'nondebitur'">
+    <div>
+
+      <!-- Info pill when no non-debitur actuals yet -->
+      <div x-show="liveReady && kpiAktual === 0" class="preview-pill" style="margin-bottom:12px;">
+        Menunggu respons Non-debitur pertama · Target ditampilkan, aktual akan muncul saat data masuk
+      </div>
+
+      <!-- Bar chart: non-debitur target vs actual per unit (top 30) -->
+      <div class="section-label">
+        <div class="marker"></div>
+        <div class="title">Target vs Aktual Non-debitur (Top 30 Unit by Target)</div>
+        <div class="sub">SME Banking Floor/Desk/Center · Non-debitur RM (branch/RDPS) · 20 Desk unit tidak dapat alokasi non-debitur</div>
+      </div>
+      <div class="chart-card featured">
+        <div class="chart-body tall" id="chart-bar-nondebitur"></div>
+      </div>
+
+      <!-- Table: non-debitur per unit (all 103 + Belum terpetakan) -->
+      <div class="section-label">
+        <div class="marker"></div>
+        <div class="title">Ringkasan Performa Non-debitur per Unit</div>
+        <div class="sub">Completed responses dengan status_debitur = "Non-Debitur" · grouped by SME Banking Unit · 20 SME Banking Desk tidak dapat target non-debitur</div>
+      </div>
+      <div class="table-card">
+        <div class="table-scroll">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>SME Banking Center</th>
+                <th>SME Banking Unit</th>
+                <th class="num">Target Non-deb</th>
+                <th class="num">Aktual Non-deb</th>
+                <th class="num">Defisit</th>
+                <th style="min-width:180px;">Progress</th>
+              </tr>
+            </thead>
+            <tbody>
+              <template x-for="row in summaryTableNondebitur()" :key="row.center + '|' + row.unit">
+                <tr :class="{ 'row-unmapped': row.unit === 'Belum terpetakan' }">
+                  <td class="label" x-text="row.center || '—'"></td>
+                  <td class="label" x-text="row.unit"></td>
+                  <td class="num" x-text="row.target > 0 ? fmt(row.target) : '—'"></td>
+                  <td class="num" x-text="liveReady ? (row.aktual > 0 ? fmt(row.aktual) : '0') : '—'"></td>
+                  <td class="num" x-text="row.target > 0 && liveReady ? fmt(row.defisit) : '—'"></td>
+                  <td>
+                    <template x-if="row.target > 0">
+                      <div class="progress-bar">
+                        <div class="bar">
+                          <div class="bar-fill" :class="row.pct >= 100 ? 'complete' : (row.pct >= 50 ? '' : (row.pct >= 25 ? 'warn' : 'danger'))" :style="`width:${Math.min(100, row.pct)}%`"></div>
+                        </div>
+                        <span class="pct" x-text="liveReady ? fmtPct(row.pct, 0) : '—'"></span>
+                      </div>
+                    </template>
+                    <template x-if="row.target === 0">
+                      <span class="pct" style="color:var(--muted);" x-text="row.unit === 'Belum terpetakan' ? (row.aktual > 0 ? row.aktual + ' belum terpetakan' : 'Tidak ada') : 'Tidak dapat target'"></span>
+                    </template>
+                  </td>
+                </tr>
+              </template>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
     </div>
   </template>
 

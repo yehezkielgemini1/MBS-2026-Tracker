@@ -345,6 +345,21 @@ a:focus-visible,
 .foot-inner { max-width: 1440px; margin: 0 auto; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
 .foot a { color: var(--blue-8); text-decoration: none; }
 
+/* ============ SEGMENT TABS (Debitur / Non-debitur) ============ */
+/* Visually distinct from the geographic drill-down tabs: lighter separator before them */
+.topnav .tab.tab-segment {
+  margin-left: 8px;
+  border-left: 1px solid rgba(255,255,255,0.15);
+  padding-left: 22px;
+  color: rgba(255,255,255,0.64);
+}
+.topnav .tab.tab-segment:first-of-type { margin-left: 4px; border-left: none; }
+.topnav .tab.tab-segment.active { color: var(--blue-8); border-bottom-color: var(--blue-8); }
+.topnav .tab.tab-segment:hover { color: rgba(255,255,255,0.9); }
+
+/* Row style for "Belum terpetakan" in non-debitur table */
+tr.row-unmapped td { color: var(--text-muted); font-style: italic; border-top: 1px dashed var(--rule); }
+
 /* ============ UTILITY ============ */
 [x-cloak] { display: none !important; }
 

@@ -1,4 +1,4 @@
-/* MBS 2026 Response Tracker — Alpine store v3 (SME Banking Center structure) */
+/* MBS 2026 Response Tracker — Alpine store v4 (Debitur/Non-debitur split tabs) */
 /* Hardcoded N=1400. Monochromatic blue. 26 SME Banking Center / 103 SME Banking Unit. */
 
 const TARGET_N = 1400;
@@ -89,7 +89,7 @@ function filterN1400(rows) {
 
 function mbsApp() {
   return {
-    activePanel: 'nasional', // 'nasional' | 'center' | 'unit'
+    activePanel: 'nasional', // 'nasional' | 'center' | 'unit' | 'debitur' | 'nondebitur'
     selectedCenter: null,
     selectedUnit: null,
     loading: true,
@@ -103,6 +103,8 @@ function mbsApp() {
     targetsBySektor: [],
     targetsByDebitur: [],
     targetsBySektorArea: [],
+    targetsDebiturByCenter: [],    // targets_debitur_by_center.csv (debitur per center)
+    targetsNondebiturByUnit: [],   // targets_nondebitur_by_unit.csv (non-debitur per unit)
     liveResponses: [],
     liveMetadata: null,
     liveReady: false,
@@ -121,6 +123,7 @@ function mbsApp() {
       const [
         centers, units,
         targets, byRegion, byArea, bySektor, byDebitur, bySektorArea,
+        debByCenter, ndebByUnit,
         live, meta
       ] = await Promise.all([
         fetchCSV(`${base}/sme_banking_centers.csv`),
@@ -131,6 +134,8 @@ function mbsApp() {
         fetchCSV(`${base}/targets_by_sektor.csv`),
         fetchCSV(`${base}/targets_by_debitur.csv`),
         fetchCSV(`${base}/targets_by_sektor_area.csv`),
+        fetchCSV(`${base}/targets_debitur_by_center.csv`),
+        fetchCSV(`${base}/targets_nondebitur_by_unit.csv`),
         fetchCSV(`${base}/mbs_live_realization.csv`),
         fetchJSON(`${base}/mbs_live_metadata.json`),
       ]);
@@ -144,6 +149,8 @@ function mbsApp() {
       this.targetsBySektor = bySektor || [];
       this.targetsByDebitur = filterN1400(byDebitur || []);
       this.targetsBySektorArea = filterN1400(bySektorArea || []);
+      this.targetsDebiturByCenter = debByCenter || [];
+      this.targetsNondebiturByUnit = ndebByUnit || [];
       this.liveResponses = (live || []).filter(r => r && r.response_status);
       this.liveMetadata = meta;
       this.liveReady = this.liveResponses.length > 0;
@@ -168,7 +175,7 @@ function mbsApp() {
       const panel = params.get('panel');
       const center = params.get('center');
       const unit = params.get('unit');
-      if (panel && ['nasional', 'center', 'unit'].includes(panel)) this.activePanel = panel;
+      if (panel && ['nasional', 'center', 'unit', 'debitur', 'nondebitur'].includes(panel)) this.activePanel = panel;
       if (center) this.selectedCenter = decodeURIComponent(center);
       if (unit) this.selectedUnit = decodeURIComponent(unit);
     },
@@ -235,6 +242,8 @@ function mbsApp() {
       if (this.activePanel === 'nasional') renderNasional(this);
       else if (this.activePanel === 'center') renderCenter(this);
       else if (this.activePanel === 'unit') renderUnit(this);
+      else if (this.activePanel === 'debitur') renderDebitur(this);
+      else if (this.activePanel === 'nondebitur') renderNondebitur(this);
     },
 
     // ----- titles -----
@@ -242,12 +251,16 @@ function mbsApp() {
       if (this.activePanel === 'nasional') return 'Mandiri Business Survey 2026: Responden Nasional';
       if (this.activePanel === 'center') return 'Mandiri Business Survey 2026: Responden per SME Banking Center';
       if (this.activePanel === 'unit') return 'Mandiri Business Survey 2026: Responden per SME Banking Unit';
+      if (this.activePanel === 'debitur') return 'Mandiri Business Survey 2026: Tracking Debitur per Center';
+      if (this.activePanel === 'nondebitur') return 'Mandiri Business Survey 2026: Tracking Non-debitur per Unit';
       return 'Mandiri Business Survey 2026';
     },
 
     get pageSubtitle() {
       if (this.activePanel === 'center') return `SME Banking Center ${this.selectedCenter}`;
       if (this.activePanel === 'unit')   return `${this.selectedCenter} · ${this.selectedUnit}`;
+      if (this.activePanel === 'debitur') return '26 SME Banking Center · Debitur RM (SME-side) · Target = 1.031';
+      if (this.activePanel === 'nondebitur') return '103 SME Banking Unit · Non-debitur RM (branch/RDPS) · Target = 369';
       return null;
     },
 
@@ -288,6 +301,16 @@ function mbsApp() {
       const row = this.targetsByArea.find(r => r.area === unit);
       return row ? row.target_count : 0;
     },
+    // Debitur target per center (from targets_debitur_by_center.csv)
+    targetDebiturForCenter(center) {
+      const row = this.targetsDebiturByCenter.find(r => r.region === center);
+      return row ? (row.target_debitur || 0) : 0;
+    },
+    // Non-debitur target per unit (from targets_nondebitur_by_unit.csv)
+    targetNondebiturForUnit(unit) {
+      const row = this.targetsNondebiturByUnit.find(r => r.area === unit);
+      return row ? (row.target_nondebitur || 0) : 0;
+    },
 
     // ----- aktual getters -----
     aktualForCenter(center) {
@@ -300,6 +323,30 @@ function mbsApp() {
         r.area === unit && r.response_status === 'completed'
       ).length;
     },
+    // Debitur actual per center
+    aktualDebiturForCenter(center) {
+      return this.liveResponses.filter(r =>
+        r.response_status === 'completed' &&
+        r.region === center &&
+        r.status_debitur === 'Debitur'
+      ).length;
+    },
+    // Non-debitur actual per unit
+    aktualNondebiturForUnit(unit) {
+      return this.liveResponses.filter(r =>
+        r.response_status === 'completed' &&
+        r.area === unit &&
+        r.status_debitur === 'Non-Debitur'
+      ).length;
+    },
+    // Non-debitur "Belum terpetakan" count
+    get aktualNondebiturUnmapped() {
+      return this.liveResponses.filter(r =>
+        r.response_status === 'completed' &&
+        r.area === 'Belum terpetakan' &&
+        r.status_debitur === 'Non-Debitur'
+      ).length;
+    },
 
     unitsInCenter(center) {
       return this.unitsList.filter(u => u.new_center === center);
@@ -310,6 +357,8 @@ function mbsApp() {
       if (this.activePanel === 'nasional') return TARGET_N;
       if (this.activePanel === 'center')   return this.targetForCenter(this.selectedCenter);
       if (this.activePanel === 'unit')     return this.targetForUnit(this.selectedUnit);
+      if (this.activePanel === 'debitur')  return 1031;
+      if (this.activePanel === 'nondebitur') return 369;
       return 0;
     },
     get kpiAktual() {
@@ -319,6 +368,12 @@ function mbsApp() {
       }
       if (this.activePanel === 'center') return this.aktualForCenter(this.selectedCenter);
       if (this.activePanel === 'unit')   return this.aktualForUnit(this.selectedUnit);
+      if (this.activePanel === 'debitur') {
+        return this.liveResponses.filter(r => r.response_status === 'completed' && r.status_debitur === 'Debitur').length;
+      }
+      if (this.activePanel === 'nondebitur') {
+        return this.liveResponses.filter(r => r.response_status === 'completed' && r.status_debitur === 'Non-Debitur').length;
+      }
       return 0;
     },
     get kpiCompletionPct() {
@@ -337,6 +392,8 @@ function mbsApp() {
       if (this.activePanel === 'nasional') return 'Nasional · N=1.400 · 26 Center · 103 Unit';
       if (this.activePanel === 'center')   return this.selectedCenter;
       if (this.activePanel === 'unit')     return this.selectedUnit;
+      if (this.activePanel === 'debitur')  return 'Debitur · 26 SME Banking Center';
+      if (this.activePanel === 'nondebitur') return 'Non-debitur · 103 SME Banking Unit';
       return '';
     },
 
@@ -523,6 +580,46 @@ function mbsApp() {
     onMatrixRowClick(item) {
       if (this.activePanel === 'nasional') this.drillToCenter(item.key);
       else if (this.activePanel === 'center') this.drillToUnit(this.selectedCenter, item.key);
+    },
+
+    // ----- Debitur tab: table per center -----
+    summaryTableDebitur() {
+      return this.centersList.map(c => {
+        const center = c.new_center;
+        const target = this.targetDebiturForCenter(center);
+        const aktual = this.aktualDebiturForCenter(center);
+        const defisit = Math.max(0, target - aktual);
+        const pct = target > 0 ? (aktual / target * 100) : 0;
+        return { center, target, aktual, defisit, pct };
+      });
+    },
+
+    // ----- Non-debitur tab: table per unit (all 103 units) -----
+    summaryTableNondebitur() {
+      // Build from unitsList (preserves all 103 units) sorted by center order then target desc
+      const centerOrder = this.centersList.map(c => c.new_center);
+      const rows = this.unitsList.map(u => {
+        const unit = u.new_unit;
+        const center = u.new_center;
+        const target = this.targetNondebiturForUnit(unit);
+        const aktual = this.aktualNondebiturForUnit(unit);
+        const defisit = Math.max(0, target - aktual);
+        const pct = target > 0 ? (aktual / target * 100) : 0;
+        const centerIdx = centerOrder.indexOf(center);
+        return { center, unit, target, aktual, defisit, pct, centerIdx };
+      });
+      // Sort by center geografis order then by target desc within each center
+      rows.sort((a, b) => {
+        if (a.centerIdx !== b.centerIdx) return a.centerIdx - b.centerIdx;
+        return b.target - a.target;
+      });
+      // Append "Belum terpetakan" row if there are any unmapped non-debitur actuals
+      const unmapped = this.aktualNondebiturUnmapped;
+      rows.push({
+        center: '', unit: 'Belum terpetakan', target: 0,
+        aktual: unmapped, defisit: 0, pct: 0, centerIdx: 999,
+      });
+      return rows;
     },
   };
 }

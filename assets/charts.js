@@ -211,3 +211,21 @@ function renderUnit(app) {
   renderDonutSkala(app, scope);
   renderDonutSektor(app, scope);
 }
+
+function renderDebitur(app) {
+  // Bar: debitur target vs actual per center (sorted geografis)
+  const barData = app.summaryTableDebitur().map(r => ({
+    label: r.center, target: r.target, aktual: r.aktual,
+  }));
+  renderBarTargetVsAktual('chart-bar-debitur', barData, 'label');
+}
+
+function renderNondebitur(app) {
+  // Bar: non-debitur target vs actual per unit (top 20 by target for readability)
+  const allRows = app.summaryTableNondebitur().filter(r => r.unit !== 'Belum terpetakan');
+  // Show top 30 by target to keep chart readable; full detail is in the table
+  const barData = allRows.slice(0, 30).map(r => ({
+    label: r.unit.replace('SME Banking ', ''), target: r.target, aktual: r.aktual,
+  }));
+  renderBarTargetVsAktual('chart-bar-nondebitur', barData, 'label');
+}
