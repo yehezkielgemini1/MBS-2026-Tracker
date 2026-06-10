@@ -467,21 +467,33 @@ tr.row-unmapped td { color: var(--text-muted); font-style: italic; border-top: 1
   color: var(--text-muted);
 }
 
-.sc-desc {
-  font-size: 12px;
-  color: var(--text-muted);
-  line-height: 1.5;
-  flex: 1;
+/* CTA button inside segment card. Light theme: solid navy bg + white text.
+   Dark theme override below: light-blue bg + dark navy text. */
+.sc-cta {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: auto;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  background: var(--blue-4);
+  color: #FFFFFF;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
 }
-.sc-arrow {
-  position: absolute;
-  bottom: 22px; right: 24px;
-  font-size: 20px;
-  color: var(--accent);
-  line-height: 1;
-  transition: transform 0.15s;
-}
-.segment-card:hover .sc-arrow { transform: translateX(3px); }
+.sc-cta:hover { background: var(--blue-5); }
+.sc-cta:focus-visible { outline: none; box-shadow: var(--focus-ring); }
+:root[data-theme="dark"] .sc-cta { background: var(--blue-8); color: #042C53; }
+:root[data-theme="dark"] .sc-cta:hover { background: #85C3F0; }
+.sc-cta .cta-arrow { transition: transform 0.15s; line-height: 1; }
+.segment-card:hover .sc-cta .cta-arrow { transform: translateX(3px); }
 
 /* ============ BREADCRUMB (non-debitur drill) ============ */
 .breadcrumb-bar {

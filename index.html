@@ -87,7 +87,6 @@
   <div x-show="!loading" class="page-title-row">
     <div>
       <h1 class="page-title" x-text="pageTitle"></h1>
-      <div x-show="pageSubtitle" x-text="pageSubtitle" style="font-size:13px;color:var(--muted);margin-top:4px;letter-spacing:0.02em;"></div>
     </div>
     <div x-show="!liveReady" class="preview-pill">Preview · Target Distribution</div>
   </div>
@@ -106,12 +105,12 @@
       <div class="kpi-icon-bg">A</div>
       <div class="kpi-label">Aktual</div>
       <div class="kpi-value" :class="{ 'muted': !liveReady }" x-text="liveReady ? fmt(kpiAktual) : '-'">-</div>
-      <div class="kpi-sub" x-text="liveReady ? 'Completed responses' : 'Menunggu respons pertama'"></div>
+      <div class="kpi-sub" x-text="liveReady ? 'Respons selesai (completed)' : 'Menunggu respons pertama'"></div>
     </div>
     <div class="kpi-card">
       <div class="kpi-accent-top"></div>
       <div class="kpi-icon-bg">%</div>
-      <div class="kpi-label">Completion Rate</div>
+      <div class="kpi-label">Capaian</div>
       <div class="kpi-value" :class="{ 'muted': !liveReady }" x-text="liveReady ? fmtPct(kpiCompletionPct) : '-'">-</div>
       <div class="kpi-progress">
         <div class="kpi-progress-fill" :style="`width: ${Math.min(100, kpiCompletionPct || 0)}%`"></div>
@@ -130,30 +129,10 @@
   <template x-if="!loading && activePanel === 'home'">
     <div>
 
-      <!-- National profile donuts: Skala + Sektor -->
+      <!-- Segment entry cards -->
       <div class="section-label">
         <div class="marker"></div>
-        <div class="title">Profil Nasional</div>
-        <div class="sub" x-text="liveReady ? 'Target vs Aktual per dimensi · % dan absolut (n)' : 'Distribusi target N=1.400'"></div>
-      </div>
-      <div class="chart-grid cols-2">
-        <div class="chart-card">
-          <h3>Skala Usaha</h3>
-          <div class="chart-sub">Kecil · Menengah (fokus SME 2026)</div>
-          <div class="chart-body tall" id="chart-donut-skala"></div>
-        </div>
-        <div class="chart-card">
-          <h3>Sektor</h3>
-          <div class="chart-sub">6 sektor: Industri, Perdagangan, Lainnya, Pertanian, Akmamin, Konstruksi</div>
-          <div class="chart-body tall" id="chart-donut-sektor"></div>
-        </div>
-      </div>
-
-      <!-- Segment entry cards -->
-      <div class="section-label" style="margin-top:40px;">
-        <div class="marker"></div>
         <div class="title">Pilih Segmen</div>
-        <div class="sub">Klik kartu untuk membuka detail tracking per segmen responden</div>
       </div>
       <div class="segment-cards">
 
@@ -180,8 +159,7 @@
               <div class="sc-kpi-lbl">Capaian</div>
             </div>
           </div>
-          <div class="sc-desc">Tracking per 26 SME Banking Center dan 103 Unit. Klik untuk membuka bar chart, tabel performa, dan drill-down per center.</div>
-          <div class="sc-arrow" aria-hidden="true">&rarr;</div>
+          <button class="sc-cta" @click.stop="switchPanel('debitur')">Buka Tracking Debitur <span class="cta-arrow" aria-hidden="true">&rarr;</span></button>
         </div>
 
         <!-- Non-debitur card -->
@@ -207,10 +185,25 @@
               <div class="sc-kpi-lbl">Capaian</div>
             </div>
           </div>
-          <div class="sc-desc">Tracking per 12 Branch Region dan Area. Klik untuk membuka bar chart per region dengan filter Area.</div>
-          <div class="sc-arrow" aria-hidden="true">&rarr;</div>
+          <button class="sc-cta" @click.stop="switchPanel('nondebitur')">Buka Tracking Non-debitur <span class="cta-arrow" aria-hidden="true">&rarr;</span></button>
         </div>
 
+      </div>
+
+      <!-- National profile donuts: Skala + Sektor -->
+      <div class="section-label">
+        <div class="marker"></div>
+        <div class="title">Profil Nasional</div>
+      </div>
+      <div class="chart-grid cols-2">
+        <div class="chart-card">
+          <h3>Skala Usaha</h3>
+          <div class="chart-body tall" id="chart-donut-skala"></div>
+        </div>
+        <div class="chart-card">
+          <h3>Sektor</h3>
+          <div class="chart-body tall" id="chart-donut-sektor"></div>
+        </div>
       </div>
 
     </div>
@@ -224,17 +217,14 @@
       <div class="section-label">
         <div class="marker"></div>
         <div class="title">Profil Debitur</div>
-        <div class="sub">Aktual saja · distribusi respons completed dengan status Debitur</div>
       </div>
       <div class="chart-grid cols-2">
         <div class="chart-card">
           <h3>Skala Usaha (Aktual)</h3>
-          <div class="chart-sub">Respons completed Debitur per skala usaha</div>
           <div class="chart-body tall" id="chart-donut-deb-skala"></div>
         </div>
         <div class="chart-card">
           <h3>Sektor (Aktual)</h3>
-          <div class="chart-sub">Respons completed Debitur per sektor</div>
           <div class="chart-body tall" id="chart-donut-deb-sektor"></div>
         </div>
       </div>
@@ -251,7 +241,6 @@
           <div class="section-label">
             <div class="marker"></div>
             <div class="title">Target vs Aktual Debitur per SME Banking Center</div>
-            <div class="sub">26 SME Banking Center · sorted geografis order 1 &rarr; 26</div>
           </div>
           <div class="chart-card featured">
             <div class="chart-body tall" id="chart-bar-debitur"></div>
@@ -260,7 +249,6 @@
           <div class="section-label">
             <div class="marker"></div>
             <div class="title">Ringkasan Performa Debitur per Center</div>
-            <div class="sub">Klik baris untuk drill-down ke Unit dalam Center tersebut</div>
           </div>
           <div class="table-card">
             <div class="table-scroll">
@@ -306,7 +294,6 @@
           <div class="section-label">
             <div class="marker"></div>
             <div class="title" x-text="'Unit dalam ' + selectedCenter"></div>
-            <div class="sub">Target vs Aktual Debitur per SME Banking Unit · sorted target</div>
           </div>
           <div class="chart-card featured">
             <div class="chart-body tall" id="chart-bar-deb-units"></div>
@@ -315,7 +302,6 @@
           <div class="section-label">
             <div class="marker"></div>
             <div class="title">Ringkasan per Unit</div>
-            <div class="sub" x-text="'Completed responses Debitur dalam ' + selectedCenter"></div>
           </div>
           <div class="table-card">
             <div class="table-scroll">
@@ -364,7 +350,6 @@
           <div class="section-label">
             <div class="marker"></div>
             <div class="title">Target vs Aktual Debitur per SME Banking Unit</div>
-            <div class="sub">103 Unit · target dari alokasi Debitur per unit · grouped by Center</div>
           </div>
           <div class="table-card">
             <div class="table-scroll">
@@ -424,17 +409,14 @@
       <div class="section-label">
         <div class="marker"></div>
         <div class="title">Profil Non-debitur</div>
-        <div class="sub">Aktual saja · distribusi respons completed dengan status Non-Debitur</div>
       </div>
       <div class="chart-grid cols-2">
         <div class="chart-card">
           <h3>Skala Usaha (Aktual)</h3>
-          <div class="chart-sub">Respons completed Non-debitur per skala usaha</div>
           <div class="chart-body tall" id="chart-donut-nd-skala"></div>
         </div>
         <div class="chart-card">
           <h3>Sektor (Aktual)</h3>
-          <div class="chart-sub">Respons completed Non-debitur per sektor</div>
           <div class="chart-body tall" id="chart-donut-nd-sektor"></div>
         </div>
       </div>
@@ -451,7 +433,6 @@
           <div class="section-label">
             <div class="marker"></div>
             <div class="title">Target vs Aktual Non-debitur per Region</div>
-            <div class="sub">12 Branch Region · klik baris tabel untuk membuka Area dalam region tersebut</div>
           </div>
           <div class="chart-card featured">
             <div class="chart-body tall" id="chart-bar-nondebitur-region"></div>
@@ -460,7 +441,6 @@
           <div class="section-label">
             <div class="marker"></div>
             <div class="title">Ringkasan Performa Non-debitur per Region</div>
-            <div class="sub">Klik baris untuk membuka tab Per Area terfilter region tersebut</div>
           </div>
           <div class="table-card">
             <div class="table-scroll">
@@ -504,7 +484,6 @@
           <div class="section-label">
             <div class="marker"></div>
             <div class="title">Target vs Aktual Non-debitur per Area</div>
-            <div class="sub">Branch Area · filter berdasarkan Branch Region</div>
           </div>
 
           <div class="filter-bar">

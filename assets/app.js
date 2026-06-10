@@ -269,16 +269,6 @@ function mbsApp() {
       return 'Mandiri Business Survey 2026: Tracker Beranda';
     },
 
-    get pageSubtitle() {
-      if (this.activePanel === 'home') return 'Target N=1.400 · Debitur 1.031 (SME Banking Center) + Non-debitur 369 (Cabang/RDPS)';
-      if (this.activePanel === 'debitur') {
-        if (this.debSub === 'center' && this.selectedCenter) return 'SME Banking Center ' + this.selectedCenter + ' · Debitur';
-        return '26 SME Banking Center · 103 Unit · Debitur RM (SME-side) · Target = 1.031';
-      }
-      if (this.activePanel === 'nondebitur') return '12 Branch Region · Non-debitur RM (cabang/RDPS) · Target = 369';
-      return null;
-    },
-
     // ----- last refresh -----
     get lastRefreshLabel() {
       if (!this.liveMetadata) return 'Belum ada respons';
