@@ -1,4 +1,4 @@
-/* MBS 2026 Response Tracker — Plotly chart factories v4 (theme-aware) */
+/* MBS 2026 Response Tracker — Plotly chart factories v5 (theme-aware + non-debitur region/area) */
 
 // Get theme-aware colors at render time
 function plotlyTheme() {
@@ -9,7 +9,7 @@ function plotlyTheme() {
     plot:     isDark ? '#142A4A' : '#FFFFFF',
     text:     isDark ? '#F4F8FC' : '#051C2C',
     textMute: isDark ? '#B6C8DE' : '#667085',
-    grid:     'rgba(0,0,0,0)',                   // NO gridlines
+    grid:     'rgba(0,0,0,0)',
     axis:     isDark ? '#2C4868' : '#D5E3F0',
     hoverBg:  isDark ? '#00153A' : '#001F4D',
     hoverFg:  '#FFFFFF',
@@ -27,7 +27,6 @@ function plotlyBaseLayout() {
   };
 }
 
-const PLOTLY_BASE_LAYOUT = plotlyBaseLayout(); // legacy reference
 const PLOTLY_CONFIG = { displayModeBar: false, responsive: true };
 
 function emptyNote(domId, msg) {
@@ -35,13 +34,12 @@ function emptyNote(domId, msg) {
   if (el) el.innerHTML = `<div style="display:flex;align-items:center;justify-content:center;min-height:280px;color:#667085;font-size:13px;letter-spacing:0.02em;">${msg}</div>`;
 }
 
-// ============ BAGIAN A: 3 DONUT (Skala, Sektor, Debitur) ============
+// ============ BAGIAN A: DONUT ============
 
 function renderDonut(domId, items, colorMap, app, useShortLabel = false) {
   if (!items.length) { emptyNote(domId, 'Belum ada data'); return; }
   const useAktual = app.liveReady && items.some(i => i.aktual > 0);
   const values = items.map(i => useAktual ? i.aktual : i.target);
-  // first key dynamically: 'skala' / 'sektor' / 'status'
   const labels = items.map(i => Object.values(i)[0]);
   const colors = labels.map(l => colorMap[l] || '#67B2E8');
   const total = values.reduce((a, b) => a + b, 0);
@@ -82,13 +80,10 @@ function renderDonutSkala(app, scope) {
   renderDonut('chart-donut-skala', app.skalaUsahaSummary(scope), SKALA_COLORS, app);
 }
 function renderDonutSektor(app, scope) {
-  renderDonut('chart-donut-sektor', app.sektorSummary(scope), SEKTOR_COLORS, app, /* short label */ true);
-}
-function renderDonutDebitur(app, scope) {
-  renderDonut('chart-donut-debitur', app.debiturSummary(scope), DEBITUR_COLORS, app);
+  renderDonut('chart-donut-sektor', app.sektorSummary(scope), SEKTOR_COLORS, app, true);
 }
 
-// ============ BAGIAN B: BAR TARGET vs AKTUAL ============
+// ============ BAGIAN B: BAR TARGET vs AKTUAL (generic) ============
 
 function renderBarTargetVsAktual(domId, items, labelKey) {
   const el = document.getElementById(domId);
@@ -100,34 +95,24 @@ function renderBarTargetVsAktual(domId, items, labelKey) {
   const targetTextLabels = targets.map(v => v > 0 ? String(v) : '');
   const aktualTextLabels = aktuals.map(v => v > 0 ? String(v) : '');
 
-  // Bottom margin = x-axis labels (rotated) + extra ruang untuk legend di bawah
   const maxLabelLen = Math.max(...labels.map(l => String(l).length));
   const labelSpace = Math.min(280, Math.max(160, maxLabelLen * 7.5));
   const legendSpace = 70;
   const bottomMargin = labelSpace + legendSpace;
 
-  // Chart tinggi: plot area 320px + top margin 50 + bottomMargin
   const chartHeight = 320 + 50 + bottomMargin;
   if (el) { el.style.minHeight = chartHeight + 'px'; }
 
-  // Plot area height = chartHeight - topMargin - bottomMargin = 320
-  // Legend Y dalam normalized coords (plot fraction): position right below labels
-  // labelSpace / plotHeight = position of label bottom (negative)
-  // Add small buffer untuk spacing legend dari label
   const plotHeight = 320;
-  const legendY = -(labelSpace + 25) / plotHeight;  // 25px buffer
+  const legendY = -(labelSpace + 25) / plotHeight;
 
-  // Y-axis padding — kasih headroom 15% di atas max value supaya data label tidak kepotong
   const maxY = Math.max(...targets, ...aktuals, 1);
   const yMax = maxY * 1.18;
 
   const theme = plotlyTheme();
-  // Bar colors theme-aware: light bg → use light blue for Target / dark navy for Aktual.
-  // Dark bg → use lighter blue for Target / brighter for Aktual.
-  const targetBar = theme.isDark ? '#4A8BC4' : '#A9C4DF';
+  const targetBar  = theme.isDark ? '#4A8BC4' : '#A9C4DF';
   const targetBorder = theme.isDark ? '#67B2E8' : '#4A8BC4';
-  const aktualBar = theme.isDark ? '#67B2E8' : '#002852';
-  // Data labels: use main text color so contrast guaranteed
+  const aktualBar  = theme.isDark ? '#67B2E8' : '#002852';
   const dataLabelColor = theme.text;
   const dataLabelAktualColor = theme.isDark ? '#FFFFFF' : '#001F4D';
 
@@ -152,32 +137,20 @@ function renderBarTargetVsAktual(domId, items, labelKey) {
     ...plotlyBaseLayout(),
     barmode: 'group', bargap: 0.25, bargroupgap: 0.08,
     xaxis: {
-      tickangle: -45,
-      showgrid: false,
-      showline: false,
-      tickfont: { size: 10, color: plotlyTheme().text },
-      automargin: false,
+      tickangle: -45, showgrid: false, showline: false,
+      tickfont: { size: 10, color: plotlyTheme().text }, automargin: false,
     },
     yaxis: {
       title: { text: 'Respons', font: { size: 12, color: plotlyTheme().textMute } },
-      showgrid: false,
-      showline: false,
-      zeroline: true,
-      zerolinecolor: plotlyTheme().axis,
-      zerolinewidth: 1,
-      tickformat: ',d', rangemode: 'tozero',
-      range: [0, yMax],
+      showgrid: false, showline: false, zeroline: true,
+      zerolinecolor: plotlyTheme().axis, zerolinewidth: 1,
+      tickformat: ',d', rangemode: 'tozero', range: [0, yMax],
       tickfont: { size: 10, color: plotlyTheme().text },
     },
-    // Legend di paling bawah (di bawah x-axis labels)
     legend: {
-      orientation: 'h',
-      x: 0.5, xanchor: 'center',
-      y: legendY,
-      yanchor: 'top',
+      orientation: 'h', x: 0.5, xanchor: 'center', y: legendY, yanchor: 'top',
       font: { size: 12, color: plotlyTheme().text },
-      bgcolor: 'rgba(0,0,0,0)',
-      itemsizing: 'constant',
+      bgcolor: 'rgba(0,0,0,0)', itemsizing: 'constant',
     },
     height: chartHeight,
     margin: { l: 60, r: 40, t: 50, b: bottomMargin },
@@ -185,6 +158,13 @@ function renderBarTargetVsAktual(domId, items, labelKey) {
 }
 
 // ============ PANEL RENDERERS ============
+
+function renderHub(app) {
+  // Hub shows the same donuts as nasional (scope = nasional)
+  const scope = { mode: 'nasional' };
+  renderDonutSkala(app, scope);
+  renderDonutSektor(app, scope);
+}
 
 function renderNasional(app) {
   const scope = { mode: 'nasional' };
@@ -213,19 +193,26 @@ function renderUnit(app) {
 }
 
 function renderDebitur(app) {
-  // Bar: debitur target vs actual per center (sorted geografis)
   const barData = app.summaryTableDebitur().map(r => ({
     label: r.center, target: r.target, aktual: r.aktual,
   }));
   renderBarTargetVsAktual('chart-bar-debitur', barData, 'label');
 }
 
-function renderNondebitur(app) {
-  // Bar: non-debitur target vs actual per unit (top 20 by target for readability)
-  const allRows = app.summaryTableNondebitur().filter(r => r.unit !== 'Belum terpetakan');
-  // Show top 30 by target to keep chart readable; full detail is in the table
-  const barData = allRows.slice(0, 30).map(r => ({
-    label: r.unit.replace('SME Banking ', ''), target: r.target, aktual: r.aktual,
+// Non-debitur Region overview bar chart (12 branch regions)
+function renderNondebiturRegion(app) {
+  const barData = app.summaryTableNdRegion().map(r => ({
+    label: r.region.replace(/Region \w+\s+-\s+/, ''),  // short label: "Sumatra I" etc
+    fullLabel: r.region,
+    target: r.target, aktual: r.aktual,
   }));
-  renderBarTargetVsAktual('chart-bar-nondebitur', barData, 'label');
+  renderBarTargetVsAktual('chart-bar-nondebitur-region', barData, 'label');
+}
+
+// Non-debitur Area bar chart within a selected Region
+function renderNdArea(app) {
+  const barData = app.summaryTableNdArea(app.selectedNdRegion).map(r => ({
+    label: r.area, target: r.target, aktual: r.aktual,
+  }));
+  renderBarTargetVsAktual('chart-bar-nd-area', barData, 'label');
 }

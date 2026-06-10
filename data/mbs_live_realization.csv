@@ -1,5 +1,5 @@
-﻿response_status,region,area,skala_usaha,sektor,status_debitur
-completed,Denpasar,,Kecil,Perdagangan,Debitur
-completed,Surabaya Niaga,,Kecil,Konstruksi,Debitur
-completed,Surabaya Niaga,,Menengah,Lainnya,Debitur
-completed,Surabaya Niaga,,Kecil,Konstruksi,Debitur
+﻿response_status,region,area,cabang,skala_usaha,sektor,status_debitur
+completed,Denpasar,denpasar,,Kecil,Perdagangan,Debitur
+completed,Surabaya Niaga,Center,,Kecil,Konstruksi,Debitur
+completed,Surabaya Niaga,-,,Menengah,Lainnya,Debitur
+completed,Surabaya Niaga,Center,,Kecil,Konstruksi,Debitur

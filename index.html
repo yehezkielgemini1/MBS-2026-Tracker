@@ -33,7 +33,7 @@
 
 <body x-data="mbsApp()" x-init="init()" x-cloak>
 
-<!-- Skip to content link (accessibility — keyboard users) -->
+<!-- Skip to content link (accessibility) -->
 <a href="#main-content" class="skip-link">Skip ke konten utama</a>
 
 <!-- ============ TOP NAVIGATION ============ -->
@@ -46,18 +46,19 @@
     </div>
   </div>
 
-  <nav class="tabs" role="tablist" aria-label="Tracker level navigation">
+  <nav class="tabs" role="tablist" aria-label="Tracker navigation">
+    <button class="tab" role="tab" :aria-selected="activePanel === 'hub'" :class="{ 'active': activePanel === 'hub' }" @click="switchPanel('hub')">Beranda</button>
     <button class="tab" role="tab" :aria-selected="activePanel === 'nasional'" :class="{ 'active': activePanel === 'nasional' }" @click="switchPanel('nasional')">Nasional</button>
     <button class="tab" role="tab" :aria-selected="activePanel === 'center'" :class="{ 'active': activePanel === 'center' }" @click="switchPanel('center')">Center</button>
     <button class="tab" role="tab" :aria-selected="activePanel === 'unit'" :class="{ 'active': activePanel === 'unit' }" @click="switchPanel('unit')">Unit</button>
-    <button class="tab tab-segment" role="tab" :aria-selected="activePanel === 'debitur'" :class="{ 'active': activePanel === 'debitur' }" @click="switchPanel('debitur')">Debitur</button>
-    <button class="tab tab-segment" role="tab" :aria-selected="activePanel === 'nondebitur'" :class="{ 'active': activePanel === 'nondebitur' }" @click="switchPanel('nondebitur')">Non-debitur</button>
+    <button class="tab tab-segment" role="tab" :aria-selected="['debitur','debitur_center'].includes(activePanel)" :class="{ 'active': ['debitur','debitur_center'].includes(activePanel) }" @click="switchPanel('debitur')">Debitur</button>
+    <button class="tab tab-segment" role="tab" :aria-selected="['nondebitur','nd_region','nd_area','nd_cabang'].includes(activePanel)" :class="{ 'active': ['nondebitur','nd_region','nd_area','nd_cabang'].includes(activePanel) }" @click="switchPanel('nondebitur')">Non-debitur</button>
   </nav>
 
   <div class="refresh" aria-live="polite">
     <span class="refresh-dot" :class="refreshFreshness" aria-hidden="true"></span>
     <span x-text="liveReady ? ('Update: ' + lastRefreshLabel) : 'Belum ada respons'"></span>
-    <button class="theme-toggle" @click="toggleTheme()" :aria-label="theme === 'light' ? 'Aktifkan dark mode' : 'Aktifkan light mode'" :title="theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'">
+    <button class="theme-toggle" @click="toggleTheme()" :aria-label="theme === 'light' ? 'Aktifkan dark mode' : 'Aktifkan light mode'">
       <span x-show="theme === 'light'" aria-hidden="true">🌙</span>
       <span x-show="theme === 'dark'" aria-hidden="true">☀️</span>
       <span class="label" x-text="theme === 'light' ? 'Dark' : 'Light'"></span>
@@ -79,6 +80,27 @@
       <div x-show="pageSubtitle" x-text="pageSubtitle" style="font-size:13px;color:var(--muted);margin-top:4px;letter-spacing:0.02em;"></div>
     </div>
     <div x-show="!liveReady" class="preview-pill">Preview · Target Distribution</div>
+  </div>
+
+  <!-- ============ BREADCRUMB (non-debitur drill) ============ -->
+  <div x-show="!loading && ['nd_region','nd_area','nd_cabang'].includes(activePanel)" class="breadcrumb-bar">
+    <button class="bc-item bc-link" @click="switchPanel('nondebitur')">Non-debitur</button>
+    <span class="bc-sep" aria-hidden="true">/</span>
+    <span class="bc-item" x-show="activePanel === 'nd_region'" x-text="'Region: ' + (selectedNdRegion || '')"></span>
+    <template x-if="activePanel === 'nd_area' || activePanel === 'nd_cabang'">
+      <span>
+        <button class="bc-item bc-link" @click="switchPanel('nd_region')" x-text="'Region: ' + (selectedNdRegion || '')"></button>
+        <span class="bc-sep" aria-hidden="true">/</span>
+        <span class="bc-item" x-show="activePanel === 'nd_area'" x-text="'Area: ' + (selectedNdArea || '')"></span>
+        <template x-if="activePanel === 'nd_cabang'">
+          <span>
+            <button class="bc-item bc-link" @click="switchPanel('nd_area')" x-text="'Area: ' + (selectedNdArea || '')"></button>
+            <span class="bc-sep" aria-hidden="true">/</span>
+            <span class="bc-item" x-text="'Cabang: ' + (selectedNdCabang || '')"></span>
+          </span>
+        </template>
+      </span>
+    </template>
   </div>
 
   <!-- ============ FILTER BAR (Center & Unit panel only) ============ -->
@@ -114,21 +136,21 @@
     <div class="filter-meta"><span class="dot"></span><span x-text="filterMetaText"></span></div>
   </div>
 
-  <!-- ============ KPI STRIP (4 cards) ============ -->
+  <!-- ============ KPI STRIP (4 cards) — shown on all panels ============ -->
   <div x-show="!loading" class="kpi-strip" role="region" aria-label="KPI Summary">
     <div class="kpi-card dark">
       <div class="kpi-accent-top"></div>
       <div class="kpi-icon-bg">T</div>
       <div class="kpi-label">Target</div>
       <div class="kpi-value" x-text="fmt(kpiTarget)">—</div>
-      <div class="kpi-sub" x-text="kpiScopeLabel">Nasional · N=1.400</div>
+      <div class="kpi-sub" x-text="kpiScopeLabel"></div>
     </div>
     <div class="kpi-card">
       <div class="kpi-accent-top"></div>
       <div class="kpi-icon-bg">A</div>
       <div class="kpi-label">Aktual</div>
       <div class="kpi-value" :class="{ 'muted': !liveReady }" x-text="liveReady ? fmt(kpiAktual) : '—'">—</div>
-      <div class="kpi-sub" x-text="liveReady ? 'Completed responses' : 'Menunggu respons pertama'">Menunggu respons pertama</div>
+      <div class="kpi-sub" x-text="liveReady ? 'Completed responses' : 'Menunggu respons pertama'"></div>
     </div>
     <div class="kpi-card">
       <div class="kpi-accent-top"></div>
@@ -144,18 +166,108 @@
       <div class="kpi-icon-bg">∆</div>
       <div class="kpi-label">Defisit</div>
       <div class="kpi-value" :class="{ 'muted': !liveReady }" x-text="liveReady ? fmt(kpiDefisit) : '—'">—</div>
-      <div class="kpi-sub" x-text="liveReady ? 'Sisa respons ke target' : 'Belum dihitung'">Belum dihitung</div>
+      <div class="kpi-sub" x-text="liveReady ? 'Sisa respons ke target' : 'Belum dihitung'"></div>
     </div>
   </div>
 
-  <!-- ====================== BAGIAN A: 3 DONUT ====================== -->
-  <div x-show="!loading && activePanel !== 'debitur' && activePanel !== 'nondebitur'" class="section-label">
+  <!-- ====================== HUB: BERANDA ====================== -->
+  <template x-if="!loading && activePanel === 'hub'">
+    <div>
+
+      <!-- Donuts: Skala + Sektor -->
+      <div class="section-label">
+        <div class="marker"></div>
+        <div class="title">Profil Nasional</div>
+        <div class="sub" x-text="liveReady ? 'Target vs Aktual per dimensi · % dan absolut (n)' : 'Distribusi target N=1.400 · 3 dimensi'"></div>
+      </div>
+      <div class="chart-grid cols-2">
+        <div class="chart-card">
+          <h3>Skala Usaha</h3>
+          <div class="chart-sub">Kecil · Menengah (fokus SME 2026)</div>
+          <div class="chart-body tall" id="chart-donut-skala"></div>
+        </div>
+        <div class="chart-card">
+          <h3>Sektor</h3>
+          <div class="chart-sub">6 sektor: Industri, Perdagangan, Lainnya, Pertanian, Akmamin, Konstruksi</div>
+          <div class="chart-body tall" id="chart-donut-sektor"></div>
+        </div>
+      </div>
+
+      <!-- Segment entry cards -->
+      <div class="section-label" style="margin-top:40px;">
+        <div class="marker"></div>
+        <div class="title">Pilih Segmen</div>
+        <div class="sub">Klik kartu untuk membuka detail tracking per segmen responden</div>
+      </div>
+      <div class="segment-cards">
+
+        <!-- Debitur card -->
+        <div class="segment-card" @click="switchPanel('debitur')" role="button" tabindex="0" @keydown.enter="switchPanel('debitur')" @keydown.space.prevent="switchPanel('debitur')" aria-label="Buka Tracking Debitur">
+          <div class="sc-header">
+            <div class="sc-icon sc-icon-deb">D</div>
+            <div>
+              <div class="sc-title">Debitur</div>
+              <div class="sc-sub">RM SME Banking Center</div>
+            </div>
+          </div>
+          <div class="sc-kpi-row">
+            <div class="sc-kpi">
+              <div class="sc-kpi-val" x-text="fmt(1031)"></div>
+              <div class="sc-kpi-lbl">Target</div>
+            </div>
+            <div class="sc-kpi">
+              <div class="sc-kpi-val" x-text="liveReady ? fmt(liveResponses.filter(r => r.response_status === 'completed' && r.status_debitur === 'Debitur').length) : '—'"></div>
+              <div class="sc-kpi-lbl">Aktual</div>
+            </div>
+            <div class="sc-kpi">
+              <div class="sc-kpi-val" x-text="liveReady ? fmtPct(liveResponses.filter(r => r.response_status === 'completed' && r.status_debitur === 'Debitur').length / 1031 * 100, 0) : '—'"></div>
+              <div class="sc-kpi-lbl">Capaian</div>
+            </div>
+          </div>
+          <div class="sc-desc">Tracking per 26 SME Banking Center. Klik untuk drill-down ke bar chart &amp; tabel performa per center.</div>
+          <div class="sc-arrow" aria-hidden="true">→</div>
+        </div>
+
+        <!-- Non-debitur card -->
+        <div class="segment-card" @click="switchPanel('nondebitur')" role="button" tabindex="0" @keydown.enter="switchPanel('nondebitur')" @keydown.space.prevent="switchPanel('nondebitur')" aria-label="Buka Tracking Non-debitur">
+          <div class="sc-header">
+            <div class="sc-icon sc-icon-nondeb">N</div>
+            <div>
+              <div class="sc-title">Non-debitur</div>
+              <div class="sc-sub">RM Cabang / RDPS</div>
+            </div>
+          </div>
+          <div class="sc-kpi-row">
+            <div class="sc-kpi">
+              <div class="sc-kpi-val" x-text="fmt(369)"></div>
+              <div class="sc-kpi-lbl">Target</div>
+            </div>
+            <div class="sc-kpi">
+              <div class="sc-kpi-val" x-text="liveReady ? fmt(liveResponses.filter(r => r.response_status === 'completed' && r.status_debitur === 'Non-Debitur').length) : '—'"></div>
+              <div class="sc-kpi-lbl">Aktual</div>
+            </div>
+            <div class="sc-kpi">
+              <div class="sc-kpi-val" x-text="liveReady ? fmtPct(liveResponses.filter(r => r.response_status === 'completed' && r.status_debitur === 'Non-Debitur').length / 369 * 100, 0) : '—'"></div>
+              <div class="sc-kpi-lbl">Capaian</div>
+            </div>
+          </div>
+          <div class="sc-desc">Tracking per Region → Area → Kode Cabang. Klik untuk drill-down ke 12 branch Region dengan target.</div>
+          <div class="sc-arrow" aria-hidden="true">→</div>
+        </div>
+
+      </div>
+
+    </div>
+  </template>
+
+  <!-- ====================== BAGIAN A: 2 DONUT (non-hub panels) ====================== -->
+  <div x-show="!loading && !['hub','debitur','debitur_center','nondebitur','nd_region','nd_area','nd_cabang'].includes(activePanel)" class="section-label">
     <div class="marker"></div>
     <div class="title">Bagian A · Profil Target</div>
     <div class="sub" x-text="liveReady ? 'Target vs Aktual per dimensi · % dan absolut (n)' : 'Distribusi target N=1.400 · 3 dimensi'"></div>
   </div>
 
-  <div x-show="!loading && activePanel !== 'debitur' && activePanel !== 'nondebitur'" class="chart-grid cols-2">
+  <div x-show="!loading && !['hub','debitur','debitur_center','nondebitur','nd_region','nd_area','nd_cabang'].includes(activePanel)" class="chart-grid cols-2">
     <div class="chart-card">
       <h3>Skala Usaha</h3>
       <div class="chart-sub">Kecil · Menengah (fokus SME 2026)</div>
@@ -227,7 +339,7 @@
   </template>
 
   <!-- ====================== BAGIAN D: TABEL 2 MATRIKS SEKTOR ====================== -->
-  <template x-if="!loading && activePanel !== 'debitur' && activePanel !== 'nondebitur'">
+  <template x-if="!loading && ['nasional','center','unit'].includes(activePanel)">
     <div>
       <div class="section-label">
         <div class="marker"></div>
@@ -285,7 +397,6 @@
   <template x-if="!loading && activePanel === 'debitur'">
     <div>
 
-      <!-- Bar chart: debitur target vs actual per center -->
       <div class="section-label">
         <div class="marker"></div>
         <div class="title">Target vs Aktual Debitur per SME Banking Center</div>
@@ -295,7 +406,6 @@
         <div class="chart-body tall" id="chart-bar-debitur"></div>
       </div>
 
-      <!-- Table: debitur per center -->
       <div class="section-label">
         <div class="marker"></div>
         <div class="title">Ringkasan Performa Debitur per Center</div>
@@ -338,51 +448,101 @@
     </div>
   </template>
 
-  <!-- ====================== NON-DEBITUR PANEL ====================== -->
+  <!-- ====================== NON-DEBITUR: REGION OVERVIEW ====================== -->
   <template x-if="!loading && activePanel === 'nondebitur'">
     <div>
 
-      <!-- Info pill when no non-debitur actuals yet -->
-      <div x-show="liveReady && kpiAktual === 0" class="preview-pill" style="margin-bottom:12px;">
+      <div x-show="liveReady && liveResponses.filter(r => r.response_status === 'completed' && r.status_debitur === 'Non-Debitur').length === 0" class="preview-pill" style="margin-bottom:12px;">
         Menunggu respons Non-debitur pertama · Target ditampilkan, aktual akan muncul saat data masuk
       </div>
 
-      <!-- Bar chart: non-debitur target vs actual per unit (top 30) -->
       <div class="section-label">
         <div class="marker"></div>
-        <div class="title">Target vs Aktual Non-debitur (Top 30 Unit by Target)</div>
-        <div class="sub">SME Banking Floor/Desk/Center · Non-debitur RM (branch/RDPS) · 20 Desk unit tidak dapat alokasi non-debitur</div>
+        <div class="title">Target vs Aktual Non-debitur per Region</div>
+        <div class="sub">12 Branch Region · Non-debitur RM (cabang/RDPS) · Klik region untuk drill-down ke Area</div>
       </div>
       <div class="chart-card featured">
-        <div class="chart-body tall" id="chart-bar-nondebitur"></div>
+        <div class="chart-body tall" id="chart-bar-nondebitur-region"></div>
       </div>
 
-      <!-- Table: non-debitur per unit (all 103 + Belum terpetakan) -->
       <div class="section-label">
         <div class="marker"></div>
-        <div class="title">Ringkasan Performa Non-debitur per Unit</div>
-        <div class="sub">Completed responses dengan status_debitur = "Non-Debitur" · grouped by SME Banking Unit · 20 SME Banking Desk tidak dapat target non-debitur</div>
+        <div class="title">Ringkasan Performa Non-debitur per Region</div>
+        <div class="sub">Klik baris untuk drill-down ke Area dalam Region tersebut</div>
       </div>
       <div class="table-card">
         <div class="table-scroll">
           <table class="data-table">
             <thead>
               <tr>
-                <th>SME Banking Center</th>
-                <th>SME Banking Unit</th>
+                <th>Branch Region</th>
                 <th class="num">Target Non-deb</th>
                 <th class="num">Aktual Non-deb</th>
                 <th class="num">Defisit</th>
-                <th style="min-width:180px;">Progress</th>
+                <th style="min-width:200px;">Progress</th>
               </tr>
             </thead>
             <tbody>
-              <template x-for="row in summaryTableNondebitur()" :key="row.center + '|' + row.unit">
-                <tr :class="{ 'row-unmapped': row.unit === 'Belum terpetakan' }">
-                  <td class="label" x-text="row.center || '—'"></td>
-                  <td class="label" x-text="row.unit"></td>
+              <template x-for="row in summaryTableNdRegion()" :key="row.region">
+                <tr class="clickable" @click="drillNdToArea(row.region)">
+                  <td class="label" x-text="row.region"></td>
+                  <td class="num" x-text="fmt(row.target)"></td>
+                  <td class="num" x-text="liveReady ? fmt(row.aktual) : '—'"></td>
+                  <td class="num" x-text="liveReady && row.target > 0 ? fmt(row.defisit) : '—'"></td>
+                  <td>
+                    <div class="progress-bar">
+                      <div class="bar">
+                        <div class="bar-fill" :class="row.pct >= 100 ? 'complete' : (row.pct >= 50 ? '' : (row.pct >= 25 ? 'warn' : 'danger'))" :style="`width:${Math.min(100, row.pct)}%`"></div>
+                      </div>
+                      <span class="pct" x-text="liveReady ? fmtPct(row.pct, 0) : '—'"></span>
+                    </div>
+                  </td>
+                </tr>
+              </template>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </template>
+
+  <!-- ====================== NON-DEBITUR: AREA DRILL ====================== -->
+  <template x-if="!loading && activePanel === 'nd_region'">
+    <div>
+
+      <div class="section-label">
+        <div class="marker"></div>
+        <div class="title" x-text="'Area dalam ' + (selectedNdRegion || '—')"></div>
+        <div class="sub">Target vs Aktual per Area · Klik baris untuk drill ke daftar Kode Cabang</div>
+      </div>
+      <div class="chart-card featured">
+        <div class="chart-body tall" id="chart-bar-nd-area"></div>
+      </div>
+
+      <div class="section-label">
+        <div class="marker"></div>
+        <div class="title">Ringkasan per Area</div>
+        <div class="sub">Klik baris untuk melihat Kode Cabang aktual dalam Area tersebut</div>
+      </div>
+      <div class="table-card">
+        <div class="table-scroll">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Area</th>
+                <th class="num">Target Non-deb</th>
+                <th class="num">Aktual Non-deb</th>
+                <th class="num">Defisit</th>
+                <th style="min-width:200px;">Progress</th>
+              </tr>
+            </thead>
+            <tbody>
+              <template x-for="row in summaryTableNdArea(selectedNdRegion)" :key="row.area">
+                <tr class="clickable" @click="drillNdToCabang(selectedNdRegion, row.area)">
+                  <td class="label" x-text="row.area"></td>
                   <td class="num" x-text="row.target > 0 ? fmt(row.target) : '—'"></td>
-                  <td class="num" x-text="liveReady ? (row.aktual > 0 ? fmt(row.aktual) : '0') : '—'"></td>
+                  <td class="num" x-text="liveReady ? fmt(row.aktual) : '—'"></td>
                   <td class="num" x-text="row.target > 0 && liveReady ? fmt(row.defisit) : '—'"></td>
                   <td>
                     <template x-if="row.target > 0">
@@ -394,9 +554,55 @@
                       </div>
                     </template>
                     <template x-if="row.target === 0">
-                      <span class="pct" style="color:var(--muted);" x-text="row.unit === 'Belum terpetakan' ? (row.aktual > 0 ? row.aktual + ' belum terpetakan' : 'Tidak ada') : 'Tidak dapat target'"></span>
+                      <span class="pct" style="color:var(--muted);">Tanpa target</span>
                     </template>
                   </td>
+                </tr>
+              </template>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </template>
+
+  <!-- ====================== NON-DEBITUR: CABANG DRILL ====================== -->
+  <template x-if="!loading && activePanel === 'nd_area'">
+    <div>
+
+      <div class="section-label">
+        <div class="marker"></div>
+        <div class="title" x-text="'Kode Cabang dalam Area: ' + (selectedNdArea || '—')"></div>
+        <div class="sub">Aktual completed non-debitur · Kode Cabang tidak memiliki target individual (rollup dari Area)</div>
+      </div>
+
+      <div x-show="!liveReady || ndCabangTableRows(selectedNdRegion, selectedNdArea).length === 0" class="info-pill" style="margin-bottom:12px;">
+        <span x-show="!liveReady">Menunggu respons Non-debitur</span>
+        <span x-show="liveReady && ndCabangTableRows(selectedNdRegion, selectedNdArea).length === 0">Belum ada respons dari Kode Cabang dalam area ini</span>
+      </div>
+
+      <div class="table-card">
+        <div class="table-scroll">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Kode Cabang</th>
+                <th class="num">Aktual Non-deb</th>
+                <th>Catatan</th>
+              </tr>
+            </thead>
+            <tbody>
+              <template x-for="row in ndCabangTableRows(selectedNdRegion, selectedNdArea)" :key="row.cabang">
+                <tr>
+                  <td class="label" x-text="row.cabang"></td>
+                  <td class="num" x-text="fmt(row.aktual)"></td>
+                  <td style="color:var(--muted);font-size:12px;">Tanpa target</td>
+                </tr>
+              </template>
+              <template x-if="!liveReady || ndCabangTableRows(selectedNdRegion, selectedNdArea).length === 0">
+                <tr>
+                  <td colspan="3" style="text-align:center;color:var(--muted);padding:24px;font-size:13px;">Belum ada respons Non-debitur untuk area ini</td>
                 </tr>
               </template>
             </tbody>
@@ -411,8 +617,8 @@
 
 <footer class="foot">
   <div class="foot-inner">
-    <div>© 2026 Mandiri Institute · MBS 2026 Response Tracker · Survey ID: <span class="num">422412181</span> · Struktur: SME Banking Center v2</div>
-    <div>Data refresh 3× sehari: 07:00 · 12:00 · 17:00 WIB · <a href="https://github.com/yehezkielgemini1/MBS-2026-Tracker" target="_blank" rel="noopener">GitHub</a></div>
+    <div>&copy; 2026 Mandiri Institute &middot; MBS 2026 Response Tracker &middot; Survey ID: <span class="num">422412181</span> &middot; Struktur: SME Banking Center v2</div>
+    <div>Data refresh 3&times; sehari: 07:00 &middot; 12:00 &middot; 17:00 WIB &middot; <a href="https://github.com/yehezkielgemini1/MBS-2026-Tracker" target="_blank" rel="noopener">GitHub</a></div>
   </div>
 </footer>
 
