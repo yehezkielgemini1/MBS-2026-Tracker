@@ -1,4 +1,4 @@
-/* MBS 2026 Response Tracker — Monochromatic Blue + Dark Mode (Gemini revision v4) */
+/* MBS 2026 Response Tracker - Monochromatic Blue + Dark Mode (Hub UX v2) */
 
 :root {
   /* === RAW BLUE PALETTE (12 shades, immutable) === */
@@ -6,7 +6,7 @@
   --blue-5: #1A5394; --blue-6: #2C6FB5; --blue-7: #4A8BC4; --blue-8: #67B2E8;
   --blue-9: #A9C4DF; --blue-10: #D5E3F0; --blue-11: #EAF1F8; --blue-12: #F4F8FC;
 
-  /* === SEMANTIC TOKENS (theme-aware) — LIGHT theme defaults === */
+  /* === SEMANTIC TOKENS (theme-aware) - LIGHT theme defaults === */
   --bg-canvas: #FFFFFF;
   --bg-elevated: #FFFFFF;
   --bg-subtle: #F4F8FC;       /* blue-12 */
@@ -54,10 +54,10 @@
   --focus-ring-strong: 0 0 0 3px rgba(103,178,232,0.7);
 }
 
-/* === DARK THEME — toggle via [data-theme="dark"] on <html> === */
+/* === DARK THEME - toggle via [data-theme="dark"] on <html> === */
 :root[data-theme="dark"] {
   --bg-canvas: #061429;          /* near black-navy */
-  --bg-elevated: #142A4A;        /* card bg — lebih terang biar text contrast */
+  --bg-elevated: #142A4A;        /* card bg - lebih terang biar text contrast */
   --bg-subtle: #0F2240;
   --bg-strip: #1A3A60;
   --bg-strip-2: #245078;
@@ -69,13 +69,13 @@
   --text-muted: #B6C8DE;         /* lighter dari sebelumnya untuk readability */
   --text-on-nav: #FFFFFF;
 
-  --accent: #67B2E8;             /* blue-8 — pop on dark */
+  --accent: #67B2E8;             /* blue-8 - pop on dark */
   --accent-hover: #A9C4DF;
   --accent-soft: #4A8BC4;
   --accent-faint: #2C6FB5;
 
   --rule: #2C4868;               /* lebih terang dari sebelumnya */
-  --rule-strong: #6A88AA;        /* MUCH brighter — buat muted value "—" tetap visible */
+  --rule-strong: #6A88AA;        /* MUCH brighter - buat muted placeholder value tetap visible */
 
   /* Re-map aliases */
   --navy-deep: var(--bg-topnav);
@@ -92,7 +92,7 @@
 
 /* Theme transition */
 html, body { transition: background-color 0.25s ease, color 0.25s ease; }
-.kpi-card, .chart-card, .table-card, .filter-bar, .topnav, .foot, .matrix-table thead th, .data-table thead th, .data-table tbody td, .matrix-table tbody td {
+.kpi-card, .chart-card, .table-card, .filter-bar, .topnav, .foot, .data-table thead th, .data-table tbody td {
   transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease;
 }
 
@@ -111,7 +111,8 @@ body {
 
 /* ============ TOP NAV ============ */
 .topnav { background: var(--bg-topnav); color: var(--text-on-nav); padding: 14px 28px; display: flex; align-items: center; gap: 24px; border-bottom: 1px solid rgba(255,255,255,0.08); position: sticky; top: 0; z-index: 50; min-height: 64px; }
-.topnav .brand-block { display: flex; align-items: center; gap: 12px; }
+.topnav .brand-block { display: flex; align-items: center; gap: 12px; cursor: pointer; }
+.topnav .brand-block:focus-visible { outline: 2px solid var(--blue-8); outline-offset: 2px; }
 .topnav .accent-bar { width: 6px; height: 36px; background: var(--blue-8); }
 .topnav .brand-title { font-family: 'Source Serif 4', Georgia, serif; font-size: 17px; font-weight: 600; line-height: 1.1; }
 .topnav .brand-sub { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--blue-8); margin-top: 2px; font-weight: 600; }
@@ -278,7 +279,7 @@ a:focus-visible,
 }
 .kpi-card.dark .kpi-progress-fill { background: linear-gradient(to right, var(--blue-8), var(--blue-6)); }
 
-/* ============ SECTION LABEL (Bagian A/B/C/D) ============ */
+/* ============ SECTION LABEL ============ */
 .section-label { display: flex; align-items: center; gap: 12px; margin: 36px 0 16px; }
 .section-label .marker { width: 4px; height: 22px; background: var(--accent); }
 .section-label .title { font-size: 13px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-primary); }
@@ -322,43 +323,56 @@ a:focus-visible,
 .data-table .progress-bar .bar-fill.danger { background: var(--accent-faint); }
 .data-table .progress-bar .pct { font-size: 12px; min-width: 42px; text-align: right; font-weight: 500; color: var(--text-primary); }
 
-/* Matrix table (Tabel 2) — sticky first column, dense */
-.matrix-table { width: 100%; border-collapse: collapse; font-size: 12px; }
-.matrix-table thead th { background: var(--bg-strip); color: var(--text-primary); font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 10px 12px; text-align: center; border-bottom: 2px solid var(--accent-faint); white-space: nowrap; }
-.matrix-table thead th.group { border-bottom: 1px solid var(--accent-faint); background: var(--bg-strip-2); }
-.matrix-table thead th.label-col { text-align: left; min-width: 180px; position: sticky; left: 0; z-index: 2; }
-.matrix-table tbody td { padding: 10px 12px; border-bottom: 1px solid var(--rule); font-variant-numeric: tabular-nums; text-align: right; color: var(--text-strong); }
-.matrix-table tbody td.label-col { text-align: left; font-weight: 500; color: var(--text-primary); position: sticky; left: 0; background: var(--bg-elevated); z-index: 1; }
-.matrix-table tbody tr.clickable { cursor: pointer; }
-.matrix-table tbody tr.clickable:hover { background: var(--bg-subtle); }
-.matrix-table tbody tr.clickable:hover td.label-col { background: var(--bg-subtle); }
-.matrix-table tbody tr.clickable:focus-visible { outline: none; box-shadow: var(--focus-ring); background: var(--bg-subtle); }
-.matrix-table .pct-cell { font-size: 11px; color: var(--text-muted); }
-.matrix-table .target-cell { color: var(--text-muted); }
-.matrix-table .aktual-cell { font-weight: 600; color: var(--text-primary); }
-.matrix-table .progress-cell { background-color: var(--bg-strip); position: relative; min-width: 60px; }
-.matrix-table .progress-cell-fill { position: absolute; left: 0; top: 0; bottom: 0; background: var(--accent); opacity: 0.45; z-index: 0; }
-.matrix-table .progress-cell-val { position: relative; z-index: 1; color: var(--text-strong); }
-
 /* ============ FOOTER ============ */
 .foot { background: var(--bg-foot); color: rgba(255,255,255,0.6); padding: 24px 28px; margin-top: 56px; font-size: 12px; }
 .foot-inner { max-width: 1440px; margin: 0 auto; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
 .foot a { color: var(--blue-8); text-decoration: none; }
 
-/* ============ SEGMENT TABS (Debitur / Non-debitur) ============ */
-/* Visually distinct from the geographic drill-down tabs: lighter separator before them */
-.topnav .tab.tab-segment {
-  margin-left: 8px;
-  border-left: 1px solid rgba(255,255,255,0.15);
-  padding-left: 22px;
-  color: rgba(255,255,255,0.64);
-}
-.topnav .tab.tab-segment:first-of-type { margin-left: 4px; border-left: none; }
-.topnav .tab.tab-segment.active { color: var(--blue-8); border-bottom-color: var(--blue-8); }
-.topnav .tab.tab-segment:hover { color: rgba(255,255,255,0.9); }
-
-/* Row style for "Belum terpetakan" in non-debitur table */
+/* Row style for "Belum terpetakan" bucket */
 tr.row-unmapped td { color: var(--text-muted); font-style: italic; border-top: 1px dashed var(--rule); }
+
+/* ============ SUB-TABS (dalam segment page) ============ */
+.subtabs {
+  display: flex;
+  gap: 4px;
+  margin: 40px 0 4px;
+  border-bottom: 1px solid var(--rule);
+}
+.subtab {
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  padding: 10px 20px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-family: inherit;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+.subtab:hover { color: var(--text-primary); }
+.subtab.active { color: var(--text-primary); border-bottom-color: var(--accent-hover); }
+:root[data-theme="dark"] .subtab.active { border-bottom-color: var(--accent); }
+.subtab:focus-visible { outline: 2px solid var(--accent-soft); outline-offset: -2px; }
+
+/* Back link (center drill detail) */
+.back-link {
+  background: none;
+  border: none;
+  color: var(--accent);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 0;
+  margin-top: 20px;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.back-link:hover { color: var(--accent-hover); }
+.back-link:focus-visible { outline: none; box-shadow: var(--focus-ring); }
 
 /* ============ HUB: SEGMENT CARDS ============ */
 .segment-cards {

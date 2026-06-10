@@ -1,4 +1,4 @@
-/* MBS 2026 Response Tracker — Plotly chart factories v5 (theme-aware + non-debitur region/area) */
+/* MBS 2026 Response Tracker - Plotly chart factories v6 (theme-aware, hub UX v2) */
 
 // Get theme-aware colors at render time
 function plotlyTheme() {
@@ -34,13 +34,27 @@ function emptyNote(domId, msg) {
   if (el) el.innerHTML = `<div style="display:flex;align-items:center;justify-content:center;min-height:280px;color:#667085;font-size:13px;letter-spacing:0.02em;">${msg}</div>`;
 }
 
-// ============ BAGIAN A: DONUT ============
+// ============ DONUT (target vs aktual; switches to aktual when live data exists) ============
 
 function renderDonut(domId, items, colorMap, app, useShortLabel = false) {
   if (!items.length) { emptyNote(domId, 'Belum ada data'); return; }
   const useAktual = app.liveReady && items.some(i => i.aktual > 0);
   const values = items.map(i => useAktual ? i.aktual : i.target);
-  const labels = items.map(i => Object.values(i)[0]);
+  const labels = items.map(i => i.label);
+  drawDonut(domId, labels, values, colorMap, useAktual ? 'Aktual' : 'Target', useShortLabel);
+}
+
+// ============ DONUT (aktual-only, for segment profile) ============
+
+function renderDonutAktual(domId, items, colorMap, emptyMsg, useShortLabel = false) {
+  const rows = items.filter(i => i.aktual > 0);
+  if (!rows.length) { emptyNote(domId, emptyMsg); return; }
+  const values = rows.map(i => i.aktual);
+  const labels = rows.map(i => i.label);
+  drawDonut(domId, labels, values, colorMap, 'Aktual', useShortLabel);
+}
+
+function drawDonut(domId, labels, values, colorMap, centerLabel, useShortLabel) {
   const colors = labels.map(l => colorMap[l] || '#67B2E8');
   const total = values.reduce((a, b) => a + b, 0);
 
@@ -48,8 +62,7 @@ function renderDonut(domId, items, colorMap, app, useShortLabel = false) {
     ? labels.map(l => SEKTOR_DISPLAY[l] || l)
     : labels;
 
-  const textLabels = items.map((it, i) => {
-    const v = values[i];
+  const textLabels = values.map((v, i) => {
     const pct = total > 0 ? ((v / total) * 100).toFixed(1) : 0;
     return `${displayLabels[i]}<br><b>${pct}%</b> · n=${v}`;
   });
@@ -69,21 +82,14 @@ function renderDonut(domId, items, colorMap, app, useShortLabel = false) {
     margin: { l: 20, r: 20, t: 30, b: 30 },
     showlegend: false,
     annotations: [{
-      text: `<b>${total}</b><br><span style="font-size:10px;color:${theme.textMute};">${useAktual ? 'Aktual' : 'Target'}</span>`,
+      text: `<b>${total}</b><br><span style="font-size:10px;color:${theme.textMute};">${centerLabel}</span>`,
       x: 0.5, y: 0.5, font: { size: 18, family: 'Source Serif 4', color: theme.text },
       showarrow: false,
     }],
   }, PLOTLY_CONFIG);
 }
 
-function renderDonutSkala(app, scope) {
-  renderDonut('chart-donut-skala', app.skalaUsahaSummary(scope), SKALA_COLORS, app);
-}
-function renderDonutSektor(app, scope) {
-  renderDonut('chart-donut-sektor', app.sektorSummary(scope), SEKTOR_COLORS, app, true);
-}
-
-// ============ BAGIAN B: BAR TARGET vs AKTUAL (generic) ============
+// ============ BAR TARGET vs AKTUAL (generic) ============
 
 function renderBarTargetVsAktual(domId, items, labelKey) {
   const el = document.getElementById(domId);
@@ -159,60 +165,43 @@ function renderBarTargetVsAktual(domId, items, labelKey) {
 
 // ============ PANEL RENDERERS ============
 
-function renderHub(app) {
-  // Hub shows the same donuts as nasional (scope = nasional)
-  const scope = { mode: 'nasional' };
-  renderDonutSkala(app, scope);
-  renderDonutSektor(app, scope);
+// HOME: national profile donuts (target vs aktual)
+function renderHome(app) {
+  renderDonut('chart-donut-skala', app.skalaUsahaSummaryNasional(), SKALA_COLORS, app);
+  renderDonut('chart-donut-sektor', app.sektorSummaryNasional(), SEKTOR_COLORS, app, true);
 }
 
-function renderNasional(app) {
-  const scope = { mode: 'nasional' };
-  renderDonutSkala(app, scope);
-  renderDonutSektor(app, scope);
-  const barData = app.summaryTableNasional().map(r => ({
-    label: r.display, target: r.target, aktual: r.aktual,
-  }));
-  renderBarTargetVsAktual('chart-bar-comparison', barData, 'label');
+// DEBITUR page: aktual-only profile donuts + Per Center bar (overview or center drill)
+function renderDebiturPanel(app) {
+  renderDonutAktual('chart-donut-deb-skala', app.skalaAktualBySegment('Debitur'), SKALA_COLORS, 'Belum ada respons Debitur');
+  renderDonutAktual('chart-donut-deb-sektor', app.sektorAktualBySegment('Debitur'), SEKTOR_COLORS, 'Belum ada respons Debitur', true);
+
+  if (app.debSub === 'center') {
+    if (app.selectedCenter) {
+      const barData = app.debiturUnitRowsForCenter(app.selectedCenter)
+        .filter(r => !r.unmapped)
+        .map(r => ({ label: r.unit, target: r.target, aktual: r.aktual }));
+      renderBarTargetVsAktual('chart-bar-deb-units', barData, 'label');
+    } else {
+      const barData = app.summaryTableDebitur().map(r => ({
+        label: r.center, target: r.target, aktual: r.aktual,
+      }));
+      renderBarTargetVsAktual('chart-bar-debitur', barData, 'label');
+    }
+  }
+  // debSub === 'unit' is table-only, no chart
 }
 
-function renderCenter(app) {
-  const scope = { mode: 'center', value: app.selectedCenter };
-  renderDonutSkala(app, scope);
-  renderDonutSektor(app, scope);
-  const barData = app.summaryTableCenter().map(r => ({
-    label: r.unit, target: r.target, aktual: r.aktual,
-  }));
-  renderBarTargetVsAktual('chart-bar-comparison', barData, 'label');
-}
+// NON-DEBITUR page: aktual-only profile donuts + Per Region bar
+function renderNondebiturPanel(app) {
+  renderDonutAktual('chart-donut-nd-skala', app.skalaAktualBySegment('Non-Debitur'), SKALA_COLORS, 'Menunggu respons Non-debitur pertama');
+  renderDonutAktual('chart-donut-nd-sektor', app.sektorAktualBySegment('Non-Debitur'), SEKTOR_COLORS, 'Menunggu respons Non-debitur pertama', true);
 
-function renderUnit(app) {
-  const scope = { mode: 'unit', value: app.selectedUnit };
-  renderDonutSkala(app, scope);
-  renderDonutSektor(app, scope);
-}
-
-function renderDebitur(app) {
-  const barData = app.summaryTableDebitur().map(r => ({
-    label: r.center, target: r.target, aktual: r.aktual,
-  }));
-  renderBarTargetVsAktual('chart-bar-debitur', barData, 'label');
-}
-
-// Non-debitur Region overview bar chart (12 branch regions)
-function renderNondebiturRegion(app) {
-  const barData = app.summaryTableNdRegion().map(r => ({
-    label: r.region.replace(/Region \w+\s+-\s+/, ''),  // short label: "Sumatra I" etc
-    fullLabel: r.region,
-    target: r.target, aktual: r.aktual,
-  }));
-  renderBarTargetVsAktual('chart-bar-nondebitur-region', barData, 'label');
-}
-
-// Non-debitur Area bar chart within a selected Region
-function renderNdArea(app) {
-  const barData = app.summaryTableNdArea(app.selectedNdRegion).map(r => ({
-    label: r.area, target: r.target, aktual: r.aktual,
-  }));
-  renderBarTargetVsAktual('chart-bar-nd-area', barData, 'label');
+  if (app.ndSub === 'region') {
+    const barData = app.summaryTableNdRegion().map(r => ({
+      label: app.ndRegionShort(r.region), target: r.target, aktual: r.aktual,
+    }));
+    renderBarTargetVsAktual('chart-bar-nondebitur-region', barData, 'label');
+  }
+  // ndSub === 'area' is table-only, no chart
 }
