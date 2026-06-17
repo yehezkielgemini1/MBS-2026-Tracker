@@ -299,6 +299,17 @@ function mbsApp() {
     ndRegionShort(region) {
       return String(region || '').replace(/^Region\s+\w+\s+-\s+/, '');
     },
+    // ----- color coding capaian (6-tier, palet Bank Mandiri) -----
+    // 0% abu | <25% oranye | <50% gold | <75% biru muda | <100% biru Mandiri | >=100% hijau
+    barClass(pct) {
+      if (pct === null || pct === undefined || isNaN(pct)) return '';
+      if (pct <= 0) return 't-zero';
+      if (pct < 25) return 't-low';
+      if (pct < 50) return 't-mid';
+      if (pct < 75) return 't-ontrack';
+      if (pct < 100) return 't-good';
+      return 't-done';
+    },
 
     // ----- live row helpers (completed-only counting, filter on response_status) -----
     completedRows() {

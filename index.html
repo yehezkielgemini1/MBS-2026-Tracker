@@ -258,9 +258,9 @@
                       <td>
                         <div class="progress-bar">
                           <div class="bar">
-                            <div class="bar-fill" :class="row.pct >= 100 ? 'complete' : (row.pct >= 50 ? '' : (row.pct >= 25 ? 'warn' : 'danger'))" :style="`width:${Math.min(100, row.pct)}%`"></div>
+                            <div class="bar-fill" :class="barClass(row.pct)" :style="`width:${Math.min(100, row.pct)}%`"></div>
                           </div>
-                          <span class="pct" x-text="liveReady ? fmtPct(row.pct, 0) : '-'"></span>
+                          <span class="pct" :class="barClass(row.pct)" x-text="liveReady ? fmtPct(row.pct, 0) : '-'"></span>
                         </div>
                       </td>
                     </tr>
@@ -312,9 +312,9 @@
                         <template x-if="!row.unmapped">
                           <div class="progress-bar">
                             <div class="bar">
-                              <div class="bar-fill" :class="row.pct >= 100 ? 'complete' : (row.pct >= 50 ? '' : (row.pct >= 25 ? 'warn' : 'danger'))" :style="`width:${Math.min(100, row.pct)}%`"></div>
+                              <div class="bar-fill" :class="barClass(row.pct)" :style="`width:${Math.min(100, row.pct)}%`"></div>
                             </div>
-                            <span class="pct" x-text="liveReady ? fmtPct(row.pct, 0) : '-'"></span>
+                            <span class="pct" :class="barClass(row.pct)" x-text="liveReady ? fmtPct(row.pct, 0) : '-'"></span>
                           </div>
                         </template>
                         <template x-if="row.unmapped">
@@ -362,9 +362,9 @@
                         <template x-if="!row.unmapped">
                           <div class="progress-bar">
                             <div class="bar">
-                              <div class="bar-fill" :class="row.pct >= 100 ? 'complete' : (row.pct >= 50 ? '' : (row.pct >= 25 ? 'warn' : 'danger'))" :style="`width:${Math.min(100, row.pct)}%`"></div>
+                              <div class="bar-fill" :class="barClass(row.pct)" :style="`width:${Math.min(100, row.pct)}%`"></div>
                             </div>
-                            <span class="pct" x-text="liveReady ? fmtPct(row.pct, 0) : '-'"></span>
+                            <span class="pct" :class="barClass(row.pct)" x-text="liveReady ? fmtPct(row.pct, 0) : '-'"></span>
                           </div>
                         </template>
                         <template x-if="row.unmapped">
@@ -450,9 +450,9 @@
                       <td>
                         <div class="progress-bar">
                           <div class="bar">
-                            <div class="bar-fill" :class="row.pct >= 100 ? 'complete' : (row.pct >= 50 ? '' : (row.pct >= 25 ? 'warn' : 'danger'))" :style="`width:${Math.min(100, row.pct)}%`"></div>
+                            <div class="bar-fill" :class="barClass(row.pct)" :style="`width:${Math.min(100, row.pct)}%`"></div>
                           </div>
-                          <span class="pct" x-text="liveReady ? fmtPct(row.pct, 0) : '-'"></span>
+                          <span class="pct" :class="barClass(row.pct)" x-text="liveReady ? fmtPct(row.pct, 0) : '-'"></span>
                         </div>
                       </td>
                     </tr>
@@ -509,9 +509,9 @@
                       <td>
                         <div class="progress-bar">
                           <div class="bar">
-                            <div class="bar-fill" :class="row.pct >= 100 ? 'complete' : (row.pct >= 50 ? '' : (row.pct >= 25 ? 'warn' : 'danger'))" :style="`width:${Math.min(100, row.pct)}%`"></div>
+                            <div class="bar-fill" :class="barClass(row.pct)" :style="`width:${Math.min(100, row.pct)}%`"></div>
                           </div>
-                          <span class="pct" x-text="liveReady ? fmtPct(row.pct, 0) : '-'"></span>
+                          <span class="pct" :class="barClass(row.pct)" x-text="liveReady ? fmtPct(row.pct, 0) : '-'"></span>
                         </div>
                       </td>
                     </tr>

@@ -318,10 +318,24 @@ a:focus-visible,
 .data-table .progress-bar { display: inline-flex; align-items: center; gap: 8px; width: 100%; }
 .data-table .progress-bar .bar { flex: 1; height: 5px; background: var(--bg-strip); overflow: hidden; min-width: 60px; }
 .data-table .progress-bar .bar-fill { height: 100%; background: var(--accent-hover); transition: width 0.4s ease; }
-.data-table .progress-bar .bar-fill.complete { background: var(--blue-2); }
-.data-table .progress-bar .bar-fill.warn { background: var(--accent); }
-.data-table .progress-bar .bar-fill.danger { background: var(--accent-faint); }
+/* === COLOR CODING CAPAIAN (6-tier, palet Bank Mandiri) === */
+.data-table .progress-bar .bar-fill.t-zero    { background: #C9D2DC; }
+.data-table .progress-bar .bar-fill.t-low     { background: #E8763C; }
+.data-table .progress-bar .bar-fill.t-mid     { background: #FDB913; }
+.data-table .progress-bar .bar-fill.t-ontrack { background: #4A90D9; }
+.data-table .progress-bar .bar-fill.t-good    { background: #003D79; }
+.data-table .progress-bar .bar-fill.t-done    { background: #1D9E75; }
 .data-table .progress-bar .pct { font-size: 12px; min-width: 42px; text-align: right; font-weight: 500; color: var(--text-primary); }
+.data-table .progress-bar .pct.t-zero    { color: var(--muted); font-weight: 400; }
+.data-table .progress-bar .pct.t-low     { color: #E8763C; font-weight: 700; }
+.data-table .progress-bar .pct.t-mid     { color: #C98A06; font-weight: 700; }
+.data-table .progress-bar .pct.t-ontrack { color: #2C6FB5; font-weight: 700; }
+.data-table .progress-bar .pct.t-good    { color: var(--blue-4); font-weight: 700; }
+.data-table .progress-bar .pct.t-done    { color: #178060; font-weight: 700; }
+:root[data-theme="dark"] .data-table .progress-bar .pct.t-good { color: var(--blue-8); }
+:root[data-theme="dark"] .data-table .progress-bar .pct.t-ontrack { color: var(--blue-8); }
+:root[data-theme="dark"] .data-table .progress-bar .pct.t-mid { color: #FDB913; }
+:root[data-theme="dark"] .data-table .progress-bar .pct.t-done { color: #2FBF93; }
 
 /* ============ FOOTER ============ */
 .foot { background: var(--bg-foot); color: rgba(255,255,255,0.6); padding: 24px 28px; margin-top: 56px; font-size: 12px; }

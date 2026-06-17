@@ -1,5 +1,7 @@
-# mbs_live_realization.csv: sebelumnya di-ignore, kini di-track untuk GitHub Pages (2026-06-08).
-# File berisi respondent_id + IP saja (tanpa nama). Tidak ada PII sensitif langsung visible.
+# mbs_live_realization.csv di-track untuk GitHub Pages. Sejak remediasi 2026-06-08
+# file ini WAJIB PII-free: hanya 7 kolom aman (response_status, region, area, cabang,
+# skala_usaha, sektor, status_debitur). JANGAN pernah commit respondent_id / ip_address /
+# nama / telepon / email. Varian ber-suffix (raw/backup) tetap di-ignore di bawah.
 mbs_live_realization_*.csv
 .DS_Store
 Thumbs.db
@@ -7,3 +9,4 @@ Thumbs.db
 __pycache__/
 .vscode/
 .idea/
+.claude/
