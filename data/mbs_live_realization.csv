@@ -36,7 +36,7 @@ completed,Jambi,Jambi,,Kecil,Perdagangan,Debitur
 completed,Palembang,SBC Palembang 1,,Kecil,Pertanian dan Perkebunan,Debitur
 completed,Palembang,Palembang Center 2,,Menengah,Pertanian dan Perkebunan,Debitur
 completed,Palembang,kredit modal kerja,,Kecil,Perdagangan,Debitur
-completed,Surabaya Niaga,SB Floor Kediri,,Menengah,Lainnya,Non-Debitur
+completed,Surabaya Niaga,SB Floor Kediri,,Menengah,Lainnya,Debitur
 completed,Jambi,Jambi,,Kecil,Perdagangan,Debitur
 completed,Palembang,SmE SBC Palembang 1,,Kecil,Pertanian dan Perkebunan,Debitur
 completed,Palembang,TANJUNGPANDAN,,Kecil,Pertanian dan Perkebunan,Debitur
@@ -58,3 +58,17 @@ completed,Surabaya Niaga,SB Floor Kediri,,Menengah,Perdagangan,Debitur
 completed,Palembang,SBC Palembang 1,,Kecil,Pertanian dan Perkebunan,Debitur
 completed,Palembang,Palembang Sudirman,,Besar,Konstruksi,Debitur
 completed,Surabaya Niaga,SME Banking Floor Kediri,,Kecil,Konstruksi,Debitur
+completed,Surabaya Niaga,SBF Kediri,,Menengah,Perdagangan,Debitur
+completed,Surabaya Niaga,SBF Kediri,,Kecil,Perdagangan,Debitur
+completed,Surabaya Niaga,Gresik,,Kecil,Perdagangan,Debitur
+completed,Region VIII - Jawa III,Kediri,17176,Kecil,Perdagangan,Non-Debitur
+completed,Surabaya Niaga,center,,Kecil,Industri Pengolahan,Debitur
+completed,Jambi,Jambi,,Kecil,Perdagangan,Debitur
+completed,Surabaya Niaga,SBF Kediri,,Kecil,Perdagangan,Debitur
+completed,Jambi,Padang,,Kecil,Konstruksi,Debitur
+completed,Palembang,Palembang 2,,Kecil,Perdagangan,Debitur
+completed,Surabaya Niaga,SME Banking Floor Kediri,,Kecil,Perdagangan,Debitur
+completed,Palembang,-,,Kecil,Perdagangan,Debitur
+completed,Palembang,Palembang Sudirman,,Kecil,Perdagangan,Debitur
+completed,Surabaya Niaga,Center Niaga,,Kecil,Penyediaan Akomodasi dan Penyediaan Makan Minum,Debitur
+completed,Surabaya Niaga,SB Floor Kediri,,Kecil,Perdagangan,Debitur
