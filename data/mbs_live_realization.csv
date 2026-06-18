@@ -1,128 +1,137 @@
 ﻿response_status,region,area,cabang,skala_usaha,sektor,status_debitur
-completed,Denpasar,denpasar,,Kecil,Perdagangan,Debitur
-completed,Surabaya Niaga,Center,,Kecil,Konstruksi,Debitur
-completed,Surabaya Niaga,-,,Menengah,Lainnya,Debitur
-completed,Surabaya Niaga,Center,,Kecil,Konstruksi,Debitur
-completed,Surabaya Niaga,SBC Surabaya Niaga,,Kecil,Lainnya,Debitur
-completed,Surabaya Niaga,-,,Kecil,Lainnya,Debitur
-completed,Denpasar,Denpasar 1,,Kecil,Penyediaan Akomodasi dan Penyediaan Makan Minum,Debitur
-completed,Denpasar,DENPASAR,,Kecil,Industri Pengolahan,Debitur
-completed,Denpasar,Denpasar,,Kecil,Perdagangan,Debitur
-completed,Surabaya Niaga,Surabaya Niaga,,Kecil,Pertanian dan Perkebunan,Debitur
-completed,Surabaya Niaga,-,,Kecil,Perdagangan,Debitur
-completed,Bandung Asia Afrika,Floor Cirebon,,Kecil,Perdagangan,Debitur
-completed,Pontianak,SME Banking Floor,,Kecil,Lainnya,Debitur
-completed,Bandung Surapati,Bandung Surapati,,Kecil,Industri Pengolahan,Debitur
+completed,Denpasar,SME Banking Center Denpasar,,Kecil,Perdagangan,Debitur
+completed,Surabaya Niaga,SME Banking Center Surabaya Niaga,,Kecil,Konstruksi,Debitur
+completed,Surabaya Niaga,SME Banking Center Surabaya Niaga,,Menengah,Lainnya,Debitur
+completed,Surabaya Niaga,SME Banking Center Surabaya Niaga,,Kecil,Konstruksi,Debitur
+completed,Surabaya Niaga,SME Banking Center Surabaya Niaga,,Kecil,Lainnya,Debitur
+completed,Surabaya Niaga,SME Banking Center Surabaya Niaga,,Kecil,Lainnya,Debitur
+completed,Denpasar,SME Banking Center Denpasar,,Kecil,Penyediaan Akomodasi dan Penyediaan Makan Minum,Debitur
+completed,Denpasar,SME Banking Center Denpasar,,Kecil,Industri Pengolahan,Debitur
+completed,Denpasar,SME Banking Center Denpasar,,Kecil,Perdagangan,Debitur
+completed,Surabaya Niaga,SME Banking Center Surabaya Niaga,,Kecil,Pertanian dan Perkebunan,Debitur
+completed,Surabaya Niaga,SME Banking Center Surabaya Niaga,,Kecil,Perdagangan,Debitur
+completed,Bandung Asia Afrika,SME Banking Floor Cirebon,,Kecil,Perdagangan,Debitur
+completed,Pontianak,SME Banking Center Pontianak,,Kecil,Lainnya,Debitur
+completed,Bandung Surapati,SME Banking Center Bandung Surapati,,Kecil,Industri Pengolahan,Debitur
 completed,Region VII  - Jawa II,Magelang,18500,Kecil,Perdagangan,Non-Debitur
-completed,Makassar,SBC Makassar,,Kecil,Lainnya,Debitur
+completed,Makassar,SME Banking Center Makassar,,Kecil,Lainnya,Debitur
 completed,Jakarta Melawai,ss,,Unknown,Konstruksi,Debitur
-completed,Surabaya Pemuda,JEMBER,,Kecil,Perdagangan,Debitur
-completed,Jakarta Jatinegara Timur,-,,Besar,Lainnya,Debitur
-completed,Surabaya Pemuda,SME Floor Jember,,Kecil,Pertanian dan Perkebunan,Debitur
-completed,Jayapura,Sorong,,Kecil,Perdagangan,Debitur
+completed,Surabaya Pemuda,SME Banking Floor Jember,,Kecil,Perdagangan,Debitur
+completed,Jakarta Jatinegara Timur,SME Banking Center Jakarta Jatinegara Timur,,Besar,Lainnya,Debitur
+completed,Surabaya Pemuda,SME Banking Floor Jember,,Kecil,Pertanian dan Perkebunan,Debitur
+completed,Jayapura,SME Banking Floor Sorong,,Kecil,Perdagangan,Debitur
 completed,Surabaya Niaga,SME Banking Floor Kediri,,Kecil,Pertanian dan Perkebunan,Debitur
-completed,Palembang,SBF Pangkalpinang,,Kecil,Perdagangan,Debitur
-completed,Surabaya Niaga,Kediri,,Besar,Lainnya,Debitur
-completed,Palembang,-,,Kecil,Lainnya,Debitur
-completed,Surabaya Niaga,-,,Kecil,Perdagangan,Debitur
-completed,Surabaya Niaga,Kediri,,Kecil,Pertanian dan Perkebunan,Debitur
+completed,Palembang,SME Banking Floor Pangkalpinang,,Kecil,Perdagangan,Debitur
+completed,Surabaya Niaga,SME Banking Floor Kediri,,Besar,Lainnya,Debitur
+completed,Palembang,SME Banking Center Palembang,,Kecil,Lainnya,Debitur
+completed,Surabaya Niaga,SME Banking Center Surabaya Niaga,,Kecil,Perdagangan,Debitur
+completed,Surabaya Niaga,SME Banking Floor Kediri,,Kecil,Pertanian dan Perkebunan,Debitur
 completed,Surabaya Niaga,SME Banking Floor Gresik,,Kecil,Lainnya,Debitur
 completed,Surabaya Niaga,SME Banking Floor Kediri,,Kecil,Industri Pengolahan,Debitur
-completed,Surabaya Niaga,SBF Kediri,,Kecil,Perdagangan,Debitur
-completed,Surabaya Niaga,SB Floor Kediri,,Kecil,Industri Pengolahan,Debitur
-completed,Surabaya Niaga,Gresik,,Kecil,Lainnya,Debitur
-completed,Palembang,Palembang Center,,Menengah,Konstruksi,Debitur
-completed,Jambi,Jambi,,Kecil,Perdagangan,Debitur
-completed,Palembang,SBC Palembang 1,,Kecil,Pertanian dan Perkebunan,Debitur
-completed,Palembang,Palembang Center 2,,Menengah,Pertanian dan Perkebunan,Debitur
-completed,Palembang,kredit modal kerja,,Kecil,Perdagangan,Debitur
-completed,Surabaya Niaga,SB Floor Kediri,,Menengah,Lainnya,Debitur
-completed,Jambi,Jambi,,Kecil,Perdagangan,Debitur
-completed,Palembang,SmE SBC Palembang 1,,Kecil,Pertanian dan Perkebunan,Debitur
-completed,Palembang,TANJUNGPANDAN,,Kecil,Pertanian dan Perkebunan,Debitur
-completed,Palembang,SME BANKING CENTER PALEMBANG,,Kecil,Industri Pengolahan,Debitur
-completed,Jambi,Jambi,,Kecil,Perdagangan,Debitur
-completed,Jambi,Padang,,Kecil,Perdagangan,Debitur
-completed,Palembang,-,,Kecil,Perdagangan,Debitur
-completed,Samarinda,Balikpapan,,Unknown,Konstruksi,Debitur
-completed,Palembang,SME BANKING CENTER PALEMBANG,,Besar,Konstruksi,Debitur
-completed,Jambi,Sme banking floor padang,,Kecil,Perdagangan,Debitur
-completed,Bandung Surapati,Sukabumi,,Kecil,Industri Pengolahan,Debitur
-completed,Jambi,Padang,,Kecil,Perdagangan,Debitur
-completed,Jambi,Sme banking floor padang,,Kecil,Perdagangan,Debitur
-completed,Surabaya Niaga,Gresik,,Kecil,Penyediaan Akomodasi dan Penyediaan Makan Minum,Debitur
-completed,Surabaya Niaga,SME BANKING FLOOR GRESIK,,Kecil,Perdagangan,Debitur
-completed,Palembang,Palembang,,Kecil,Perdagangan,Debitur
-completed,Palembang,SME BANKING CENTER PALEMBANG,,Kecil,Konstruksi,Debitur
-completed,Surabaya Niaga,SB Floor Kediri,,Menengah,Perdagangan,Debitur
-completed,Palembang,SBC Palembang 1,,Kecil,Pertanian dan Perkebunan,Debitur
-completed,Palembang,Palembang Sudirman,,Besar,Konstruksi,Debitur
-completed,Surabaya Niaga,SME Banking Floor Kediri,,Kecil,Konstruksi,Debitur
-completed,Surabaya Niaga,SBF Kediri,,Menengah,Perdagangan,Debitur
-completed,Surabaya Niaga,SBF Kediri,,Kecil,Perdagangan,Debitur
-completed,Surabaya Niaga,Gresik,,Kecil,Perdagangan,Debitur
-completed,Region VIII - Jawa III,Kediri,17176,Kecil,Perdagangan,Non-Debitur
-completed,Surabaya Niaga,center,,Kecil,Industri Pengolahan,Debitur
-completed,Jambi,Jambi,,Kecil,Perdagangan,Debitur
-completed,Surabaya Niaga,SBF Kediri,,Kecil,Perdagangan,Debitur
-completed,Jambi,Padang,,Kecil,Konstruksi,Debitur
-completed,Palembang,Palembang 2,,Kecil,Perdagangan,Debitur
-completed,Surabaya Niaga,SME Banking Floor Kediri,,Kecil,Perdagangan,Debitur
-completed,Palembang,-,,Kecil,Perdagangan,Debitur
-completed,Palembang,Palembang Sudirman,,Kecil,Perdagangan,Debitur
-completed,Surabaya Niaga,Center Niaga,,Kecil,Penyediaan Akomodasi dan Penyediaan Makan Minum,Debitur
-completed,Surabaya Niaga,SB Floor Kediri,,Kecil,Perdagangan,Debitur
-completed,Palembang,Palembang 2,,Kecil,Penyediaan Akomodasi dan Penyediaan Makan Minum,Debitur
-completed,Surabaya Niaga,SBF Kediri,,Menengah,Perdagangan,Debitur
 completed,Surabaya Niaga,SME Banking Floor Kediri,,Kecil,Perdagangan,Debitur
 completed,Surabaya Niaga,SME Banking Floor Kediri,,Kecil,Industri Pengolahan,Debitur
-completed,Surabaya Niaga,Gresik,,Kecil,Perdagangan,Debitur
-completed,Palembang,-,,Kecil,Lainnya,Debitur
-completed,Jakarta Pulogadung,Jkt pulogadung,,Kecil,Perdagangan,Debitur
-completed,Surabaya Niaga,SB Floor Kediri,,Menengah,Perdagangan,Debitur
-completed,Palembang,Palembang 2,,Kecil,Penyediaan Akomodasi dan Penyediaan Makan Minum,Debitur
-completed,Jambi,Floor Padang,,Menengah,Lainnya,Debitur
-completed,Surabaya Niaga,SB Floor Kediri,,Kecil,Lainnya,Debitur
+completed,Surabaya Niaga,SME Banking Floor Gresik,,Kecil,Lainnya,Debitur
+completed,Palembang,SME Banking Center Palembang,,Menengah,Konstruksi,Debitur
+completed,Jambi,SME Banking Center Jambi,,Kecil,Perdagangan,Debitur
+completed,Palembang,SME Banking Center Palembang,,Kecil,Pertanian dan Perkebunan,Debitur
+completed,Palembang,SME Banking Center Palembang,,Menengah,Pertanian dan Perkebunan,Debitur
+completed,Palembang,kredit modal kerja,,Kecil,Perdagangan,Debitur
+completed,Surabaya Niaga,SME Banking Floor Kediri,,Menengah,Lainnya,Debitur
+completed,Jambi,SME Banking Center Jambi,,Kecil,Perdagangan,Debitur
+completed,Palembang,SME Banking Center Palembang,,Kecil,Pertanian dan Perkebunan,Debitur
+completed,Palembang,SME Banking Desk Tanjung Pandan,,Kecil,Pertanian dan Perkebunan,Debitur
+completed,Palembang,SME Banking Center Palembang,,Kecil,Industri Pengolahan,Debitur
+completed,Jambi,SME Banking Center Jambi,,Kecil,Perdagangan,Debitur
+completed,Jambi,SME Banking Floor Padang,,Kecil,Perdagangan,Debitur
+completed,Palembang,SME Banking Center Palembang,,Kecil,Perdagangan,Debitur
+completed,Samarinda,SME Banking Floor Balikpapan,,Unknown,Konstruksi,Debitur
+completed,Palembang,SME Banking Center Palembang,,Besar,Konstruksi,Debitur
+completed,Jambi,SME Banking Floor Padang,,Kecil,Perdagangan,Debitur
+completed,Bandung Surapati,SME Banking Floor Sukabumi,,Kecil,Industri Pengolahan,Debitur
+completed,Jambi,SME Banking Floor Padang,,Kecil,Perdagangan,Debitur
+completed,Jambi,SME Banking Floor Padang,,Kecil,Perdagangan,Debitur
+completed,Surabaya Niaga,SME Banking Floor Gresik,,Kecil,Penyediaan Akomodasi dan Penyediaan Makan Minum,Debitur
+completed,Surabaya Niaga,SME Banking Floor Gresik,,Kecil,Perdagangan,Debitur
+completed,Palembang,SME Banking Center Palembang,,Kecil,Perdagangan,Debitur
+completed,Palembang,SME Banking Center Palembang,,Kecil,Konstruksi,Debitur
+completed,Surabaya Niaga,SME Banking Floor Kediri,,Menengah,Perdagangan,Debitur
+completed,Palembang,SME Banking Center Palembang,,Kecil,Pertanian dan Perkebunan,Debitur
+completed,Palembang,SME Banking Floor Palembang Sudirman,,Besar,Konstruksi,Debitur
+completed,Surabaya Niaga,SME Banking Floor Kediri,,Kecil,Konstruksi,Debitur
+completed,Surabaya Niaga,SME Banking Floor Kediri,,Menengah,Perdagangan,Debitur
+completed,Surabaya Niaga,SME Banking Floor Kediri,,Kecil,Perdagangan,Debitur
+completed,Surabaya Niaga,SME Banking Floor Gresik,,Kecil,Perdagangan,Debitur
+completed,Region VIII - Jawa III,Kediri,17176,Kecil,Perdagangan,Non-Debitur
+completed,Surabaya Niaga,SME Banking Center Surabaya Niaga,,Kecil,Industri Pengolahan,Debitur
+completed,Jambi,SME Banking Center Jambi,,Kecil,Perdagangan,Debitur
+completed,Surabaya Niaga,SME Banking Floor Kediri,,Kecil,Perdagangan,Debitur
+completed,Jambi,SME Banking Floor Padang,,Kecil,Konstruksi,Debitur
+completed,Palembang,SME Banking Center Palembang,,Kecil,Perdagangan,Debitur
+completed,Surabaya Niaga,SME Banking Floor Kediri,,Kecil,Perdagangan,Debitur
+completed,Palembang,SME Banking Center Palembang,,Kecil,Perdagangan,Debitur
+completed,Palembang,SME Banking Floor Palembang Sudirman,,Kecil,Perdagangan,Debitur
+completed,Surabaya Niaga,SME Banking Center Surabaya Niaga,,Kecil,Penyediaan Akomodasi dan Penyediaan Makan Minum,Debitur
+completed,Surabaya Niaga,SME Banking Floor Kediri,,Kecil,Perdagangan,Debitur
+completed,Palembang,SME Banking Center Palembang,,Kecil,Penyediaan Akomodasi dan Penyediaan Makan Minum,Debitur
+completed,Surabaya Niaga,SME Banking Floor Kediri,,Menengah,Perdagangan,Debitur
+completed,Surabaya Niaga,SME Banking Floor Kediri,,Kecil,Perdagangan,Debitur
+completed,Surabaya Niaga,SME Banking Floor Kediri,,Kecil,Industri Pengolahan,Debitur
+completed,Surabaya Niaga,SME Banking Floor Gresik,,Kecil,Perdagangan,Debitur
+completed,Palembang,SME Banking Center Palembang,,Kecil,Lainnya,Debitur
+completed,Jakarta Pulogadung,SME Banking Center Jakarta Pulogadung,,Kecil,Perdagangan,Debitur
+completed,Surabaya Niaga,SME Banking Floor Kediri,,Menengah,Perdagangan,Debitur
+completed,Palembang,SME Banking Center Palembang,,Kecil,Penyediaan Akomodasi dan Penyediaan Makan Minum,Debitur
+completed,Jambi,SME Banking Floor Padang,,Menengah,Lainnya,Debitur
+completed,Surabaya Niaga,SME Banking Floor Kediri,,Kecil,Lainnya,Debitur
 completed,Surabaya Niaga,SME Banking Floor Kediri,,Kecil,Perdagangan,Debitur
 completed,Jambi,SME Banking Floor Padang,,Kecil,Perdagangan,Debitur
 completed,Region II   - Sumatra II,Tanjung Pandan,16901,Kecil,Industri Pengolahan,Non-Debitur
-completed,Pontianak,Ketapang,,Kecil,Perdagangan,Debitur
+completed,Pontianak,SME Banking Desk Ketapang,,Kecil,Perdagangan,Debitur
 completed,Surabaya Niaga,SME Banking Floor Kediri,,Kecil,Pertanian dan Perkebunan,Debitur
 completed,Surabaya Niaga,SME Banking Floor Kediri,,Kecil,Perdagangan,Debitur
-completed,Surabaya Niaga,Kediri,,Kecil,Lainnya,Debitur
-completed,Pontianak,Ketapang,,Kecil,Perdagangan,Debitur
-completed,Palembang,-,,Kecil,Perdagangan,Debitur
+completed,Surabaya Niaga,SME Banking Floor Kediri,,Kecil,Lainnya,Debitur
+completed,Pontianak,SME Banking Desk Ketapang,,Kecil,Perdagangan,Debitur
+completed,Palembang,SME Banking Center Palembang,,Kecil,Perdagangan,Debitur
 completed,Surabaya Niaga,SME Banking Floor Kediri,,Kecil,Perdagangan,Debitur
-completed,Surabaya Niaga,Gresik,,Kecil,Perdagangan,Debitur
+completed,Surabaya Niaga,SME Banking Floor Gresik,,Kecil,Perdagangan,Debitur
 completed,Surabaya Niaga,SME Banking Floor Kediri,,Kecil,Perdagangan,Debitur
 completed,Surabaya Niaga,SME Banking Floor Kediri,,Kecil,Perdagangan,Debitur
-completed,Surabaya Niaga,KEDIRI,,Kecil,Lainnya,Debitur
-completed,Surabaya Niaga,SME BANKING FLOOR KEDIRI,,Kecil,Perdagangan,Debitur
-completed,Surabaya Niaga,Kediri,,Menengah,Industri Pengolahan,Debitur
-completed,Palembang,Palembang,,Menengah,Industri Pengolahan,Debitur
+completed,Surabaya Niaga,SME Banking Floor Kediri,,Kecil,Lainnya,Debitur
+completed,Surabaya Niaga,SME Banking Floor Kediri,,Kecil,Perdagangan,Debitur
+completed,Surabaya Niaga,SME Banking Floor Kediri,,Menengah,Industri Pengolahan,Debitur
+completed,Palembang,SME Banking Center Palembang,,Menengah,Industri Pengolahan,Debitur
 completed,Surabaya Niaga,SME Banking Floor Kediri,,Kecil,Konstruksi,Debitur
 completed,Surabaya Niaga,SME Banking Floor Kediri,,Kecil,Pertanian dan Perkebunan,Debitur
-completed,Surabaya Niaga,Kediri,,Menengah,Industri Pengolahan,Debitur
+completed,Surabaya Niaga,SME Banking Floor Kediri,,Menengah,Industri Pengolahan,Debitur
 completed,Region III  - Jakarta I,Area Jakarta Daan Mogot,11824,Unknown,Lainnya,Non-Debitur
-completed,Surabaya Niaga,SBF Grersik,,Unknown,Lainnya,Debitur
-completed,Jakarta Pulogadung,Sme Pulogadung Tim 1,,Kecil,Industri Pengolahan,Debitur
-completed,Surabaya Niaga,Gresik,,Menengah,Perdagangan,Debitur
-completed,Surabaya Niaga,Kediri,,Kecil,Pertanian dan Perkebunan,Debitur
+completed,Surabaya Niaga,SME Banking Floor Gresik,,Unknown,Lainnya,Debitur
+completed,Jakarta Pulogadung,SME Banking Center Jakarta Pulogadung,,Kecil,Industri Pengolahan,Debitur
+completed,Surabaya Niaga,SME Banking Floor Gresik,,Menengah,Perdagangan,Debitur
+completed,Surabaya Niaga,SME Banking Floor Kediri,,Kecil,Pertanian dan Perkebunan,Debitur
 completed,Surabaya Niaga,SME Banking Floor Kediri,,Kecil,Perdagangan,Debitur
 completed,Jakarta Pulogadung,SME Banking Center Jakarta Pulogadung,,Kecil,Lainnya,Debitur
-completed,Jambi,Padang,,Unknown,Perdagangan,Debitur
-completed,Surabaya Niaga,SBC Surabaya Niaga,,Kecil,Perdagangan,Debitur
-completed,Surabaya Niaga,SBC Surabaya Niaga,,Kecil,Lainnya,Debitur
-completed,Jambi,Jambi,,Kecil,Pertanian dan Perkebunan,Debitur
+completed,Jambi,SME Banking Floor Padang,,Unknown,Perdagangan,Debitur
+completed,Surabaya Niaga,SME Banking Center Surabaya Niaga,,Kecil,Perdagangan,Debitur
+completed,Surabaya Niaga,SME Banking Center Surabaya Niaga,,Kecil,Lainnya,Debitur
+completed,Jambi,SME Banking Center Jambi,,Kecil,Pertanian dan Perkebunan,Debitur
 completed,Jambi,SME Banking Center Jambi,,Kecil,Pertanian dan Perkebunan,Debitur
 completed,Surabaya Niaga,SME Banking Floor Kediri,,Kecil,Perdagangan,Debitur
 completed,Surabaya Niaga,SME Banking Floor Kediri,,Kecil,Perdagangan,Debitur
-completed,Jambi,Padang,,Unknown,Lainnya,Debitur
-completed,Jambi,Padang,,Kecil,Perdagangan,Debitur
-completed,Surabaya Niaga,Gresik,,Kecil,Perdagangan,Debitur
-completed,Surabaya Niaga,Gresik,,Kecil,Industri Pengolahan,Debitur
+completed,Jambi,SME Banking Floor Padang,,Unknown,Lainnya,Debitur
+completed,Jambi,SME Banking Floor Padang,,Kecil,Perdagangan,Debitur
+completed,Surabaya Niaga,SME Banking Floor Gresik,,Kecil,Perdagangan,Debitur
+completed,Surabaya Niaga,SME Banking Floor Gresik,,Kecil,Industri Pengolahan,Debitur
 completed,Surabaya Niaga,SME Banking Floor Kediri,,Kecil,Perdagangan,Debitur
-completed,Denpasar,FLOOR KUPANG,,Kecil,Pertanian dan Perkebunan,Debitur
+completed,Denpasar,SME Banking Floor Kupang,,Kecil,Pertanian dan Perkebunan,Debitur
 completed,Region III  - Jakarta I,CILEGON,16306,Kecil,Perdagangan,Non-Debitur
 completed,Surabaya Niaga,SME Banking Floor Kediri,,Kecil,Perdagangan,Debitur
 completed,Surabaya Niaga,SME Banking Floor Kediri,,Kecil,Perdagangan,Debitur
+completed,Manado,SME Banking Center Manado,,Kecil,Lainnya,Debitur
+completed,Surabaya Niaga,SME Banking Floor Kediri,,Kecil,Perdagangan,Debitur
+completed,Bandung Surapati,SME Banking Floor Sukabumi,,Kecil,Perdagangan,Debitur
+completed,Surabaya Niaga,SME Banking Center Surabaya Niaga,,Kecil,Perdagangan,Debitur
+completed,Denpasar,SME Banking Floor Kupang,,Kecil,Perdagangan,Debitur
+completed,Surabaya Niaga,SME Banking Floor Gresik,,Unknown,Lainnya,Debitur
+completed,Surabaya Niaga,SME Banking Center Surabaya Niaga,,Kecil,Perdagangan,Debitur
+completed,Surabaya Niaga,SME Banking Floor Gresik,,Kecil,Perdagangan,Debitur
+completed,Yogyakarta,SME Banking Center Yogyakarta,,Kecil,Penyediaan Akomodasi dan Penyediaan Makan Minum,Debitur
