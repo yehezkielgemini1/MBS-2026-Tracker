@@ -345,6 +345,39 @@ a:focus-visible,
 /* Row style for "Belum terpetakan" bucket */
 tr.row-unmapped td { color: var(--text-muted); font-style: italic; border-top: 1px dashed var(--rule); }
 
+/* ============ CONTROLS ROW (segmented control + sort) ============ */
+.controls-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 4px;
+}
+.sort-control {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.sort-control select {
+  font-size: 13px;
+  font-weight: 500;
+  text-transform: none;
+  letter-spacing: normal;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--rule-strong);
+  background: var(--bg-elevated);
+  color: var(--text-primary);
+  cursor: pointer;
+}
+.sort-control select:focus-visible { outline: none; box-shadow: var(--focus-ring); }
+
 /* ============ SEGMENTED CONTROL (sub-view switch dalam segment page) ============
    Active button follows CTA style: light theme navy bg + white text,
    dark theme light-blue bg + dark navy text. */

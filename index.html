@@ -215,10 +215,20 @@
   <template x-if="!loading && activePanel === 'debitur'">
     <div>
 
-      <!-- Segmented control: Per Center / Per Unit -->
-      <div class="seg-group" role="tablist" aria-label="Debitur sub navigation">
-        <button class="seg-btn" role="tab" :aria-selected="debSub === 'center'" :class="{ 'active': debSub === 'center' }" @click="switchDebSub('center')">Per Center</button>
-        <button class="seg-btn" role="tab" :aria-selected="debSub === 'unit'" :class="{ 'active': debSub === 'unit' }" @click="switchDebSub('unit')">Per Unit</button>
+      <!-- Segmented control: Per Center / Per Unit + Sort -->
+      <div class="controls-row">
+        <div class="seg-group" role="tablist" aria-label="Debitur sub navigation">
+          <button class="seg-btn" role="tab" :aria-selected="debSub === 'center'" :class="{ 'active': debSub === 'center' }" @click="switchDebSub('center')">Per Center</button>
+          <button class="seg-btn" role="tab" :aria-selected="debSub === 'unit'" :class="{ 'active': debSub === 'unit' }" @click="switchDebSub('unit')">Per Unit</button>
+        </div>
+        <label class="sort-control">
+          <span>Urutkan</span>
+          <select x-model="tableSort" @change="$nextTick(() => renderActivePanel())">
+            <option value="default">Geografis</option>
+            <option value="pct_desc">Capaian: tertinggi → terendah</option>
+            <option value="pct_asc">Capaian: terendah → tertinggi</option>
+          </select>
+        </label>
       </div>
 
       <!-- Sub-tab: Per Center (overview, 26 centers) -->
@@ -407,10 +417,20 @@
         Menunggu respons Non-debitur pertama · Target ditampilkan, aktual akan muncul saat data masuk
       </div>
 
-      <!-- Segmented control: Per Region / Per Area -->
-      <div class="seg-group" role="tablist" aria-label="Non-debitur sub navigation">
-        <button class="seg-btn" role="tab" :aria-selected="ndSub === 'region'" :class="{ 'active': ndSub === 'region' }" @click="switchNdSub('region')">Per Region</button>
-        <button class="seg-btn" role="tab" :aria-selected="ndSub === 'area'" :class="{ 'active': ndSub === 'area' }" @click="switchNdSub('area')">Per Area</button>
+      <!-- Segmented control: Per Region / Per Area + Sort -->
+      <div class="controls-row">
+        <div class="seg-group" role="tablist" aria-label="Non-debitur sub navigation">
+          <button class="seg-btn" role="tab" :aria-selected="ndSub === 'region'" :class="{ 'active': ndSub === 'region' }" @click="switchNdSub('region')">Per Region</button>
+          <button class="seg-btn" role="tab" :aria-selected="ndSub === 'area'" :class="{ 'active': ndSub === 'area' }" @click="switchNdSub('area')">Per Area</button>
+        </div>
+        <label class="sort-control">
+          <span>Urutkan</span>
+          <select x-model="tableSort" @change="$nextTick(() => renderActivePanel())">
+            <option value="default">Geografis</option>
+            <option value="pct_desc">Capaian: tertinggi → terendah</option>
+            <option value="pct_asc">Capaian: terendah → tertinggi</option>
+          </select>
+        </label>
       </div>
 
       <!-- Sub-tab: Per Region (12 branch regions) -->

@@ -82,6 +82,7 @@ function mbsApp() {
     ndSub: 'region',         // non-debitur sub-tab: 'region' | 'area'
     selectedCenter: null,    // debitur Per Center drill (null = overview)
     ndRegionFilter: '',      // non-debitur Per Area region filter ('' = all)
+    tableSort: 'default',    // urutan tabel+chart: 'default' (geografis) | 'pct_desc' | 'pct_asc'
 
     loading: true,
     theme: 'light',
@@ -302,6 +303,16 @@ function mbsApp() {
       if (d < 0) return '+' + Number(Math.abs(d)).toLocaleString('id-ID');
       return Number(d).toLocaleString('id-ID');
     },
+    // Urutkan baris tabel/chart sesuai tableSort. Baris tanpa pct (Belum terpetakan)
+    // selalu di bawah. 'default' = urutan asli (geografis/target).
+    sortRows(rows) {
+      if (this.tableSort === 'default') return rows;
+      const dir = this.tableSort === 'pct_asc' ? 1 : -1;
+      const withPct = rows.filter(r => r.pct !== null && r.pct !== undefined);
+      const nullPct = rows.filter(r => r.pct === null || r.pct === undefined);
+      withPct.sort((a, b) => ((a.pct || 0) - (b.pct || 0)) * dir);
+      return [...withPct, ...nullPct];
+    },
     ndRegionShort(region) {
       return String(region || '').replace(/^Region\s+\w+\s+-\s+/, '');
     },
@@ -445,14 +456,14 @@ function mbsApp() {
 
     // ----- DEBITUR: Per Center table (26 centers) -----
     summaryTableDebitur() {
-      return this.centersList.map(c => {
+      return this.sortRows(this.centersList.map(c => {
         const center = c.new_center;
         const target = this.targetDebiturForCenter(center);
         const aktual = this.aktualDebiturForCenter(center);
         const defisit = target - aktual;
         const pct = target > 0 ? (aktual / target * 100) : 0;
         return { center, target, aktual, defisit, pct };
-      });
+      }));
     },
 
     // ----- DEBITUR: center detail (units within one center) -----
@@ -474,7 +485,7 @@ function mbsApp() {
       if (unmappedCount > 0) {
         rows.push({ unit: 'Belum terpetakan', target: null, aktual: unmappedCount, defisit: null, pct: null, unmapped: true });
       }
-      return rows;
+      return this.sortRows(rows);
     },
 
     // ----- DEBITUR: Per Unit table (103 units + unmapped bucket) -----
@@ -500,26 +511,26 @@ function mbsApp() {
         !unitNames.has(String(r.area || '').trim())
       ).length;
       rows.push({ center: '-', unit: 'Belum terpetakan', target: null, aktual: unmappedCount, defisit: null, pct: null, centerIdx: 999, unmapped: true });
-      return rows;
+      return this.sortRows(rows);
     },
 
     // ----- NON-DEBITUR: Per Region table (12 regions) -----
     summaryTableNdRegion() {
-      return this.targetsNdByRegion.map(r => {
+      return this.sortRows(this.targetsNdByRegion.map(r => {
         const region = r.region;
         const target = r.target_nondebitur || 0;
         const aktual = this.aktualNdForRegion(region);
         const defisit = target - aktual;
         const pct = target > 0 ? (aktual / target * 100) : 0;
         return { region, target, aktual, defisit, pct };
-      });
+      }));
     },
 
     // ----- NON-DEBITUR: Per Area table (optionally filtered by region) -----
     ndAreaRows() {
       let rows = this.targetsNdByArea;
       if (this.ndRegionFilter) rows = rows.filter(r => r.region === this.ndRegionFilter);
-      return rows.map(r => {
+      return this.sortRows(rows.map(r => {
         const region = r.region;
         const area = r.area;
         const target = r.target_nondebitur || 0;
@@ -527,7 +538,7 @@ function mbsApp() {
         const defisit = target - aktual;
         const pct = target > 0 ? (aktual / target * 100) : 0;
         return { region, area, target, aktual, defisit, pct };
-      });
+      }));
     },
   };
 }
