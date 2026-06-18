@@ -296,6 +296,12 @@ function mbsApp() {
       if (n === null || n === undefined || isNaN(n)) return '-';
       return Number(n).toFixed(digits) + '%';
     },
+    // Defisit: positif = sisa ke target; negatif (lewat target) tampil sbg "+N" surplus
+    fmtDefisit(d) {
+      if (d === null || d === undefined || isNaN(d)) return '-';
+      if (d < 0) return '+' + Number(Math.abs(d)).toLocaleString('id-ID');
+      return Number(d).toLocaleString('id-ID');
+    },
     ndRegionShort(region) {
       return String(region || '').replace(/^Region\s+\w+\s+-\s+/, '');
     },
@@ -443,7 +449,7 @@ function mbsApp() {
         const center = c.new_center;
         const target = this.targetDebiturForCenter(center);
         const aktual = this.aktualDebiturForCenter(center);
-        const defisit = Math.max(0, target - aktual);
+        const defisit = target - aktual;
         const pct = target > 0 ? (aktual / target * 100) : 0;
         return { center, target, aktual, defisit, pct };
       });
@@ -457,7 +463,7 @@ function mbsApp() {
         const unit = u.new_unit;
         const target = this.targetDebiturForUnit(unit);
         const aktual = this.aktualDebiturForUnit(unit);
-        const defisit = Math.max(0, target - aktual);
+        const defisit = target - aktual;
         const pct = target > 0 ? (aktual / target * 100) : 0;
         return { unit, target, aktual, defisit, pct, unmapped: false };
       }).sort((a, b) => b.target - a.target);
@@ -480,7 +486,7 @@ function mbsApp() {
         const center = u.new_center;
         const target = this.targetDebiturForUnit(unit);
         const aktual = this.aktualDebiturForUnit(unit);
-        const defisit = Math.max(0, target - aktual);
+        const defisit = target - aktual;
         const pct = target > 0 ? (aktual / target * 100) : 0;
         const centerIdx = centerOrder.indexOf(center);
         return { center, unit, target, aktual, defisit, pct, centerIdx, unmapped: false };
@@ -503,7 +509,7 @@ function mbsApp() {
         const region = r.region;
         const target = r.target_nondebitur || 0;
         const aktual = this.aktualNdForRegion(region);
-        const defisit = Math.max(0, target - aktual);
+        const defisit = target - aktual;
         const pct = target > 0 ? (aktual / target * 100) : 0;
         return { region, target, aktual, defisit, pct };
       });
@@ -518,7 +524,7 @@ function mbsApp() {
         const area = r.area;
         const target = r.target_nondebitur || 0;
         const aktual = this.aktualNdForArea(region, area);
-        const defisit = Math.max(0, target - aktual);
+        const defisit = target - aktual;
         const pct = target > 0 ? (aktual / target * 100) : 0;
         return { region, area, target, aktual, defisit, pct };
       });

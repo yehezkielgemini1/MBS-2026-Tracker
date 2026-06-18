@@ -254,13 +254,13 @@
                       <td class="label" x-text="row.center"></td>
                       <td class="num" x-text="fmt(row.target)"></td>
                       <td class="num" x-text="liveReady ? fmt(row.aktual) : '-'"></td>
-                      <td class="num" x-text="liveReady ? fmt(row.defisit) : '-'"></td>
+                      <td class="num" x-text="liveReady ? fmtDefisit(row.defisit) : '-'"></td>
                       <td>
                         <div class="progress-bar">
                           <div class="bar">
                             <div class="bar-fill" :class="barClass(row.pct)" :style="`width:${Math.min(100, row.pct)}%`"></div>
                           </div>
-                          <span class="pct" :class="barClass(row.pct)" x-text="liveReady ? fmtPct(Math.min(100, row.pct), 0) : '-'"></span>
+                          <span class="pct" :class="barClass(row.pct)" x-text="liveReady ? fmtPct(row.pct, 0) : '-'"></span>
                         </div>
                       </td>
                     </tr>
@@ -307,14 +307,14 @@
                       <td class="label" x-text="row.unit"></td>
                       <td class="num" x-text="row.unmapped ? '-' : fmt(row.target)"></td>
                       <td class="num" x-text="liveReady ? fmt(row.aktual) : '-'"></td>
-                      <td class="num" x-text="row.unmapped ? '-' : (liveReady ? fmt(row.defisit) : '-')"></td>
+                      <td class="num" x-text="row.unmapped ? '-' : (liveReady ? fmtDefisit(row.defisit) : '-')"></td>
                       <td>
                         <template x-if="!row.unmapped">
                           <div class="progress-bar">
                             <div class="bar">
                               <div class="bar-fill" :class="barClass(row.pct)" :style="`width:${Math.min(100, row.pct)}%`"></div>
                             </div>
-                            <span class="pct" :class="barClass(row.pct)" x-text="liveReady ? fmtPct(Math.min(100, row.pct), 0) : '-'"></span>
+                            <span class="pct" :class="barClass(row.pct)" x-text="liveReady ? fmtPct(row.pct, 0) : '-'"></span>
                           </div>
                         </template>
                         <template x-if="row.unmapped">
@@ -357,14 +357,14 @@
                       <td class="label" x-text="row.unit"></td>
                       <td class="num" x-text="row.unmapped ? '-' : fmt(row.target)"></td>
                       <td class="num" x-text="liveReady ? fmt(row.aktual) : '-'"></td>
-                      <td class="num" x-text="row.unmapped ? '-' : (liveReady ? fmt(row.defisit) : '-')"></td>
+                      <td class="num" x-text="row.unmapped ? '-' : (liveReady ? fmtDefisit(row.defisit) : '-')"></td>
                       <td>
                         <template x-if="!row.unmapped">
                           <div class="progress-bar">
                             <div class="bar">
                               <div class="bar-fill" :class="barClass(row.pct)" :style="`width:${Math.min(100, row.pct)}%`"></div>
                             </div>
-                            <span class="pct" :class="barClass(row.pct)" x-text="liveReady ? fmtPct(Math.min(100, row.pct), 0) : '-'"></span>
+                            <span class="pct" :class="barClass(row.pct)" x-text="liveReady ? fmtPct(row.pct, 0) : '-'"></span>
                           </div>
                         </template>
                         <template x-if="row.unmapped">
@@ -446,13 +446,13 @@
                       <td class="label" x-text="row.region"></td>
                       <td class="num" x-text="fmt(row.target)"></td>
                       <td class="num" x-text="liveReady ? fmt(row.aktual) : '-'"></td>
-                      <td class="num" x-text="liveReady ? fmt(row.defisit) : '-'"></td>
+                      <td class="num" x-text="liveReady ? fmtDefisit(row.defisit) : '-'"></td>
                       <td>
                         <div class="progress-bar">
                           <div class="bar">
                             <div class="bar-fill" :class="barClass(row.pct)" :style="`width:${Math.min(100, row.pct)}%`"></div>
                           </div>
-                          <span class="pct" :class="barClass(row.pct)" x-text="liveReady ? fmtPct(Math.min(100, row.pct), 0) : '-'"></span>
+                          <span class="pct" :class="barClass(row.pct)" x-text="liveReady ? fmtPct(row.pct, 0) : '-'"></span>
                         </div>
                       </td>
                     </tr>
@@ -505,13 +505,13 @@
                       <td class="label" x-text="row.area"></td>
                       <td class="num" x-text="fmt(row.target)"></td>
                       <td class="num" x-text="liveReady ? fmt(row.aktual) : '-'"></td>
-                      <td class="num" x-text="liveReady ? fmt(row.defisit) : '-'"></td>
+                      <td class="num" x-text="liveReady ? fmtDefisit(row.defisit) : '-'"></td>
                       <td>
                         <div class="progress-bar">
                           <div class="bar">
                             <div class="bar-fill" :class="barClass(row.pct)" :style="`width:${Math.min(100, row.pct)}%`"></div>
                           </div>
-                          <span class="pct" :class="barClass(row.pct)" x-text="liveReady ? fmtPct(Math.min(100, row.pct), 0) : '-'"></span>
+                          <span class="pct" :class="barClass(row.pct)" x-text="liveReady ? fmtPct(row.pct, 0) : '-'"></span>
                         </div>
                       </td>
                     </tr>
