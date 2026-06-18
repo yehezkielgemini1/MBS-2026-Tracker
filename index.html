@@ -260,7 +260,7 @@
                           <div class="bar">
                             <div class="bar-fill" :class="barClass(row.pct)" :style="`width:${Math.min(100, row.pct)}%`"></div>
                           </div>
-                          <span class="pct" :class="barClass(row.pct)" x-text="liveReady ? fmtPct(row.pct, 0) : '-'"></span>
+                          <span class="pct" :class="barClass(row.pct)" x-text="liveReady ? fmtPct(Math.min(100, row.pct), 0) : '-'"></span>
                         </div>
                       </td>
                     </tr>
@@ -314,7 +314,7 @@
                             <div class="bar">
                               <div class="bar-fill" :class="barClass(row.pct)" :style="`width:${Math.min(100, row.pct)}%`"></div>
                             </div>
-                            <span class="pct" :class="barClass(row.pct)" x-text="liveReady ? fmtPct(row.pct, 0) : '-'"></span>
+                            <span class="pct" :class="barClass(row.pct)" x-text="liveReady ? fmtPct(Math.min(100, row.pct), 0) : '-'"></span>
                           </div>
                         </template>
                         <template x-if="row.unmapped">
@@ -364,7 +364,7 @@
                             <div class="bar">
                               <div class="bar-fill" :class="barClass(row.pct)" :style="`width:${Math.min(100, row.pct)}%`"></div>
                             </div>
-                            <span class="pct" :class="barClass(row.pct)" x-text="liveReady ? fmtPct(row.pct, 0) : '-'"></span>
+                            <span class="pct" :class="barClass(row.pct)" x-text="liveReady ? fmtPct(Math.min(100, row.pct), 0) : '-'"></span>
                           </div>
                         </template>
                         <template x-if="row.unmapped">
@@ -452,7 +452,7 @@
                           <div class="bar">
                             <div class="bar-fill" :class="barClass(row.pct)" :style="`width:${Math.min(100, row.pct)}%`"></div>
                           </div>
-                          <span class="pct" :class="barClass(row.pct)" x-text="liveReady ? fmtPct(row.pct, 0) : '-'"></span>
+                          <span class="pct" :class="barClass(row.pct)" x-text="liveReady ? fmtPct(Math.min(100, row.pct), 0) : '-'"></span>
                         </div>
                       </td>
                     </tr>
@@ -511,7 +511,7 @@
                           <div class="bar">
                             <div class="bar-fill" :class="barClass(row.pct)" :style="`width:${Math.min(100, row.pct)}%`"></div>
                           </div>
-                          <span class="pct" :class="barClass(row.pct)" x-text="liveReady ? fmtPct(row.pct, 0) : '-'"></span>
+                          <span class="pct" :class="barClass(row.pct)" x-text="liveReady ? fmtPct(Math.min(100, row.pct), 0) : '-'"></span>
                         </div>
                       </td>
                     </tr>
