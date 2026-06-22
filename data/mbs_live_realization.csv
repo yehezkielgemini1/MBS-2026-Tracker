@@ -1,5 +1,4 @@
 ﻿response_status,region,area,cabang,skala_usaha,sektor,status_debitur
-completed,Denpasar,SME Banking Center Denpasar,,Kecil,Perdagangan,Debitur
 completed,Surabaya Niaga,SME Banking Center Surabaya Niaga,,Menengah,Konstruksi,Debitur
 completed,Surabaya Niaga,SME Banking Center Surabaya Niaga,,Menengah,Lainnya,Debitur
 completed,Surabaya Niaga,SME Banking Center Surabaya Niaga,,Menengah,Lainnya,Debitur
@@ -617,7 +616,6 @@ completed,Region X    - Sulawesi-Maluku,Manado,15000,Menengah,Industri Pengolaha
 completed,Manado,SME Banking Center Manado,,Kecil,Perdagangan,Debitur
 completed,Manado,SME Banking Center Manado,,Kecil,Penyediaan Akomodasi dan Penyediaan Makan Minum,Debitur
 completed,Denpasar,SME Banking Center Denpasar,,Kecil,Industri Pengolahan,Debitur
-completed,Denpasar,SME Banking Center Denpasar,,Menengah,Industri Pengolahan,Debitur
 completed,Denpasar,SME Banking Center Denpasar,,Kecil,Industri Pengolahan,Debitur
 completed,Denpasar,SME Banking Center Denpasar,,Kecil,Penyediaan Akomodasi dan Penyediaan Makan Minum,Debitur
 completed,Denpasar,SME Banking Center Denpasar,,Menengah,Industri Pengolahan,Debitur
@@ -652,3 +650,4 @@ completed,Region XI   - Bali-Nusa Tenggara,DENPASAR,14516,Kecil,Industri Pengola
 completed,Region XI   - Bali-Nusa Tenggara,DENPASAR,14503,Kecil,Konstruksi,Non-Debitur
 completed,Denpasar,SME Banking Center Denpasar,,Menengah,Industri Pengolahan,Debitur
 completed,Denpasar,SME Banking Floor Kuta Raya,,Menengah,Konstruksi,Debitur
+completed,Denpasar,SME Banking Center Denpasar,,Menengah,Penyediaan Akomodasi dan Penyediaan Makan Minum,Debitur
