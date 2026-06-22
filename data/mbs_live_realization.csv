@@ -437,7 +437,7 @@ completed,Banjarmasin,SME Banking Floor Palangkaraya,,Menengah,Perdagangan,Debit
 completed,Bandung Asia Afrika,SME Banking Center Bandung Asia Afrika,,Menengah,Lainnya,Debitur
 completed,Region IX   - Kalimantan,Palangkaraya,15900,Kecil,Konstruksi,Non-Debitur
 completed,Surabaya Pemuda,SME Banking Floor Jember,,Menengah,Industri Pengolahan,Debitur
-completed,Denpasar,SME Banking Center Denpasar,,Menengah,Perdagangan,Debitur
+completed,Denpasar,SME Banking Floor Kuta Raya,,Menengah,Perdagangan,Debitur
 completed,Bandung Surapati,SME Banking Floor Tasikmalaya,,Menengah,Pertanian dan Perkebunan,Debitur
 completed,Banjarmasin,SME Banking Floor Palangkaraya,,Kecil,Perdagangan,Debitur
 completed,Region X    - Sulawesi-Maluku,Makassar Kartini,15225,Kecil,Perdagangan,Non-Debitur
@@ -478,7 +478,7 @@ completed,Bandung Asia Afrika,SME Banking Floor Bandung Braga,,Kecil,Konstruksi,
 completed,Region XI   - Bali-Nusa Tenggara,17500,14516,Kecil,Konstruksi,Non-Debitur
 completed,Region X    - Sulawesi-Maluku,Manado,15086,Kecil,Perdagangan,Non-Debitur
 completed,Region X    - Sulawesi-Maluku,Manado,15086,Kecil,Perdagangan,Non-Debitur
-completed,Denpasar,SME Banking Center Denpasar,,Menengah,Industri Pengolahan,Debitur
+completed,Denpasar,SME Banking Floor Kuta Raya,,Menengah,Industri Pengolahan,Debitur
 completed,Region X    - Sulawesi-Maluku,Manado,15086,Kecil,Lainnya,Non-Debitur
 completed,Region X    - Sulawesi-Maluku,Manado,15019,Kecil,Konstruksi,Non-Debitur
 completed,Denpasar,SME Banking Floor Mataram,,Menengah,Perdagangan,Debitur
@@ -590,14 +590,14 @@ completed,Manado,SME Banking Desk Gorontalo,,Menengah,Perdagangan,Debitur
 completed,Tangerang,SME Banking Center Tangerang,,Menengah,Penyediaan Akomodasi dan Penyediaan Makan Minum,Debitur
 completed,Makassar,SME Banking Center Makassar,,Menengah,Perdagangan,Debitur
 completed,Medan,SME Banking Center Medan,,Menengah,Lainnya,Debitur
-completed,Denpasar,SME Banking Center Denpasar,,Kecil,Perdagangan,Debitur
+completed,Denpasar,SME Banking Floor Kuta Raya,,Kecil,Perdagangan,Debitur
 completed,Denpasar,SME Banking Desk Singaraja,,Kecil,Penyediaan Akomodasi dan Penyediaan Makan Minum,Debitur
-completed,Denpasar,SME Banking Center Denpasar,,Menengah,Perdagangan,Debitur
+completed,Denpasar,SME Banking Floor Kuta Raya,,Menengah,Perdagangan,Debitur
 completed,Denpasar,SME Banking Center Denpasar,,Kecil,Penyediaan Akomodasi dan Penyediaan Makan Minum,Debitur
 completed,Palembang,SME Banking Center Palembang,,Kecil,Pertanian dan Perkebunan,Debitur
 completed,Medan,SME Banking Floor Medan Imam Bonjol,,Menengah,Lainnya,Debitur
 completed,Denpasar,SME Banking Center Denpasar,,Kecil,Industri Pengolahan,Debitur
-completed,Denpasar,SME Banking Center Denpasar,,Menengah,Industri Pengolahan,Debitur
+completed,Denpasar,SME Banking Floor Kuta Raya,,Menengah,Industri Pengolahan,Debitur
 completed,Medan,SME Banking Floor Pematangsiantar,,Menengah,Lainnya,Debitur
 completed,Region X    - Sulawesi-Maluku,PALU,15182,Kecil,Pertanian dan Perkebunan,Non-Debitur
 completed,Denpasar,SME Banking Center Denpasar,,Menengah,Lainnya,Debitur
@@ -624,3 +624,16 @@ completed,Denpasar,SME Banking Center Denpasar,,Kecil,Industri Pengolahan,Debitu
 completed,Denpasar,SME Banking Center Denpasar,,Kecil,Penyediaan Akomodasi dan Penyediaan Makan Minum,Debitur
 completed,Denpasar,SME Banking Center Denpasar,,Menengah,Industri Pengolahan,Debitur
 completed,Jakarta Pulogadung,SME Banking Center Jakarta Pulogadung,,Kecil,Perdagangan,Debitur
+completed,Denpasar,SME Banking Center Denpasar,,Menengah,Perdagangan,Debitur
+completed,Denpasar,SME Banking Floor Kupang,,Menengah,Perdagangan,Debitur
+completed,Bandung Asia Afrika,SME Banking Center Bandung Asia Afrika,,Kecil,Perdagangan,Debitur
+completed,Bandung Asia Afrika,SME Banking Center Bandung Asia Afrika,,Kecil,Konstruksi,Debitur
+completed,Bandung Asia Afrika,SME Banking Center Bandung Asia Afrika,,Kecil,Konstruksi,Debitur
+completed,Bandung Asia Afrika,SME Banking Center Bandung Asia Afrika,,Menengah,Perdagangan,Debitur
+completed,Makassar,SME Banking Center Makassar,,Kecil,Perdagangan,Debitur
+completed,Bandung Asia Afrika,SME Banking Center Bandung Asia Afrika,,Kecil,Lainnya,Debitur
+completed,Bandung Asia Afrika,SME Banking Center Bandung Asia Afrika,,Menengah,Konstruksi,Debitur
+completed,Pontianak,SME Banking Center Pontianak,,Kecil,Lainnya,Debitur
+completed,Jakarta Pulogadung,SME Banking Center Jakarta Pulogadung,,Menengah,Perdagangan,Debitur
+completed,Jakarta Pulogadung,SME Banking Center Jakarta Pulogadung,,Menengah,Lainnya,Debitur
+completed,Denpasar,SME Banking Floor Kuta Raya,,Menengah,Perdagangan,Debitur
