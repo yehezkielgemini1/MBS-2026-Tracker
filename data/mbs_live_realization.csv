@@ -347,7 +347,7 @@ completed,Makassar,SME Banking Floor Kendari,,Menengah,Perdagangan,Debitur
 completed,Surabaya Pemuda,SME Banking Floor Surabaya Gentengkali,,Menengah,Industri Pengolahan,Debitur
 completed,Manado,SME Banking Center Manado,,Menengah,Konstruksi,Debitur
 completed,Region X    - Sulawesi-Maluku,Manado,15096,Kecil,Pertanian dan Perkebunan,Non-Debitur
-completed,Region XI   - Bali-Nusa Tenggara,kupang,18100,Menengah,Konstruksi,Non-Debitur
+completed,Region XI   - Bali-Nusa Tenggara,Kupang,18100,Menengah,Konstruksi,Non-Debitur
 completed,Surabaya Pemuda,SME Banking Center Surabaya Pemuda,,Menengah,Lainnya,Debitur
 completed,Jakarta Pulogadung,SME Banking Center Jakarta Pulogadung,,Kecil,Lainnya,Debitur
 completed,Surabaya Pemuda,SME Banking Center Surabaya Pemuda,,Kecil,Perdagangan,Debitur
@@ -485,7 +485,6 @@ completed,Region VI   - Jawa I,Braga,13200,Menengah,Industri Pengolahan,Non-Debi
 completed,Denpasar,SME Banking Desk Ruteng,,Menengah,Perdagangan,Debitur
 completed,Tangerang,SME Banking Center Tangerang,,Kecil,Lainnya,Debitur
 completed,Tangerang,SME Banking Floor Cilegon,,Kecil,Lainnya,Debitur
-completed,Region XI   - Bali-Nusa Tenggara,kupang,18105,Menengah,Perdagangan,Non-Debitur
 completed,Bandung Asia Afrika,SME Banking Floor Bandung Braga,,Kecil,Lainnya,Debitur
 completed,Region VI   - Jawa I,Braga,13200,Kecil,Perdagangan,Non-Debitur
 completed,Bandung Asia Afrika,SME Banking Floor Bandung Braga,,Menengah,Industri Pengolahan,Debitur
@@ -541,7 +540,7 @@ completed,Region II   - Sumatra II,Bandar lampung,114000,Menengah,Perdagangan,No
 completed,Region VI   - Jawa I,Asia Afrika,13001,Kecil,Konstruksi,Non-Debitur
 completed,Palembang,SME Banking Center Palembang,,Menengah,Perdagangan,Debitur
 completed,Region VIII - Jawa III,Surabaya Pemuda,14238,Menengah,Konstruksi,Non-Debitur
-completed,Region XI   - Bali-Nusa Tenggara,Kuta Raya,17506,Kecil,Penyediaan Akomodasi dan Penyediaan Makan Minum,Non-Debitur
+completed,Region XI   - Bali-Nusa Tenggara,Singaraja,17506,Kecil,Penyediaan Akomodasi dan Penyediaan Makan Minum,Non-Debitur
 completed,Palembang,SME Banking Center Palembang,,Menengah,Pertanian dan Perkebunan,Debitur
 completed,Banjarmasin,SME Banking Center Banjarmasin,,Menengah,Lainnya,Debitur
 completed,Denpasar,SME Banking Floor Mataram,,Menengah,Pertanian dan Perkebunan,Debitur
@@ -645,9 +644,9 @@ completed,Denpasar,SME Banking Floor Kupang,,Menengah,Pertanian dan Perkebunan,D
 completed,Region XI   - Bali-Nusa Tenggara,Denpasar,14501,Kecil,Lainnya,Non-Debitur
 completed,Denpasar,SME Banking Floor Kupang,,Menengah,Perdagangan,Debitur
 completed,Denpasar,SME Banking Floor Kuta Raya,,Menengah,Industri Pengolahan,Debitur
-completed,Region XI   - Bali-Nusa Tenggara,DENPASAR,14534,Kecil,Konstruksi,Non-Debitur
-completed,Region XI   - Bali-Nusa Tenggara,DENPASAR,14516,Kecil,Industri Pengolahan,Non-Debitur
-completed,Region XI   - Bali-Nusa Tenggara,DENPASAR,14503,Kecil,Konstruksi,Non-Debitur
+completed,Region XI   - Bali-Nusa Tenggara,Denpasar,14534,Kecil,Konstruksi,Non-Debitur
+completed,Region XI   - Bali-Nusa Tenggara,Denpasar,14516,Kecil,Industri Pengolahan,Non-Debitur
+completed,Region XI   - Bali-Nusa Tenggara,Denpasar,14503,Kecil,Konstruksi,Non-Debitur
 completed,Denpasar,SME Banking Center Denpasar,,Menengah,Industri Pengolahan,Debitur
 completed,Denpasar,SME Banking Floor Kuta Raya,,Menengah,Konstruksi,Debitur
 completed,Denpasar,SME Banking Center Denpasar,,Menengah,Penyediaan Akomodasi dan Penyediaan Makan Minum,Debitur
