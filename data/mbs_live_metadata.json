@@ -1,16 +1,16 @@
 {
-  "last_refresh": "2026-07-06T05:00:39.297256+00:00",
-  "last_refresh_wib": "2026-07-06 12:00:39",
+  "last_refresh": "2026-07-06T08:00:49.771880+00:00",
+  "last_refresh_wib": "2026-07-06 15:00:49",
   "survey_id": "422412181",
   "survey_title": "Mandiri Business Survey 2026",
   "target_n": 1400,
-  "raw_count": 1436,
-  "total_included": 755,
-  "completed_count": 755,
+  "raw_count": 1439,
+  "total_included": 757,
+  "completed_count": 757,
   "near_complete_count": 0,
-  "excluded_count": 681,
-  "completion_rate_pct": 53.9,
-  "defisit": 645,
+  "excluded_count": 682,
+  "completion_rate_pct": 54.1,
+  "defisit": 643,
   "filter_strategy": {
     "include_completed": true,
     "include_near_complete_partial": false,
@@ -21,7 +21,7 @@
   "n_centers": 26,
   "n_units": 103,
   "sme_mapping_coverage": {
-    "mapped_count": 755,
+    "mapped_count": 757,
     "unmapped_count": 0
   }
 }
