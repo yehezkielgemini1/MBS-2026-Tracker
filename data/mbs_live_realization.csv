@@ -338,7 +338,7 @@ completed,Region IV   - Jakarta II,KELAPA GADING,Kelapa gading,Menengah,Lainnya,
 completed,Surabaya Pemuda,SME Banking Floor Surabaya Gentengkali,,Kecil,Perdagangan,Debitur
 completed,Region VI   - Jawa I,Cirebon,13403,Menengah,Perdagangan,Non-Debitur
 completed,Surabaya Pemuda,SME Banking Center Surabaya Pemuda,,Menengah,Perdagangan,Debitur
-completed,Semarang,PURWOKERTO,,Menengah,Lainnya,Debitur
+completed,Yogyakarta,SME Banking Floor Purwokerto,,Menengah,Lainnya,Debitur
 completed,Surabaya Pemuda,SME Banking Floor Surabaya Gentengkali,,Menengah,Pertanian dan Perkebunan,Debitur
 completed,Tangerang,SME Banking Center Tangerang,,Kecil,Perdagangan,Debitur
 completed,Surabaya Pemuda,SME Banking Center Surabaya Pemuda,,Menengah,Perdagangan,Debitur
@@ -1206,3 +1206,7 @@ completed,Pekanbaru,SME Banking Floor Batam,,Menengah,Perdagangan,Debitur
 completed,Jakarta Kebon Sirih,SME Banking Center Jakarta Kebon Sirih,,Kecil,Lainnya,Debitur
 completed,Bekasi,SME Banking Center Bekasi,,Menengah,Lainnya,Debitur
 completed,Jakarta Wijaya Kusuma,SME Banking Floor Jakarta Kota,,Kecil,Perdagangan,Debitur
+completed,Region I    - Sumatra I,Dumai,17202,Kecil,Lainnya,Non-Debitur
+completed,Jakarta Wijaya Kusuma,SME Banking Floor Jakarta Kota,,Kecil,Perdagangan,Debitur
+completed,Semarang,SME Banking Floor Semarang Pemuda,,Kecil,Perdagangan,Debitur
+completed,Yogyakarta,SME Banking Center Yogyakarta,,Menengah,Industri Pengolahan,Debitur
