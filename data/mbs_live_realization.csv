@@ -326,7 +326,7 @@ completed,Region X    - Sulawesi-Maluku,Makassar Ratulangi,17403,Kecil,Industri 
 completed,Jakarta Fatmawati,SME Banking Floor Bogor,,Kecil,Perdagangan,Debitur
 completed,Bandung Asia Afrika,SME Banking Floor Bandung Braga,,Menengah,Perdagangan,Debitur
 completed,Surabaya Pemuda,SME Banking Center Surabaya Pemuda,,Menengah,Perdagangan,Debitur
-completed,Region VIII - Jawa III,Surabaya Pemuda,14219,Kecil,Industri Pengolahan,Debitur
+completed,Surabaya Pemuda,SME Banking Center Surabaya Pemuda,14219,Kecil,Industri Pengolahan,Debitur
 completed,Region VI   - Jawa I,Cirebon,13410,Kecil,Perdagangan,Non-Debitur
 completed,Surabaya Pemuda,SME Banking Center Surabaya Pemuda,,Kecil,Perdagangan,Debitur
 completed,Makassar,SME Banking Center Makassar,,Menengah,Pertanian dan Perkebunan,Debitur
@@ -382,7 +382,7 @@ completed,Region VIII - Jawa III,Surabaya Pemuda,14206,Menengah,Lainnya,Non-Debi
 completed,Banjarmasin,SME Banking Desk Sampit,,Menengah,Pertanian dan Perkebunan,Debitur
 completed,Banjarmasin,SME Banking Desk Pangkalan Bun,,Menengah,Lainnya,Debitur
 completed,Banjarmasin,SME Banking Desk Sampit,,Menengah,Perdagangan,Debitur
-completed,Region VIII - Jawa III,Surabaya Pemuda,14279,Menengah,Konstruksi,Debitur
+completed,Surabaya Pemuda,SME Banking Center Surabaya Pemuda,14279,Menengah,Konstruksi,Debitur
 completed,Banjarmasin,SME Banking Floor Palangkaraya,,Kecil,Penyediaan Akomodasi dan Penyediaan Makan Minum,Debitur
 completed,Makassar,SME Banking Center Makassar,,Menengah,Perdagangan,Debitur
 completed,Region XII  - Papua,Manado,15000,Menengah,Konstruksi,Non-Debitur
@@ -725,7 +725,7 @@ completed,Medan,SME Banking Center Medan,,Menengah,Konstruksi,Debitur
 completed,Medan,SME Banking Center Medan,,Menengah,Lainnya,Debitur
 completed,Medan,SME Banking Center Medan,,Menengah,Lainnya,Debitur
 completed,Region VII  - Jawa II,Semarang Pemuda,13524,Kecil,Perdagangan,Non-Debitur
-completed,Region VII  - Jawa II,Area Semarang Pemuda,13511,Kecil,Perdagangan,Debitur
+completed,Semarang,SME Banking Floor Semarang Pemuda,13511,Kecil,Perdagangan,Debitur
 completed,Region VII  - Jawa II,Area Semarang Pemuda,13503,Menengah,Lainnya,Non-Debitur
 completed,Region VII  - Jawa II,AREA SEMARANG PEMUDA,13591,Kecil,Pertanian dan Perkebunan,Non-Debitur
 completed,Region VII  - Jawa II,AREA SEMARANG PEMUDA,13504,Kecil,Lainnya,Non-Debitur
@@ -774,7 +774,7 @@ completed,Region VIII - Jawa III,Madiun,18718,Kecil,Perdagangan,Non-Debitur
 completed,Tangerang,SME Banking Floor Cilegon,,Kecil,Lainnya,Debitur
 completed,Tangerang,SME Banking Floor Cilegon,,Kecil,Lainnya,Debitur
 completed,Region VII  - Jawa II,Kudus,18400,Kecil,Lainnya,Non-Debitur
-completed,Region VII  - Jawa II,KUDUS,18400,Kecil,Lainnya,Debitur
+completed,Semarang,SME Banking Floor Kudus,18400,Kecil,Lainnya,Debitur
 completed,Region VII  - Jawa II,Kudus,18400,Kecil,Lainnya,Non-Debitur
 completed,Region III  - Jakarta I,Jakarta Daan Mogot,11824,Kecil,Konstruksi,Non-Debitur
 completed,Semarang,SME Banking Floor Kudus,,Kecil,Lainnya,Debitur
@@ -1385,3 +1385,8 @@ completed,Jayapura,SME Banking Center Jayapura,,Kecil,Perdagangan,Debitur
 completed,Jayapura,SME Banking Desk Manokwari,,Kecil,Perdagangan,Debitur
 completed,Jayapura,SME Banking Center Jayapura,,Menengah,Perdagangan,Debitur
 completed,Jayapura,SME Banking Center Jayapura,,Kecil,Perdagangan,Debitur
+completed,Banjarmasin,SME Banking Center Banjarmasin,,Menengah,Lainnya,Debitur
+completed,Banjarmasin,SME Banking Center Banjarmasin,,Menengah,Perdagangan,Debitur
+completed,Banjarmasin,SME Banking Center Banjarmasin,,Kecil,Lainnya,Debitur
+completed,Banjarmasin,SME Banking Center Banjarmasin,,Kecil,Konstruksi,Debitur
+completed,Jayapura,SME Banking Desk Timika,,Kecil,Pertanian dan Perkebunan,Debitur
